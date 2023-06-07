@@ -11,28 +11,32 @@
   margin-right: auto;
   margin-left: auto;
   max-width: 100%;
-  min-width: none;
+  min-width: 100%;
 }
 .logo {
-  height: 200px;
+  height: 220px;
   padding: 1.5em;
   will-change: filter;
   transition: filter 300ms;
 }
-.logo:hover {
+h1 {
+  margin-top: -3.7%;
+  margin-bottom: 2%;
+  font-size: 40px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+/* .logo:hover {
   filter: drop-shadow(0 0 2em #646cffaa);
 }
 .logo.react:hover {
   filter: drop-shadow(0 0 2em #61dafbaa);
-}
-h1 {
-  margin-top: 0;
-  font-weight: 700;
-  font-size: 40px;
-}
+} */
+
 .formLogin {
   display: flex;
-  margin: 0 20%;
+  margin-right: 20%;
+  margin-left: 20%;
   max-width: 100%;
 }
 .formLogin > form {
@@ -48,7 +52,8 @@ h1 {
   font-weight: 700;
   font-size: 24px;
   line-height: 150%;
-  letter-spacing: -0.019em;
+  letter-spacing: 0.08em;
+  text-align: left;
 }
 .input {
   width: 100%;
@@ -57,21 +62,26 @@ h1 {
   border-radius: 6px;
   border-color: #bf5b04;
   background-color: #ededed;
-  text-indent: 1em;
   color: black;
+  font-family: "Bitter";
+  font-style: normal;
+  font-weight: 700;
   font-size: 24px;
+  line-height: 150%;
+  letter-spacing: 0.08em;
+  text-indent: 1em;
 }
 .input:focus {
-  outline: 1px solid #bf5b04;
+  outline: solid 1px #bf5b04;
 }
-::placeholder {
-  padding-left: 3px;
-  letter-spacing: 0.08em;
+:placeholder-shown {
+  text-indent: 1em;
+  letter-spacing: 3px;
   font-size: 18px;
 }
-label > p {
+/* label > p {
   text-align: left;
-}
+} */
 
 .btn {
   margin-top: 7%;
@@ -93,11 +103,11 @@ footer {
   margin-top: 100px;
   width: 100%;
   background-color: rgba(191, 91, 4, 0.7);
-  letter-spacing: 0.146em;
+  font-family: "Bitter";
   font-weight: 700;
   font-size: 20px;
   line-height: 150%;
-  font-family: "Bitter";
+  letter-spacing: 0.146em;
 }
 
 .failLogin {
@@ -105,10 +115,9 @@ footer {
   color: #bf1304;
   font-family: "Bitter";
   font-weight: 700;
-  font-size: 24px;
+  font-size: 22px;
   line-height: 150%;
   letter-spacing: 0.146em;
-  margin-top: 10px;
   text-align: left;
-  margin-top: 5px;
+  margin-top: 2px;
 }
