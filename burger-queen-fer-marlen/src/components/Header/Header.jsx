@@ -1,6 +1,7 @@
 import logo from "../../assets/logo.png";
 import Title from "../Title/Title";
 import "../Title/Title.css";
+import { AiOutlineUser } from "react-icons/ai";
 function Logo() {
   return (
     <>
@@ -9,6 +10,7 @@ function Logo() {
         <Title title='Administrador' />
 
         {/* icono */}
+        <AiOutlineUser />
       </div>
     </>
   );
