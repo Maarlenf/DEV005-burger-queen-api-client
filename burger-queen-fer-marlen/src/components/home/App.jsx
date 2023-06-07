@@ -1,7 +1,16 @@
 import { useState } from "react";
 import "./App.css";
-import bannerBurguer from "../../assets/banner-opacity.png";
 import logo from "../../assets/logo.png";
+import Banner from "../Banner/Banner";
+import "../Banner/Banner.css";
+import Title from "../Title/Title";
+import "../Title/Title.css";
+import Input from "../Input/Input";
+import "../Input/Input.css";
+import Button from "../Button/Button";
+import "../Button/Button.css";
+import Footer from "../Footer/Footer";
+import "../Footer/Footer.css";
 
 function App() {
   const [valueEmail, setEmail] = useState("");
@@ -33,7 +42,7 @@ function App() {
         );
       }
     } catch (error) {
-      // Manejo de errores, por ejemplo, mostrar un mensaje de error en la interfaz.
+      // Manejo de errores
     }
   };
   function handleSubmit(e) {
@@ -45,53 +54,40 @@ function App() {
 
   return (
     <>
-      <div className='contain-banner'>
-        <img
-          src={bannerBurguer}
-          className='banner'
-          alt='Banner Burguer Queen'
-        />
-      </div>
+      <Banner />
       <div>
         <img src={logo} className='logo' alt='Logo Burguer Queen' />
       </div>
-      <h1>Iniciar Sesión</h1>
+      <Title title='Iniciar Sesión' />
       <div className='formLogin'>
         <form method='post' onSubmit={handleSubmit}>
-          <label>
-            <p className='p-login'>Correo Electrónico</p>
-            <input
-              type='email'
-              className='input'
-              id='email'
-              name='myInput'
-              placeholder='example@example'
-              value={valueEmail}
-              onChange={(e) => setEmail(e.target.value)}
-            />
-          </label>
-          <label>
-            <p className='p-login'>Contraseña</p>
-            <input
-              type='password'
-              autoComplete='current-password'
-              className='input'
-              id='password'
-              name='myInput'
-              placeholder='******'
-              value={valuePwd}
-              onChange={(e) => setPwd(e.target.value)}
-            />
-            {fail && <span className='failLogin'>{fail}</span>}
-          </label>
-          <button id='btnLogin' className='btn' type='submit'>
-            Iniciar sesión
-          </button>
+          <Input
+            textLabel='Correo Electrónico'
+            type='email'
+            className='input'
+            id='email'
+            placeholder='example@examle.com'
+            value={valueEmail}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+
+          <Input
+            textLabel='Contraseña'
+            type='password'
+            className='input'
+            autoComplete='current-password'
+            id='password'
+            name='myInput'
+            placeholder='******'
+            value={valuePwd}
+            onChange={(e) => setPwd(e.target.value)}
+          />
+          {fail && <span className='failLogin'>{fail}</span>}
+
+          <Button id='btnLogin' type='submit' text='Iniciar Sesión' />
         </form>
       </div>
-      <footer>
-        <p>Creado por @marlen & @fer</p>
-      </footer>
+      <Footer />
     </>
   );
 }

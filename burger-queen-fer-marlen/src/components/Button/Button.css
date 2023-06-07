@@ -1,0 +1,11 @@
+.btn {
+  margin-top: 7%;
+  width: 102%;
+  padding: 3%;
+  background-color: #bf5b04;
+  border-radius: 40px;
+  font-weight: 700;
+  font-size: 24px;
+  font-family: "Bitter";
+  letter-spacing: 0.13em;
+}
