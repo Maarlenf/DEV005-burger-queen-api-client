@@ -8,15 +8,24 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import App from "./components/home/App";
 import "./index.css";
 import Admin from "./components/Admin/Admin";
+import Employees from "./components/Employees/Employees";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
   },
+  // {
+  //   pat: "*",
+  //   element:
+  // },
   {
     path: "/admin",
     element: <Admin />,
+  },
+  {
+    path: "/admin/employees",
+    element: <Employees />,
   },
 ]);
 

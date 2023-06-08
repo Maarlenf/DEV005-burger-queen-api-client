@@ -11,8 +11,10 @@ import Button from "../Button/Button";
 import "../Button/Button.css";
 import Footer from "../Footer/Footer";
 import "../Footer/Footer.css";
-
+import { useNavigate } from "react-router-dom";
 function App() {
+  const navigate = useNavigate();
+
   const [valueEmail, setEmail] = useState("");
   const [valuePwd, setPwd] = useState("");
   const [fail, setFail] = useState("");
@@ -33,7 +35,9 @@ function App() {
       if (respuesta.ok) {
         // La petición fue exitosa
         const datos = await respuesta.json();
-        console.log(datos);
+        // Redirige a la vista de administrador
+        console.log(datos.user.email);
+        navigate("/admin", { state: { user: datos.user.email } });
       } else {
         // La petición falló
         // const error = await respuesta.json();
