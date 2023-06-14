@@ -1,0 +1,26 @@
+.containerBanner{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 15%;
+}
+.containerBanner>h1{
+    margin: 0px;
+    font-size: 35px;
+    margin-left: 7%;
+}
+.logoSmall{
+    width: 130px;
+}
+.containerUser{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    font-weight: 700; 
+    font-size: 20px;
+    letter-spacing: 0.080em;
+}
+.iconOut{
+    margin-bottom: -2%;
+}

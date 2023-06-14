@@ -1,0 +1,12 @@
+.containerButton{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    margin-right: 20%;
+    margin-left: 20%;
+    max-width: 100%;
+    height: 35%;
+}
+.containerButton>button{
+    padding: 10%;  
+} 
