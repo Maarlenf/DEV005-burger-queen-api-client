@@ -1,11 +1,11 @@
 function Input({ textLabel, className, type, id, placeholder, value, onChange}) {
   return (
     <>
-      <label>
-        <p className={className}>{textLabel}</p>
+     <label>
+        <p className='p-login'>{textLabel}</p>
         <input
           type={type}
-          className='input'
+          className={className}
           id={id}
           placeholder={placeholder}
           value={value}

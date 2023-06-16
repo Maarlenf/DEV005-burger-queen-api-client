@@ -16,7 +16,9 @@ import {
   AiOutlineUserDelete,
   AiOutlineEdit,
 } from "react-icons/ai";
-import { deleteUser } from "../../lib/api.js";
+import ModalDelete from "../ModalDelete/ModalDelete";
+import "../ModalDelete/ModalDelete.css";
+import ModalEdit from "../ModalEdit/ModalEdit";
 
 function Employees() {
   const [dataUser, setDataUser] = useState([]);
@@ -24,31 +26,48 @@ function Employees() {
   const token = localStorage.getItem("token");
   const authorization = `Bearer ${token}`;
   const [showModal, setShowModal] = useState(false);
-  localStorage.setItem('workers', dataUser);
+  const [showModalDelete, setModalDelete] = useState(false);
+  const [showModalEdit, setModalEdit] = useState(false);
+  const [editingUser, setEdit] = useState();
+  const [deleteUser , setDelete] = useState();
+
   const toggleModal = () => {
     setShowModal(!showModal);
   };
 
+  const toggleModalDelete = (id) => {
+    setModalDelete(!showModalDelete);
+    setDelete(id);
+  };
+
+  const toggleModalEdit = (user) => {
+    setModalEdit(!showModalEdit);
+    setEdit(user);
+  };
+
   useEffect(() => {
     getEmployees(authorization).then((res) => {
-      // const item = res.target.obj;
       setDataUser(res);
-    })
-  }, []);
-
- const deleteEmployee = (id) => {
-  console.log('CLICK');
-    deleteUser(id, authorization)
-    .then((res) => {
-      console.log("usuario eliminado" ,id)
-      console.log(res);
-    })
-    .catch((err) => console.log(err.message));
- }
+    });
+  }, [showModal, authorization, showModalDelete, showModalEdit]);
 
   return (
     <>
       {showModal && <Modal onClose={toggleModal} />}
+      {showModalDelete && (
+        <ModalDelete
+          text="Acción irreversible, ¿estás seguro que deseas continuar?"
+          onClose={toggleModalDelete}
+          id={deleteUser}
+        />
+      )}
+      {showModalEdit && (
+        <ModalEdit
+          onClose={toggleModalEdit}
+          userData={editingUser}
+          token={authorization}
+        />
+      )}
       <Banner />
       <Header user={user} />
       <div className="containerButtons">
@@ -66,7 +85,7 @@ function Employees() {
           <span className="role">Rol</span>
           <span className="action">Acción</span>
         </div>
-        <div className="containerId" key={1}>
+        <div className="containerId">
           {dataUser.map((obj) => {
             const email = cutEmail(obj.email);
             return (
@@ -77,21 +96,24 @@ function Employees() {
                 <ul>{obj.role}</ul>
                 <div>
                   <div className="icon1">
-                    <AiOutlineEdit size={30} />
+                    <AiOutlineEdit
+                      size={30}
+                      onClick={() => toggleModalEdit(obj)}
+                    />
                     <AiOutlineUserDelete
-                      onClick={() => {deleteEmployee(obj.id)}} 
-                      size={30} 
+                      onClick={() => toggleModalDelete(obj.id)}
+                      size={30}
                     />
                   </div>
                 </div>
               </>
             );
           })}
-           </div>
+        </div>
       </div>
       <Footer />
     </>
   );
-        }
+}
 
 export default Employees;

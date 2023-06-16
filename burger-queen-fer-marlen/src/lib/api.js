@@ -59,13 +59,34 @@ export function deleteUser(id, token) {
   return fetch(`${http}users/${id}`, {
     method: "DELETE",
     headers: {
-      Authorization : token
-    }})
-    .then((res) => 
-    { console.log(res.statusText);
-      res.json()})
+      Authorization: token,
+    },
+  })
+    .then((res) => {
+      // console.log(res.statusText);
+      res.json();
+    })
     .catch((err) => {
       console.log(err);
       console.log(err.message);
     });
+}
+
+export function editUser(token, uid, email, password, role) {
+  return fetch(`${http}users/${uid}`, {
+    method: "PATCH",
+    headers: {
+      "Content-type": stringJSON,
+      Authorization: token,
+    },
+    body: JSON.stringify({
+      email: email,
+      password: password,
+      role: role,
+    }),
+  })
+    .then((res) => {
+      res.json();
+    })
+    .catch((err) => console.log(err.message));
 }

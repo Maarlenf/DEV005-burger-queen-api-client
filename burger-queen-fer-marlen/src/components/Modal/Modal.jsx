@@ -6,26 +6,28 @@ import { useState } from "react";
 function Modal({ onClose }) {
   const [newUser, setNewUser] = useState("");
   const [newPass, setNewPass] = useState("");
-  
+
   const listRole = [
     { role: "admin", title: "Administrador/a" },
     { role: "chef", title: "Cocinera/o" },
     { role: "waiter", title: "Mesera/o" },
   ];
 
-  const [newRole, setNewRole] = useState('');
+  const [newRole, setNewRole] = useState(listRole[0].role);
 
- 
   const saveUser = () => {
-    return createUser(newUser, newPass, newRole).then((res) => console.log('usuario creado', res))
-  }
+    return createUser(newUser, newPass, newRole).then((res) => {
+      res;
+      onClose();
+    });
+  };
 
   // console.log(newRole);
   return (
     <>
       <div className="modal">
         <div className="innerModal">
-          <div>
+          <div className="containerClose">
             <AiOutlineClose size={30} onClick={onClose} />
           </div>
 
@@ -52,18 +54,29 @@ function Modal({ onClose }) {
                 onChange={(e) => setNewPass(e.target.value)}
               />
             </label>
-            {listRole.map((e) => {
-              return (
-                <>
-                  <label key={e.id}>
-                    <input type="radio" name="myRadio" value={e.role} onChange={() =>{
-                      setNewRole(e.role)}}/>
-                    {e.title}
-                  </label>
-                </>
-              );
-            })}
-            <div>
+            <div className="containerRadio">
+              {listRole.map((e) => {
+                //   console.log(e);
+                return (
+                  <>
+                    <label key={e.role}>
+                      <input
+                        type="radio"
+                        key={e.id}
+                        name="myRadio"
+                        value={e.role}
+                        checked={newRole === e.role}
+                        onChange={() => {
+                          setNewRole(e.role);
+                        }}
+                      />
+                      {e.title}
+                    </label>
+                  </>
+                );
+              })}
+            </div>
+            <div className="containerCheck">
               <AiOutlineCheck size={30} onClick={saveUser} />
             </div>
           </form>

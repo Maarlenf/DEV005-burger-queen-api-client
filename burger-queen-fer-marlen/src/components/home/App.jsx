@@ -56,7 +56,7 @@ function App() {
         <form method="post" onSubmit={handleSubmit}>
           <Input
             textLabel="Email"
-            className="p-login"
+            className="input"
             type="email"
             id="email"
             placeholder="example@examle.com"
@@ -65,7 +65,7 @@ function App() {
           />
           <Input
             textLabel="Contraseña"
-            className="p-login"
+            className="input"
             type="password"
             autoComplete="current-password"
             id="password"

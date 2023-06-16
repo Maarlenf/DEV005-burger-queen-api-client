@@ -1,4 +1,4 @@
-.modal {
+.modalDelete {
   max-width: 100%;
   height: 100vh;
   position: fixed;
@@ -11,40 +11,37 @@
   justify-content: center;
   background: rgb(0 0 0 / 50%);
 }
-
-.innerModal {
+.innerModalDelete {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
   border: 3px solid #bf5b04;
   border-radius: 25px;
   box-shadow: 10px 10px 10px gray;
   background: white;
   padding: 20px;
   width: 640px;
-  font-family: 'Bitter';
+  text-align: center;
+  font-family: "Bitter";
   font-style: normal;
   font-weight: 700;
   font-size: 24px;
   line-height: 150%;
-  letter-spacing: 0.080em;
-  display: flex;
-  flex-direction: column;
+  letter-spacing: 0.08em;
 }
 
-.containerRadio{
-  margin-top: 3%;
-  margin-bottom: 3%;
-  display: flex;
-  flex-direction: column;
+.innerModalDelete > span {
+  align-self: center;
 }
 
-input[type="radio"] {
-    width: 18px;
-    height: 18px;
-    margin-right: 10px;
+.containerClose {
+  display: flex;
+  justify-content: center;
+  border: solid 2px #bf5b04;
 }
-.containerClose{
-  align-self: flex-end;
-}
-.containerChecks{
+
+.containerCheck {
+  align-self: center;
   display: flex;
   justify-content: center;
   margin-top: 20px;
@@ -52,3 +49,7 @@ input[type="radio"] {
   width: 10%;
   border: solid 2px #bf5b04;
 }
+
+.containerCheck:focus {
+  border: solid 2px green;
+} 
