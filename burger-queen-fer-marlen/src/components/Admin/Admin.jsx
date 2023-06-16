@@ -7,17 +7,16 @@ import "../Footer/Footer.css";
 import Header from "../Header/Header";
 import "../Header/Header.css";
 import "../Admin/Admin.css";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { cutEmail } from "../../lib/api";
 
 function Admin() {
   const navigate = useNavigate();
-  const location = useLocation();
-  const data = location.state;
-  const user = data.user;
-  const cutName = user.indexOf("@");
-  const userInLine = user.substring(0, cutName);
+  const user = localStorage.getItem("user");
+  const userInLine = cutEmail(user);
+  localStorage.setItem("userInLine", userInLine);
   function goEmployees() {
-    return navigate("/admin/employees", { state: { user: userInLine } });
+    return navigate("/admin/employees");
   }
   return (
     <>

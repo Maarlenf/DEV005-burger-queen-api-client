@@ -12,6 +12,8 @@ import "../Button/Button.css";
 import Footer from "../Footer/Footer";
 import "../Footer/Footer.css";
 import { useNavigate } from "react-router-dom";
+import { getLogin } from "../../lib/api";
+
 function App() {
   const navigate = useNavigate();
 
@@ -19,36 +21,24 @@ function App() {
   const [valuePwd, setPwd] = useState("");
   const [fail, setFail] = useState("");
 
-  const login = async () => {
-    try {
-      const respuesta = await fetch("http://localhost:8080/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          email: valueEmail,
-          password: valuePwd,
-        }),
-      });
-
-      if (respuesta.ok) {
-        // La petición fue exitosa
-        const datos = await respuesta.json();
-        // Redirige a la vista de administrador
-        console.log(datos.user.email);
-        navigate("/admin", { state: { user: datos.user.email } });
-      } else {
-        // La petición falló
-        // const error = await respuesta.json();
-        throw new Error(
-          setFail("Ups! Algo salió mal. Compruebe sus credenciales")
+  const login = () => {
+    getLogin(valueEmail, valuePwd)
+      .then((res) => {
+        console.log(res);
+        navigate("/admin");
+        localStorage.setItem("token", res.accessToken);
+        localStorage.setItem("user", res.user.email);
+      })
+      .catch((err) => {
+        console.log(err);
+        new Error(
+          setFail(
+            "¡Ups! Ha ocurrido un error. Por favor verifica tu credenciales"
+          )
         );
-      }
-    } catch (error) {
-      // Manejo de errores
-    }
+      });
   };
+
   function handleSubmit(e) {
     // Previene que el navegador recargue la página
     e.preventDefault();
