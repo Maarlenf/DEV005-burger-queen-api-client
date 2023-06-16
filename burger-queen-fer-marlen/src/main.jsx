@@ -1,24 +1,24 @@
-import App from "./components/home/App";
-import Employees from "./components/Employees/Employess";
-import Admin from "./components/Admin/Admin";
+// import React from "react";
+// import ReactDOM from "react-dom/client";
+
 import * as React from "react";
 import * as ReactDOM from "react-dom/client";
-import {
-  createBrowserRouter,
-  RouterProvider,
-  Navigate,
-} from "react-router-dom";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+
+import App from "./components/home/App";
 import "./index.css";
+import Admin from "./components/Admin/Admin";
+import Employees from "./components/Employees/Employees";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
   },
-  {
-    path: "*",
-    element: <Navigate to="/" replace />,
-  },
+  // {
+  //   pat: "*",
+  //   element:
+  // },
   {
     path: "/admin",
     element: <Admin />,

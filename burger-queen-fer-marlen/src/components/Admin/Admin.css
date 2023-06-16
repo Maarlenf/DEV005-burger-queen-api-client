@@ -1,12 +1,37 @@
-.containerButton{
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-    margin-right: 20%;
-    margin-left: 20%;
-    max-width: 100%;
-    height: 35%;
+.containerBanner {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 15%;
 }
-.containerButton>button{
-    padding: 10%;  
-} 
+.containerBanner > h1 {
+  margin: 0;
+  font-size: 35px;
+  margin-left: 7%;
+}
+.logoSmall {
+  width: 130px;
+}
+
+.containerUser {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  font-weight: 700;
+  font-size: 20px;
+  letter-spacing: 0.08em;
+}
+.containerButton {
+  display: flex;
+  flex-direction: column;
+  margin-right: 20%;
+  margin-left: 20%;
+  max-width: 100%;
+  height: 35%;
+  margin-top: 10%;
+}
+
+.containerButton > button {
+  padding: 10%;
+}

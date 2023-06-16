@@ -1,6 +1,7 @@
 #root {
   margin: 0 auto;
-  margin-left: 0px;
+  /* padding: 2rem; */
+  margin-left: 0;
   text-align: center;
 }
 .logo {
@@ -9,32 +10,23 @@
   will-change: filter;
   transition: filter 300ms;
 }
-.formLogin{
+
+.formLogin {
   display: flex;
   margin-right: 20%;
   margin-left: 20%;
   max-width: 100%;
 }
-.formLogin>form{
+.formLogin > form {
   display: flex;
-  flex-flow: column;
-  width: 100%; 
-} 
-.p-login{
-margin-top:3%;
-margin-bottom: 5px;
-font-family: 'Bitter';
-font-style: normal;
-font-weight: 700;
-font-size: 24px;
-line-height: 150%;
-letter-spacing: 0.080em;
-text-align: left;
+  flex-direction: column;
+  width: 100%;
 }
-.failLogin{
+
+.failLogin {
   display: block;
-  color: #BF1304;
-  font-family: 'Bitter';
+  color: #bf1304;
+  font-family: "Bitter";
   font-weight: 700;
   font-size: 22px;
   line-height: 150%;
@@ -42,5 +34,3 @@ text-align: left;
   text-align: left;
   margin-top: 2px;
 }
-
-

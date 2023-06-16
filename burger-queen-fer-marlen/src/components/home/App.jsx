@@ -1,47 +1,58 @@
-/* eslint-disable no-unused-vars */
-import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import "./App.css";
-import "../Banner/Banner.css";
-import "../Tittle/Tittle.css";
-import "../Input/Input.css";
-import "../Button/Button.css";
-import "../Footer/Footer.css";
+import logo from "../../assets/logo.png";
 import Banner from "../Banner/Banner";
-import logoBurger from "../../assets/logoBurguerQueen.png";
-import Tittle from "../Tittle/Tittle";
+import "../Banner/Banner.css";
+import Title from "../Title/Title";
+import "../Title/Title.css";
 import Input from "../Input/Input";
+import "../Input/Input.css";
 import Button from "../Button/Button";
+import "../Button/Button.css";
 import Footer from "../Footer/Footer";
-import { getLogin } from "../../lib/api.js";
-
-
+import "../Footer/Footer.css";
+import { useNavigate } from "react-router-dom";
 function App() {
   const navigate = useNavigate();
+
   const [valueEmail, setEmail] = useState("");
   const [valuePwd, setPwd] = useState("");
   const [fail, setFail] = useState("");
 
-  const login = () => {
-    getLogin(valueEmail, valuePwd)
-      .then((res) => {
-        navigate("/admin", { state: { user: res.user.email } });
-        const getToken = res.accessToken;
-        localStorage.setItem("user", res.user.email);
-        localStorage.setItem("token", getToken);
-      })
-      .catch(
-        (err) =>
-          new Error(
-            setFail(
-              "¡Ups! Ha ocurrido un error. Por favor verifica tu credenciales"
-            )
-          )
-      );
-  };
+  const login = async () => {
+    try {
+      const respuesta = await fetch("http://localhost:8080/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email: valueEmail,
+          password: valuePwd,
+        }),
+      });
 
+      if (respuesta.ok) {
+        // La petición fue exitosa
+        const datos = await respuesta.json();
+        // Redirige a la vista de administrador
+        console.log(datos.user.email);
+        navigate("/admin", { state: { user: datos.user.email } });
+      } else {
+        // La petición falló
+        // const error = await respuesta.json();
+        throw new Error(
+          setFail("Ups! Algo salió mal. Compruebe sus credenciales")
+        );
+      }
+    } catch (error) {
+      // Manejo de errores
+    }
+  };
   function handleSubmit(e) {
+    // Previene que el navegador recargue la página
     e.preventDefault();
+    // Lee los datos del formulario
     login();
   }
 
@@ -49,35 +60,35 @@ function App() {
     <>
       <Banner />
       <div>
-        <img src={logoBurger} className="logo" alt="Logo Burger Queen" />
+        <img src={logo} className='logo' alt='Logo Burguer Queen' />
       </div>
-      <Tittle text="Iniciar Sesión" />
-      <div className="formLogin">
-        <form method="post" onSubmit={handleSubmit}>
+      <Title title='Iniciar Sesión' />
+      <div className='formLogin'>
+        <form method='post' onSubmit={handleSubmit}>
           <Input
-            textLabel="Email"
-            className="input"
-            type="email"
-            id="email"
-            placeholder="example@examle.com"
+            textLabel='Correo Electrónico'
+            type='email'
+            className='input'
+            id='email'
+            placeholder='example@examle.com'
             value={valueEmail}
             onChange={(e) => setEmail(e.target.value)}
           />
+
           <Input
-            textLabel="Contraseña"
-            className="input"
-            type="password"
-            autoComplete="current-password"
-            id="password"
-            name="myInput"
-            placeholder="******"
+            textLabel='Contraseña'
+            type='password'
+            className='input'
+            autoComplete='current-password'
+            id='password'
+            name='myInput'
+            placeholder='******'
             value={valuePwd}
             onChange={(e) => setPwd(e.target.value)}
           />
-          <span className="failLogin">{fail}</span>
-          <label>
-            <Button id="btnLogin" type="submit" text="Iniciar Sesión" />
-          </label>
+          {fail && <span className='failLogin'>{fail}</span>}
+
+          <Button id='btnLogin' type='submit' text='Iniciar Sesión' />
         </form>
       </div>
       <Footer />

@@ -1,7 +1,15 @@
-function Input({ textLabel, className, type, id, placeholder, value, onChange}) {
+function Input({
+  textLabel,
+  type,
+  className,
+  id,
+  placeholder,
+  value,
+  onChange,
+}) {
   return (
     <>
-     <label>
+      <label>
         <p className='p-login'>{textLabel}</p>
         <input
           type={type}
@@ -17,5 +25,3 @@ function Input({ textLabel, className, type, id, placeholder, value, onChange}) 
 }
 
 export default Input;
-  
-
