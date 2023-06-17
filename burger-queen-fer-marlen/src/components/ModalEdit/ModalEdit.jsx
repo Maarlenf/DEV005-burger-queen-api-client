@@ -3,6 +3,7 @@ import { AiOutlineClose, AiOutlineCheck } from "react-icons/ai";
 import Input from "../Input/Input";
 import "../Input/Input.css";
 import { editUser } from "../../lib/api";
+import "../ModalEdit/ModalEdit.css";
 
 function ModalEdit({ onClose, userData, token }) {
   const [employee, setEmployee] = useState(userData.email);

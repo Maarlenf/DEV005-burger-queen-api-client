@@ -8,17 +8,14 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import App from "./components/home/App";
 import "./index.css";
 import Admin from "./components/Admin/Admin";
-import Employees from "./components/Employees/Employees";
+import Employees from "./components/Employees/Employees"
+import Products from "./components/Products/Products";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
   },
-  // {
-  //   pat: "*",
-  //   element:
-  // },
   {
     path: "/admin",
     element: <Admin />,
@@ -26,6 +23,10 @@ const router = createBrowserRouter([
   {
     path: "/admin/employees",
     element: <Employees />,
+  },
+  {
+    path: "/admin/products",
+    element: <Products />,
   },
 ]);
 

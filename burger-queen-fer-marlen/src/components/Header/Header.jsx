@@ -1,4 +1,4 @@
-import logo from "../../assets/logo.png";
+import { logo } from "../../images.js";
 import Title from "../Title/Title";
 import "../Title/Title.css";
 import { AiOutlineUser } from "react-icons/ai";
@@ -21,7 +21,7 @@ function Header({user}) {
         <div className='containerUser'>
           {/* icono */}
           <AiOutlineUser size={50} />
-          <span>
+          <span data-testid="logout-icon">
             {user} <MdLogout size={22} onClick={logout} />
           </span>
         </div>

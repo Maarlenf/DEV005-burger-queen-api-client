@@ -20,8 +20,9 @@ export function getLogin(email, password) {
 
 export function getEmployees(token) {
   return fetch(`${http}users`, {
+    method: "GET",
     headers: {
-      authorization: token,
+      Authorization: token,
     },
   })
     .then((res) => res.json())
@@ -54,7 +55,6 @@ export function createUser(email, password, role) {
       console.log(err.message);
     });
 }
-
 export function deleteUser(id, token) {
   return fetch(`${http}users/${id}`, {
     method: "DELETE",
@@ -62,16 +62,11 @@ export function deleteUser(id, token) {
       Authorization: token,
     },
   })
-    .then((res) => {
-      // console.log(res.statusText);
-      res.json();
-    })
+    .then((res) => res.json())
     .catch((err) => {
-      console.log(err);
-      console.log(err.message);
+      console.log(err + "Error al eliminar el usuario");
     });
 }
-
 export function editUser(token, uid, email, password, role) {
   return fetch(`${http}users/${uid}`, {
     method: "PATCH",
@@ -86,7 +81,22 @@ export function editUser(token, uid, email, password, role) {
     }),
   })
     .then((res) => {
-      res.json();
+      res;
     })
     .catch((err) => console.log(err.message));
+}
+export function getProducts(token) {
+  return fetch(`${http}products`, {
+    method: "GET",
+    headers: {
+      Authorization: token,
+    },
+  })
+    .then((res) => 
+      res.json()
+    )
+    .catch((err) => {
+      console.log(err.message);
+      return err;
+    });
 }

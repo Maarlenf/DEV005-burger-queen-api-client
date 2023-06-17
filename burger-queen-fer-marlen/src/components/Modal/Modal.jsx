@@ -2,6 +2,7 @@ import Input from "../Input/Input";
 import { AiOutlineClose, AiOutlineCheck } from "react-icons/ai";
 import { createUser } from "../../lib/api";
 import { useState } from "react";
+import '../Modal/Modal.css';
 
 function Modal({ onClose }) {
   const [newUser, setNewUser] = useState("");

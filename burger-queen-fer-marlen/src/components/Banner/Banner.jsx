@@ -1,11 +1,11 @@
-import bannerBurguer from "../../assets/banner-opacity.png";
+import { bannerBurger } from "../../images";
 
 function Banner() {
   return (
     <>
       <div className='contain-banner'>
         <img
-          src={bannerBurguer}
+          src={bannerBurger}
           className='banner'
           alt='Banner Burguer Queen'
         />
