@@ -9,6 +9,8 @@
 
 ![fried-rice](https://github.com/Maarlenf/DEV005-burger-queen-api-client/assets/124700237/e2300878-8c21-4b02-a058-8b2d25d1b4ae)
 ![hamburguesa](https://github.com/Maarlenf/DEV005-burger-queen-api-client/assets/124700237/ac3ad6c1-af8c-4f04-b4b1-f660b686eaf7)
+![Image20230619191538](https://github.com/Maarlenf/DEV005-burger-queen-api-client/assets/124700237/0b8c5d6d-3855-4154-9e63-15a8be06bcb7)
+![Image20230619191355](https://github.com/Maarlenf/DEV005-burger-queen-api-client/assets/124700237/4c92d79a-d6d9-45a1-80ae-d9ee0365bb10)
 
 ## Índice
 
