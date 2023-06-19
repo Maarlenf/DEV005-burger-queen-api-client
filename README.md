@@ -1,6 +1,7 @@
 # Burger Queen (API Client)
 ![product 1Burger](https://github.com/Maarlenf/DEV005-burger-queen-api-client/assets/124700237/33e096bd-fb90-4c25-9398-7ec5c4cfdd14)
 
+![pepitas](https://github.com/Maarlenf/DEV005-burger-queen-api-client/assets/124700237/30ddc685-80ee-40a8-905e-b005636d7412)
 
 ![product2 papasfritas](https://github.com/Maarlenf/DEV005-burger-queen-api-client/assets/124700237/db786bdb-7c21-41b5-a406-c137a5eedde7)
 
