@@ -14,6 +14,7 @@
 ![dinner](https://github.com/Maarlenf/DEV005-burger-queen-api-client/assets/124700237/fb17518e-6705-4ac3-962d-dabf7ffb6b2b)
 ![orange-juice](https://github.com/Maarlenf/DEV005-burger-queen-api-client/assets/124700237/4c914ac1-8e86-422e-9dd5-04390ad5877f)
 ![Image20230619192515](https://github.com/Maarlenf/DEV005-burger-queen-api-client/assets/124700237/a31826c5-4bff-41c1-a3e1-a7d828e377bf)
+![ensalada](https://github.com/Maarlenf/DEV005-burger-queen-api-client/assets/124700237/0b2a1301-bcfc-4a7c-bfa6-b58ecffdfc91)
 
 ## Índice
 
