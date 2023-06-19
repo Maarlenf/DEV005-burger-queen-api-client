@@ -2,7 +2,8 @@
 ![product 1Burger](https://github.com/Maarlenf/DEV005-burger-queen-api-client/assets/124700237/33e096bd-fb90-4c25-9398-7ec5c4cfdd14)
 
 
-![product 1Burger](https://github.com/Maarlenf/DEV005-burger-queen-api-client/assets/124700237/46fe2534-60d9-4819-8ab8-b7ddcb4c6986)
+![product2 papasfritas](https://github.com/Maarlenf/DEV005-burger-queen-api-client/assets/124700237/db786bdb-7c21-41b5-a406-c137a5eedde7)
+
 
 ## Índice
 
