@@ -4,6 +4,7 @@
 
 ![product2 papasfritas](https://github.com/Maarlenf/DEV005-burger-queen-api-client/assets/124700237/db786bdb-7c21-41b5-a406-c137a5eedde7)
 
+![soda](https://github.com/Maarlenf/DEV005-burger-queen-api-client/assets/124700237/4168595f-3fe3-481a-bdb8-3c0860b2f78c)
 
 ## Índice
 
