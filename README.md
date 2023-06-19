@@ -5,6 +5,10 @@
 ![product2 papasfritas](https://github.com/Maarlenf/DEV005-burger-queen-api-client/assets/124700237/db786bdb-7c21-41b5-a406-c137a5eedde7)
 
 ![soda](https://github.com/Maarlenf/DEV005-burger-queen-api-client/assets/124700237/4168595f-3fe3-481a-bdb8-3c0860b2f78c)
+![frying-pan](https://github.com/Maarlenf/DEV005-burger-queen-api-client/assets/124700237/5609f622-5a06-411b-b910-0cae883e5354)
+
+![fried-rice](https://github.com/Maarlenf/DEV005-burger-queen-api-client/assets/124700237/e2300878-8c21-4b02-a058-8b2d25d1b4ae)
+![hamburguesa](https://github.com/Maarlenf/DEV005-burger-queen-api-client/assets/124700237/ac3ad6c1-af8c-4f04-b4b1-f660b686eaf7)
 
 ## Índice
 
