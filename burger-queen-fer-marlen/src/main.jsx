@@ -9,6 +9,7 @@ import App from "./components/home/App";
 import "./index.css";
 import Admin from "./components/Admin/Admin";
 import Employees from "./components/Employees/Employees";
+import Products from "./components/Products/Products";
 
 const router = createBrowserRouter([
   {
@@ -26,6 +27,10 @@ const router = createBrowserRouter([
   {
     path: "/admin/employees",
     element: <Employees />,
+  },
+  {
+    path: "/admin/products",
+    element: <Products />,
   },
 ]);
 

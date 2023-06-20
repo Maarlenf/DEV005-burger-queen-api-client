@@ -1,4 +1,4 @@
-import bannerBurguer from "../../assets/banner-opacity.png";
+import { bannerBurguer } from "../../images.js";
 
 function Banner() {
   return (

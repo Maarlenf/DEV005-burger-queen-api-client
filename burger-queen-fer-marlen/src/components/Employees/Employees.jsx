@@ -15,19 +15,25 @@ import {
 import Modal from "../Modal/Modal";
 import ModalDelete from "../ModalDelete/ModalDelete";
 import ModalEdit from "../ModalEdit/ModalEdit";
+import Button from "../Button/Button";
+import { useNavigate } from "react-router-dom";
 
 function Employees() {
   // const [worker, setWorker] = useState("");
   // const [email, setEmail] = useState("");
-  const [dataUser, setDataUser] = useState([]);
-  const [showModal, setShowModal] = useState(false);
-  const [showModalDelete, setModalDelete] = useState(false);
   const user = localStorage.getItem("userInLine");
   const token = localStorage.getItem("token");
   const authorization = `Bearer ${token}`;
+  const [dataUser, setDataUser] = useState([]);
+  const [showModal, setShowModal] = useState(false);
+  const [showModalDelete, setModalDelete] = useState(false);
   const [showModalEdit, setModalEdit] = useState(false);
   const [editingUser, setEdit] = useState();
   const [deleteUser, setDelete] = useState();
+  const navigate = useNavigate();
+  function goProducts() {
+    return navigate("/admin/products");
+  }
   const toggleModal = () => {
     setShowModal(!showModal);
   };
@@ -44,7 +50,6 @@ function Employees() {
     getEmployees(authorization).then((res) => {
       setDataUser(res);
     });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [showModal, authorization, showModalDelete, showModalEdit]);
 
   return (
@@ -55,6 +60,7 @@ function Employees() {
           text='Acción irreversible, ¿Desea continuar con la eliminación?'
           onClose={toggleModalDelete}
           id={deleteUser}
+          optToDelete={"user"}
         />
       )}
       {showModalEdit && (
@@ -73,8 +79,12 @@ function Employees() {
           <span>Agregar Trabajador</span>
         </div>
         <div className='addUser'>
-          <AiOutlineUserAdd size={50} />
-          <span>Agregar Productos</span>
+          <Button
+            id='btnProduct'
+            type='submit'
+            text='Productos'
+            onClick={goProducts}
+          />
         </div>
       </div>
 
@@ -93,11 +103,11 @@ function Employees() {
             localStorage.setItem("id", obj.id);
             console.log(obj);
             return (
-              <>
-                <ul>{obj.id}</ul>
-                <ul>{email}</ul>
-                <ul>{"******"}</ul>
-                <ul>{obj.role}</ul>
+              <ul key={obj.id}>
+                <li>{obj.id}</li>
+                <li>{email}</li>
+                <li>{"******"}</li>
+                <li>{obj.role}</li>
                 <div>
                   <div className='icon1'>
                     <AiOutlineEdit
@@ -110,7 +120,7 @@ function Employees() {
                     />
                   </div>
                 </div>
-              </>
+              </ul>
             );
           })}
         </div>

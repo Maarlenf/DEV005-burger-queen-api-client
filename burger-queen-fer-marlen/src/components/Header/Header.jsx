@@ -1,14 +1,13 @@
-import logo from "../../assets/logo.png";
 import Title from "../Title/Title";
 import "../Title/Title.css";
 import { AiOutlineUser } from "react-icons/ai";
 import { MdLogout } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
+import { logo } from "../../images.js";
 
-function Header({user}) {
+function Header({ user }) {
   const navigate = useNavigate();
 
-  
   function logout() {
     return navigate("/");
   }
@@ -22,7 +21,8 @@ function Header({user}) {
           {/* icono */}
           <AiOutlineUser size={50} />
           <span>
-            {user} <MdLogout size={22} onClick={logout} />
+            {user}{" "}
+            <MdLogout data-testid={"logout-icon"} size={22} onClick={logout} />
           </span>
         </div>
       </div>

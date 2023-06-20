@@ -85,3 +85,69 @@ export function editUser(token, uid, email, password, role) {
     })
     .catch((err) => console.log(err.message));
 }
+
+export function getProducts(token) {
+  return fetch(`${http}products`, {
+    method: "GET",
+    headers: {
+      Authorization: token,
+    },
+  })
+    .then((res) => res.json())
+    .catch((err) => {
+      console.log(err.message);
+      return err;
+    });
+}
+export function deleteProduct(id, token) {
+  return fetch(`${http}products/${id}`, {
+    method: "DELETE",
+    headers: {
+      Authorization: token,
+    },
+  })
+    .then((res) => res.json())
+    .catch((err) => {
+      console.log(err + "Error al eliminar el producto");
+    });
+}
+export function editProduct(token, uid, product, price, image, type) {
+  return fetch(`${http}products/${uid}`, {
+    method: "PATCH",
+    headers: {
+      "Content-type": stringJSON,
+      Authorization: token,
+    },
+    body: JSON.stringify({
+      product: product,
+      price: price,
+      image: image,
+      type: type,
+      dateEntry: new Date(),
+    }),
+  })
+    .then((res) => {
+      res;
+    })
+    .catch((err) => console.log(err.message));
+}
+export function createProduct(token, product, price, image, type) {
+  return fetch(`${http}products`, {
+    method: "POST",
+    headers: {
+      "Content-type": stringJSON,
+      Authorization: token,
+    },
+    body: JSON.stringify({
+      name: product,
+      price: price,
+      image: image,
+      type: type,
+      dateEntry: new Date(),
+    }),
+  })
+    .then((res) => res.json())
+    .catch((err) => {
+      console.log(err.message);
+    });
+}

@@ -18,6 +18,9 @@ function Admin() {
   function goEmployees() {
     return navigate("/admin/employees");
   }
+  function goProducts() {
+    return navigate("/admin/products");
+  }
   return (
     <>
       <Banner></Banner>
@@ -29,7 +32,12 @@ function Admin() {
           text='Trabajadores'
           onClick={goEmployees}
         ></Button>
-        <Button id='btnProducts' type='submit' text='Productos'></Button>
+        <Button
+          id='btnProducts'
+          type='submit'
+          text='Productos'
+          onClick={goProducts}
+        ></Button>
       </div>
 
       <Footer></Footer>
