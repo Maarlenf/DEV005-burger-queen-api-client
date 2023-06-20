@@ -2,7 +2,8 @@
     display: flex;
     justify-content: space-around;
     align-items: center;
-    height: 15%;
+    margin-top: 1%;
+    height: 150px;
 }
 .containerBanner>h1{
     margin: 0px;

@@ -33,39 +33,51 @@
   font-size: 22px;
   line-height: 150%;
   letter-spacing: 0.146em;
+  /* align-items: center; */
 }
 .columnsName {
   grid-area: hd;
   display: grid;
   grid-template-areas: "ha he hi ho hu";
-  grid-template-columns: 152px 152px 152px 152px 152px;
-  align-items: center;
+  grid-template-columns: 20% 20% 20% 20% 20%;
+  /* align-items: center; */
   background-color: #bf5b04;
   border-radius: 15px 15px 0 0;
   padding: 5px;
 }
-.containerId {
-  grid-area: content;
-  display: grid;
-  grid-template-areas: "ca ce ci co cu";
-  grid-template-columns: 152px 152px 152px 152px 152px;
-  align-items: center;
-  padding: 5px;
+
+.containerId{
   background-color: rgba(237, 237, 237, 1);
   border-bottom-left-radius: 15px;
   border-bottom-right-radius: 15px;
   margin-bottom: 80px;
+  align-items: center;
+  margin-left: -3%;
 }
+
 .containerId > ul {
+  grid-area: content;
+  display: grid;
+  grid-template-areas: "ca ce ci co cu";
+  grid-template-columns: 20% 20% 20% 20% 20%;
+  align-items: center;
+}
+
+.containerId > ul > li {
   padding: 0;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
+
 .icon1 {
   display: flex;
   width: 100%;
   justify-content: space-evenly;
 }
-
+#btnProduct{
+  margin-right: 40%;
+  width: 150%;
+  height: 95px;
+}
  

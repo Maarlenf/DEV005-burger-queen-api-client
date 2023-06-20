@@ -85,6 +85,7 @@ export function editUser(token, uid, email, password, role) {
     })
     .catch((err) => console.log(err.message));
 }
+
 export function getProducts(token) {
   return fetch(`${http}products`, {
     method: "GET",
@@ -98,5 +99,61 @@ export function getProducts(token) {
     .catch((err) => {
       console.log(err.message);
       return err;
+    });
+}
+
+export function editProduct(token, uid, name, price, image, type) {
+  return fetch(`${http}products/${uid}`, {
+    method: "PATCH",
+    headers: {
+      "Content-type": stringJSON,
+      Authorization: token,
+    },
+    body: JSON.stringify({
+      name: name,
+      price: price,
+      image: image,
+      type: type,
+      dateEntry: new Date()
+    }),
+  })
+    .then((res) => {
+      res ;
+    })
+    .catch((err) => console.log(err.message));
+}
+
+export function deleteProduct(id, token) {
+  return fetch(`${http}products/${id}`, {
+    method: "DELETE",
+    headers: {
+      Authorization: token,
+    },
+  })
+    .then((res) => {
+      console.log(res);
+      res.json()})
+    .catch((err) => {
+      console.log(err + "Error al eliminar el producto");
+    });
+}
+export function createProduct(token, name, price, image, type) {
+  return fetch(`${http}products`, {
+    method: "POST",
+    headers: {
+      "Content-type": stringJSON,
+      Authorization: token,
+    },
+    body: JSON.stringify({
+      name: name,
+      price: price,
+      image: image,
+      type: type,
+      dateEntry: new Date()
+    }),
+  })
+    .then((res) => res.json())
+    .catch((err) => {
+      console.log(err.message);
     });
 }

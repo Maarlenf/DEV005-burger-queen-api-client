@@ -1,0 +1,11 @@
+.containerImg{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.containerImg>span{
+    margin-top: 3%;
+    align-self: flex-start;
+}
