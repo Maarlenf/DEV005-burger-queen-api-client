@@ -24,7 +24,7 @@ function Admin() {
   return (
     <>
       <Banner></Banner>
-      <Header user={userInLine} />
+      <Header user={userInLine} text={"Administrador"} />
       <div className='containerButton'>
         <Button
           id='btnEmployees'
