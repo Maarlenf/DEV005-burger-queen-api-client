@@ -24,8 +24,12 @@ function App() {
   const login = () => {
     getLogin(valueEmail, valuePwd)
       .then((res) => {
+        if(res.user.role === 'admin'){
+          navigate("/admin");
+        }else if(res.user.role === 'waiter'){
+          navigate("/waiter")
+        }
         console.log(res);
-        navigate("/admin");
         localStorage.setItem("token", res.accessToken);
         localStorage.setItem("user", res.user.email);
       })

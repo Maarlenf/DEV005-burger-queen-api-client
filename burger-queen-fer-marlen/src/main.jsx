@@ -10,6 +10,7 @@ import "./index.css";
 import Admin from "./components/Admin/Admin";
 import Employees from "./components/Employees/Employees"
 import Products from "./components/Products/Products";
+import Waiter from "./components/Waiter/Waiter";
 
 const router = createBrowserRouter([
   {
@@ -27,7 +28,10 @@ const router = createBrowserRouter([
   {
     path: "/admin/products",
     element: <Products />,
-  },
+  },{
+    path:"/waiter",
+    element: <Waiter />,
+  }
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(

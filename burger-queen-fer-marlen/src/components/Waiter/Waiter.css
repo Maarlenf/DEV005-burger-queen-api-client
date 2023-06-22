@@ -1,0 +1,18 @@
+.containerRoot{
+    margin:3%;
+    display: grid;
+    grid-template-areas: "a . b";
+    grid-template-columns: 48% 4% 48%;
+    font-family: "Bitter";
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 150%; 
+    letter-spacing: 1px;
+}
+.columnA{
+    grid-area: a;
+}
+ .columnB{
+    grid-area: b;
+} 
+

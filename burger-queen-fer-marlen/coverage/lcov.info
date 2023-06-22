@@ -40,11 +40,11 @@ FN:8,Header
 FN:12,logout
 FNF:2
 FNH:1
-FNDA:2,Header
+FNDA:1,Header
 FNDA:0,logout
-DA:9,2
+DA:9,1
 DA:13,0
-DA:16,2
+DA:16,1
 LF:3
 LH:2
 BRF:0
@@ -67,8 +67,8 @@ SF:src\components\Title\Title.jsx
 FN:1,Title
 FNF:1
 FNH:1
-FNDA:3,Title
-DA:2,3
+FNDA:2,Title
+DA:2,2
 LF:1
 LH:1
 BRF:0

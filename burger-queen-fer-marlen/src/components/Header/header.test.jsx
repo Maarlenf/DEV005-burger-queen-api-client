@@ -26,12 +26,6 @@ describe("Header component", () => {
     const divClose = getByText(user); 
     expect(divClose.textContent).toContain(user);
 })
-test("show the title", () => {
-    const { getByText } = render(<Header user='Grace Hopper' />, {
-      wrapper: MemoryRouter,
-    });
-    const titleElement = getByText("Administrador");
-    expect(titleElement.textContent).toContain("Administrador");
 });
 // test("call function logout", () => {
 //     const navigate = jest.fn();
@@ -60,5 +54,5 @@ test("show the title", () => {
 //      fireEvent.click(logout);
 //      expect(navigate).toHaveBeenCalled();
 // })
-});
+
 

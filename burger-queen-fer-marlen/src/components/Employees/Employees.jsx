@@ -67,7 +67,7 @@ function Employees() {
         />
       )}
       <Banner />
-      <Header user={user} />
+      <Header user={user} text='Administrador'/>
 
       <div className='containerButtons'>
         <div className='addUser' hidden={showModal} onClick={toggleModal}>
@@ -87,25 +87,6 @@ function Employees() {
           <span className='role'>Rol</span>
           <span className='action'>Acción</span>
         </div>
-        {/* <div className="containerId">
-          {dataUser.map((obj) => {
-             const email = cutEmail(obj.email);
-            return (
-              <div className="probe" key={obj.id}>
-               <div className='icon1'>
-                    <AiOutlineEdit
-                      size={30}
-                      onClick={() => toggleModalEdit(obj)}
-                    />
-                    <AiOutlineUserDelete
-                      onClick={() => toggleModalDelete(obj.id)}
-                      size={30}
-                    />
-                  </div>
-              </div>
-            )
-          })}
-        </div> */}
         <div className='containerId'>
           {dataUser.map((obj) => {
             const email = cutEmail(obj.email);

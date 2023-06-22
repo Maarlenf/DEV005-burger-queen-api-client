@@ -5,7 +5,7 @@ import { AiOutlineUser } from "react-icons/ai";
 import { MdLogout } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
 
-function Header({user}) {
+function Header({user, text}) {
   const navigate = useNavigate();
 
   
@@ -17,9 +17,10 @@ function Header({user}) {
     <>
       <div className='containerBanner'>
         <img src={logo} className='logoSmall' alt='Logo Burguer Queen' />
-        <Title title='Administrador' />
+        <div className="containerTitle">
+        <Title title={text} />
+        </div>
         <div className='containerUser'>
-          {/* icono */}
           <AiOutlineUser size={50} />
           <span data-testid="logout-icon">
             {user} <MdLogout size={22} onClick={logout} />

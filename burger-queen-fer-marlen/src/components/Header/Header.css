@@ -1,14 +1,17 @@
 .containerBanner{
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
-    margin-top: 1%;
+    margin:1% 3% 0 3%;
     height: 150px;
 }
-.containerBanner>h1{
-    margin: 0px;
+
+.containerTitle{
+    display: flex;
+    justify-content: center;
+    align-items: center;
     font-size: 35px;
-    margin-left: 7%;
+    width: 350px;
 }
 .logoSmall{
     width: 130px;
@@ -21,6 +24,12 @@
     font-weight: 700; 
     font-size: 20px;
     letter-spacing: 0.080em;
+    max-width: 130px;
+}
+.containerUser>Input{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 .iconOut{
     margin-bottom: -2%;

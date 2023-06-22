@@ -84,7 +84,7 @@ function Products() {
         />
       )}
       <Banner />
-      <Header user={user} />
+      <Header user={user} text='Administrador'/>
       <div className="containerButtons">
         <div className="addUser">
           {/* <AiOutlineUserAdd size={50} />
