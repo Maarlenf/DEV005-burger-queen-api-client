@@ -3,9 +3,18 @@ import { useState } from "react";
 import "../Card/Card.css";
 import Button from "../Button/Button";
 
-function Card({ id, img, alt, nameProduct, price, textBtn, onAddToOrder }) {
+function Card({
+  id,
+  img,
+  alt,
+  nameProduct,
+  price,
+  textBtn,
+  onAddToOrder,
+  product,
+}) {
   const [count, setCount] = useState(0);
-  localStorage.setItem("counter", count);
+  //  localStorage.setItem('counter', count);
   return (
     <>
       <div className='card' id={id}>
@@ -27,7 +36,11 @@ function Card({ id, img, alt, nameProduct, price, textBtn, onAddToOrder }) {
             }}
           />
         </div>
-        <Button id='btnOrder' text={textBtn} onClick={onAddToOrder} />
+        <Button
+          id='btnOrder'
+          text={textBtn}
+          onClick={() => onAddToOrder(product, count)}
+        />
       </div>
     </>
   );

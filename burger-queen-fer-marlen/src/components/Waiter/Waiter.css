@@ -68,6 +68,7 @@
   border-radius: 0 30px 0 0;
 }
 .nameUser {
+  display: inline-block;
   margin-top: 30px;
   font-size: 24px;
   font-family: Bitter;
@@ -75,24 +76,20 @@
   line-height: 150%;
   letter-spacing: -0.528px;
   width: 80%;
-  height: auto;
+  height: 20%;
   word-wrap: break-word;
 }
 
 .orderItem {
   display: grid;
   grid-template-areas: "a b d";
-  grid-template-columns: 10% 50% 40%;
+  grid-template-columns: 10% 60% 30%;
   width: 100%;
   margin-left: 2%;
   margin-top: 30px;
   white-space: wrap;
   word-wrap: break-word;
-}
-.containerTotal {
-  display: flex;
-  width: 45%;
-  justify-content: space-around;
+  text-align: start;
 }
 
 .containeOrder {
