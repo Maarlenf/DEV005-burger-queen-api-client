@@ -5,6 +5,7 @@ import Button from "../Button/Button";
 
 function Card({ id, img, alt, nameProduct, price, textBtn, onAddToOrder }) {
   const [count, setCount] = useState(0);
+  localStorage.setItem("counter", count);
   return (
     <>
       <div className='card' id={id}>

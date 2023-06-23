@@ -1,4 +1,4 @@
-import bannerBurguer from "./assets/banner-opacity.png";
+import bannerBurger from "./assets/banner-opacity.png";
 import logo from "./assets/logo.png";
 
-export { bannerBurguer, logo };
+export { bannerBurger, logo };

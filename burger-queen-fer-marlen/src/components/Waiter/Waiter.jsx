@@ -15,6 +15,8 @@ function Waiter() {
   const [search, setSearch] = useState("");
   const [nameUser, setNameUser] = useState("");
   const [orderItems, setOrderItems] = useState([]);
+  // const [count, setCount] = useState(  localStorage.getItem("counter"););
+  const quantityPr = localStorage.getItem("counter");
   const user = localStorage.getItem("user");
   const userInLine = cutEmail(user);
   localStorage.setItem("userInLine", userInLine);
@@ -42,19 +44,20 @@ function Waiter() {
       setFind(products);
     }
   }
-  function handleAddToOrder(product, count) {
+  function handleAddToOrder(product) {
+    const count = localStorage.getItem("counter");
     const existingItem = orderItems.find((item) => item.id === product.id);
 
     if (existingItem) {
       const updatedItems = orderItems.map((item) => {
         if (item.id === product.id) {
-          return { ...item, quantity: item.quantity + 1 };
+          return { ...item, quantity: count + item.quantity };
         }
         return item;
       });
       setOrderItems(updatedItems);
     } else {
-      const newItem = { ...product, quantity: 1 };
+      const newItem = { ...product, quantity: count };
       setOrderItems([...orderItems, newItem]);
     }
   }
@@ -109,7 +112,7 @@ function Waiter() {
               <div className='columnHeader'>
                 <span>Order</span>
               </div>
-              <div>
+              <div className='containeOrder'>
                 {orderItems.map((item) => (
                   <div key={item.id} className='orderItem'>
                     <span>{item.name}</span>
@@ -120,14 +123,19 @@ function Waiter() {
                 ))}
               </div>
               <div className='total'>
-                <span>Total:</span>
-                <span>
-                  $
-                  {orderItems.reduce(
-                    (total, item) => total + item.price * item.quantity,
-                    0
-                  )}
-                </span>
+                <div className='containerTotal'>
+                  <span>Total:</span>
+
+                  <span>
+                    $
+                    {orderItems.reduce(
+                      (total, item) => total + item.price * item.quantity,
+                      0
+                    )}
+                  </span>
+                </div>
+
+                <Button id='btnSend' text='Enviar a cocina' />
               </div>
             </div>
           </div>
