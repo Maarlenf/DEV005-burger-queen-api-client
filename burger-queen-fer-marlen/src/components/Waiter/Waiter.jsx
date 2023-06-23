@@ -20,7 +20,7 @@ function Waiter() {
   localStorage.setItem("userInLine", userInLine);
   const token = localStorage.getItem("token");
   const authorization = `Bearer ${token}`;
-
+  const now = [{date: new Date()}];
   useEffect(() => {
     getProducts(authorization).then((res) => {
       setProducts(res);
@@ -43,8 +43,8 @@ function Waiter() {
     }
   }
 
-  function handleAddToOrder(product) {
-  const count= localStorage.getItem('counter');
+  function handleAddToOrder(product, count) {
+  //const count= localStorage.getItem('counter');
   console.log(count);
 
     const existingItem = orderItems.find((item) => item.id === product.id);
@@ -92,7 +92,8 @@ function Waiter() {
                   nameProduct={e.name}
                   price={e.price}
                   textBtn={"Agregar"}
-                  onAddToOrder={() => handleAddToOrder(e)}
+                  product={e}
+                  onAddToOrder={(product, count) => handleAddToOrder(product, count)}
                 />
               );
             })}
@@ -109,7 +110,7 @@ function Waiter() {
               <div className='columnHeader'>
                 <span>Name</span>
               </div>
-              {/* <span className="time">{date.date}</span> */}
+              <span className="timeOforder">{now.date}</span>
               <span className='nameUser'>{nameUser}</span>
             </div>
             <div className='columnOrder'>
