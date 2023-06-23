@@ -1,4 +1,4 @@
-import { bannerBurger } from "../../images";
+import { bannerBurger } from "../../images.js";
 
 function Banner() {
   return (

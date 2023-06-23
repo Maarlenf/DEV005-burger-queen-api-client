@@ -1,27 +1,25 @@
 .productCards {
   display: flex;
-  justify-content: center;
   flex-wrap: wrap;
+  justify-content: center;
 }
-
 .card {
-  width: 220px;
-  height: 250px;
+  width: 210px;
+  min-height: 357px;
   display: flex;
   flex-direction: column;
-  justify-content: center; 
+  justify-content: start;
   align-items: center;
-  gap: 18px;
-  margin: 4%;
+  gap: 19px;
+  margin: 5%;
   background: #d9d9d9;
-  box-shadow: 5px 4px 4px rgba(0, 0, 0, 0.3);
+  box-shadow: 5px 4px 4px rgb(0 0 0 / 30%);
   border-radius: 19px;
-  position:relative;
+  position: relative;
 }
 
 .card > img {
   width: 120px;
-  height: 120px;
 }
 
 .counter {
@@ -37,12 +35,15 @@
   background-color: #bf5b04;
   color: white;
   width: 60%;
-  position:absolute;
-  bottom: -18px;
-}
-.price{
-  margin-top: -9px;
+  /* position: absolute;
+  bottom: -18px; */
 }
 
-
-
+#btnOrder {
+  position: absolute;
+  bottom: -12px;
+  margin: 0;
+  width: 66%;
+  font-size: 18px;
+  padding: 10px;
+}

@@ -1,15 +1,17 @@
 import { AiOutlinePlus, AiOutlineMinus } from "react-icons/ai";
 import { useState } from "react";
 import "../Card/Card.css";
+import Button from "../Button/Button";
 
-function Card({ img, alt, nameProduct, price }) {
+function Card({ id, img, alt, nameProduct, price, textBtn, onAddToOrder }) {
   const [count, setCount] = useState(0);
+  localStorage.setItem('counter', count);
   return (
     <>
-      <div className='card'>
+      <div className='card' id={id}>
         <img src={img} alt={`image ${alt}`} />
         <span>{nameProduct}</span>
-        <span className="price">{`$${price}`}</span>
+        <span>{`$${price}`}</span>
         <div className='counter'>
           <AiOutlineMinus
             size={25}
@@ -25,6 +27,7 @@ function Card({ img, alt, nameProduct, price }) {
             }}
           />
         </div>
+        <Button id='btnOrder' text={textBtn} onClick={onAddToOrder} />
       </div>
     </>
   );

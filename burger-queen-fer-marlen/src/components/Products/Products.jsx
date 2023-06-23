@@ -1,18 +1,22 @@
 import { useEffect, useState } from "react";
-import { getProducts } from "../../lib/api";
 import Banner from "../Banner/Banner";
+import "../Banner/Banner.css";
 import Footer from "../Footer/Footer";
+import "../Footer/Footer.css";
 import Header from "../Header/Header";
+import "../Header/Header.css";
+import { getProducts } from "../../lib/api";
 import Button from "../Button/Button";
+import "../Button/Button.css";
 import { AiOutlineEdit } from "react-icons/ai";
 import { IoFastFoodOutline } from "react-icons/io5";
 import { MdOutlineNoFood } from "react-icons/md";
 import "../Products/Products.css";
 import { useNavigate } from "react-router-dom";
 import ModalEditProduct from "../ModalEditProduct/ModalEditProduct";
+import "../ModalEditProduct/ModalEditProduct.css";
 import ModalDelete from "../ModalDelete/ModalDelete";
 import Input from "../Input/Input";
-
 function Products() {
   const navigate = useNavigate();
   const [dataProducts, setDataProducts] = useState([]);
@@ -68,81 +72,73 @@ function Products() {
           token={authorization}
         />
       )}
-      {showModalEditProduct && (
-        <ModalEditProduct
-          onClose={toggleModalEdit}
-          dataProduct={editingProduct}
-          token={authorization}
-        />
-      )}
       {showModalDelete && (
         <ModalDelete
-          text="Acción irreversible, ¿Desea continuar con la eliminación?"
+          text='Acción irreversible, ¿Desea continuar con la eliminación?'
           onClose={toggleModalDelete}
           id={deleteProduct}
           optToDelete={"product"}
         />
       )}
       <Banner />
-      <Header user={user} text='Administrador'/>
-      <div className="containerButtons">
-        <div className="addUser">
-          {/* <AiOutlineUserAdd size={50} />
-              <span>Agregar Trabajador</span> */}
+      <Header user={user} />
+      <div className='containerButtons'>
+        <div className='addUser'>
           <Button
-            text="Trabajadores"
-            id="btnEmployee"
+            text='Trabajadores'
+            id='btnEmployee'
             onClick={navigateEmploye}
           />
         </div>
-        <div className="addProduct" onClick={toggleModalEdit}>
+        <div className='addProduct' onClick={toggleModalEdit}>
           <IoFastFoodOutline size={50} />
           <span>Agregar Productos</span>
         </div>
       </div>
-      
-      <div className="containerOptions">
-        <div className="optionDes">
-        <span>Desayuno</span>
-      <Input
-          type="checkbox"
-          id="topping"
-          value="Desayuno"
-          checked=''
-          onChange={e => {filter(e.target.value)}}
-        />
+
+      <div className='containerOptions'>
+        <div className='optionDes'>
+          <span>Desayuno</span>
+          <Input
+            type='checkbox'
+            id='topping'
+            value='Desayuno'
+            checked={selectedTypes.includes("Desayuno")}
+            onChange={(e) => filter(e.target.value)}
+          />
         </div>
-              <div className="optionAlm">
-              <span>Almuerzo</span>
-        <Input
-          type="checkbox"
-          name='Almuerzo'
-          id="topping"
-          value="Almuerzo"
-          checked=''
-          onChange={e => filter(e.target.value)}
-        />
-              </div>
-        <div className="optionCen">
-        <span>Cena</span>
-        <Input
-          type="checkbox"
-          id="topping"
-          value="Cena"
-          checked=''
-          onChange={e => filter(e.target.value)}
-        />
+        <div className='optionAlm'>
+          <span>Almuerzo</span>
+          <Input
+            type='checkbox'
+            name='Almuerzo'
+            id='topping'
+            value='Almuerzo'
+            checked={selectedTypes.includes("Almuerzo")}
+            onChange={(e) => filter(e.target.value)}
+          />
+        </div>
+        <div className='optionCen'>
+          <span>Cena</span>
+          <Input
+            type='checkbox'
+            id='topping'
+            value='Cena'
+            checked={selectedTypes.includes("Cena")}
+            onChange={(e) => filter(e.target.value)}
+          />
         </div>
       </div>
-      <div className="containerTable">
-        <div className="columnsNames">
-          <span className="id">ID</span>
-          <span className="email">Nombre</span>
-          <span className="pwd">Precio</span>
-          <span className="role">Imagen</span>
-          <span className="action">Tipo</span>
-          <span className="action">Creación</span>
-          <span className="option">Acción</span>
+
+      <div className='containerTable'>
+        <div className='columnsNames'>
+          <span className='id'>ID</span>
+          <span className='email'>Nombre</span>
+          <span className='pwd'>Precio</span>
+          <span className='role'>Imagen</span>
+          <span className='action'>Tipo</span>
+          <span className='action'>Creación</span>
+          <span className='action'>Opción</span>
         </div>
         <div className='containerIds'>
           {dataProducts
@@ -153,7 +149,7 @@ function Products() {
             )
             .map((obj) => {
               return (
-                  <ul key={obj.id}>
+                <ul key={obj.id}>
                   <li>{obj.id}</li>
                   <li>{obj.name}</li>
                   <li>{obj.price}</li>
@@ -176,11 +172,11 @@ function Products() {
                       />
                     </div>
                   </div>
-                  </ul>
+                </ul>
               );
             })}
         </div>
-        </div>
+      </div>
       <Footer />
     </>
   );

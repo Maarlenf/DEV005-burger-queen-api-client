@@ -28,10 +28,11 @@ const router = createBrowserRouter([
   {
     path: "/admin/products",
     element: <Products />,
-  },{
-    path:"/waiter",
+  },
+  {
+    path: "/waiter",
     element: <Waiter />,
-  }
+  },
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(

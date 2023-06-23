@@ -49,7 +49,3 @@
   width: 10%;
   border: solid 2px #bf5b04;
 }
-
-.containerCheck:focus {
-  border: solid 2px green;
-} 

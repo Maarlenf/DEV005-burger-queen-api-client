@@ -93,36 +93,12 @@ export function getProducts(token) {
       Authorization: token,
     },
   })
-    .then((res) => 
-      res.json()
-    )
+    .then((res) => res.json())
     .catch((err) => {
       console.log(err.message);
       return err;
     });
 }
-
-export function editProduct(token, uid, name, price, image, type) {
-  return fetch(`${http}products/${uid}`, {
-    method: "PATCH",
-    headers: {
-      "Content-type": stringJSON,
-      Authorization: token,
-    },
-    body: JSON.stringify({
-      name: name,
-      price: price,
-      image: image,
-      type: type,
-      dateEntry: new Date()
-    }),
-  })
-    .then((res) => {
-      res ;
-    })
-    .catch((err) => console.log(err.message));
-}
-
 export function deleteProduct(id, token) {
   return fetch(`${http}products/${id}`, {
     method: "DELETE",
@@ -130,14 +106,32 @@ export function deleteProduct(id, token) {
       Authorization: token,
     },
   })
-    .then((res) => {
-      console.log(res);
-      res.json()})
+    .then((res) => res.json())
     .catch((err) => {
       console.log(err + "Error al eliminar el producto");
     });
 }
-export function createProduct(token, name, price, image, type) {
+export function editProduct(token, uid, product, price, image, type) {
+  return fetch(`${http}products/${uid}`, {
+    method: "PATCH",
+    headers: {
+      "Content-type": stringJSON,
+      Authorization: token,
+    },
+    body: JSON.stringify({
+      product: product,
+      price: price,
+      image: image,
+      type: type,
+      dateEntry: new Date(),
+    }),
+  })
+    .then((res) => {
+      res;
+    })
+    .catch((err) => console.log(err.message));
+}
+export function createProduct(token, product, price, image, type) {
   return fetch(`${http}products`, {
     method: "POST",
     headers: {
@@ -145,11 +139,11 @@ export function createProduct(token, name, price, image, type) {
       Authorization: token,
     },
     body: JSON.stringify({
-      name: name,
+      name: product,
       price: price,
       image: image,
       type: type,
-      dateEntry: new Date()
+      dateEntry: new Date(),
     }),
   })
     .then((res) => res.json())

@@ -3,7 +3,6 @@ import { AiOutlineClose, AiOutlineCheck } from "react-icons/ai";
 import Input from "../Input/Input";
 import "../Input/Input.css";
 import { editUser } from "../../lib/api";
-import "../ModalEdit/ModalEdit.css";
 
 function ModalEdit({ onClose, userData, token }) {
   const [employee, setEmployee] = useState(userData.email);
@@ -17,49 +16,49 @@ function ModalEdit({ onClose, userData, token }) {
   ];
   const confirm = () => {
     editUser(token, userData.id, employee, pass, role)
-      .then((res) => res)
+      .then((res) => console.log(res))
       .catch((err) => console.log(err.message));
     onClose();
   };
   return (
     <>
-      <div className="modal">
-        <div className="innerModal">
-          <div className="containerClose">
+      <div className='modal'>
+        <div className='innerModal'>
+          <div className='containerClose'>
             <AiOutlineClose size={30} onClick={onClose} />
           </div>
-          <form action="submit" className="viewAdmin">
+          <form action='submit' className='viewAdmin'>
             <>
               <label>
                 <Input
-                  textLabel="Correo Electrónico"
-                  type="email"
-                  className="input"
-                  placeholder="example@examle.com"
+                  textLabel='Correo Electrónico'
+                  type='email'
+                  className='input'
+                  placeholder='example@examle.com'
                   value={employee}
                   onChange={(e) => setEmployee(e.target.value)}
                 />
               </label>
               <label>
                 <Input
-                  textLabel="Contraseña"
-                  type="password"
-                  className="input"
-                  placeholder="******"
+                  textLabel='Contraseña'
+                  type='password'
+                  className='input'
+                  placeholder='******'
                   value={pass}
                   onChange={(e) => setPass(e.target.value)}
                 />
               </label>
-              <div className="containerRadio">
+              <div className='containerRadio'>
                 {listRole.map((e) => {
                   //   console.log(e);
                   return (
                     <>
                       <label key={e.role}>
                         <input
-                          type="radio"
+                          type='radio'
                           key={e.id}
-                          name="myRadio"
+                          name='myRadio'
                           value={role}
                           defaultChecked={role === e.role}
                           onChange={() => {
@@ -72,7 +71,7 @@ function ModalEdit({ onClose, userData, token }) {
                   );
                 })}
               </div>
-              <div className="containerChecks">
+              <div className='containerChecks'>
                 <AiOutlineCheck size={30} onClick={confirm} />
               </div>
             </>

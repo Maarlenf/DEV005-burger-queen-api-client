@@ -24,12 +24,12 @@ function App() {
   const login = () => {
     getLogin(valueEmail, valuePwd)
       .then((res) => {
-        if(res.user.role === 'admin'){
+        if (res.user.role === "admin") {
+          console.log(res);
           navigate("/admin");
-        }else if(res.user.role === 'waiter'){
-          navigate("/waiter")
+        } else if (res.user.role == "waiter") {
+          navigate("/waiter");
         }
-        console.log(res);
         localStorage.setItem("token", res.accessToken);
         localStorage.setItem("user", res.user.email);
       })

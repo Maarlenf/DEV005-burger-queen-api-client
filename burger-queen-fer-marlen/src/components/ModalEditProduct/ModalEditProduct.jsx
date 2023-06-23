@@ -5,7 +5,7 @@ import "../Input/Input.css";
 import "../ModalEdit/ModalEdit.css";
 import { createProduct, editProduct } from "../../lib/api";
 
-function ModalEditProduct({ onClose, dataProduct, token, option}) {
+function ModalEditProduct({ onClose, dataProduct, token, option }) {
   const [product, setProduct] = useState(dataProduct.name);
   const [price, setPrice] = useState(dataProduct.price);
   const [image, setImage] = useState(dataProduct.image);
@@ -26,85 +26,84 @@ function ModalEditProduct({ onClose, dataProduct, token, option}) {
   ];
 
   const confirm = () => {
-    if(!dataProduct.id){
+    if (!dataProduct.id) {
       createProduct(token, product, price, image, type)
         .then((res) => console.log(res))
         .catch((err) => console.log(err.message));
-    }else{
+    } else {
       editProduct(token, dataProduct.id, product, price, image, type)
         .then((res) => console.log(res))
         .catch((err) => console.log(err.message));
     }
     onClose();
   };
-
   return (
     <>
-      <div className="modal">
-        <div className="innerModal">
-          <div className="containerClose">
+      <div className='modal'>
+        <div className='innerModal'>
+          <div className='containerClose'>
             <AiOutlineClose size={30} onClick={onClose} />
           </div>
-          <form action="submit" className="viewAdmin">
+          <form action='submit' className='viewAdmin'>
             <>
               <label>
                 <Input
-                  textLabel="Nombre"
-                  type="text"
-                  className="input"
-                  placeholder="Hamburguesa Doble"
+                  textLabel='Nombre'
+                  type='text'
+                  className='input'
+                  placeholder='Hamburguesa Doble'
                   value={product}
                   onChange={(e) => setProduct(e.target.value)}
                 />
               </label>
               <label>
                 <Input
-                  textLabel="Precio"
-                  type="text"
-                  className="input"
-                  placeholder="$ 1000"
+                  textLabel='Precio'
+                  type='text'
+                  className='input'
+                  placeholder='$ 1000'
                   value={price}
                   onChange={(e) => setPrice(e.target.value)}
                 />
               </label>
               <label>
-                <div className="containerImg">
+                <div className='containerImg'>
                   <span>Imágen</span>
                   <img
-                    alt="image product"
+                    alt='image product'
                     src={image}
                     style={{ margin: "10px", width: "100px", height: "100px" }}
                   />
                   <Input
-                    type="file"
-                    className="input"
-                    placeholder="imageBurger.png..."
-                    alt="image product"
+                    type='file'
+                    className='input'
+                    placeholder='imageBurger.png...'
+                    alt='image product'
                     onChange={(e) => {
-                       if (e.target.files && e.target.files[0]) {
+                      if (e.target.files && e.target.files[0]) {
                         setViewImage(URL.createObjectURL(e.target.files[0]));
                       }
                     }}
                   />
-                   <Input
-                  type="text"
-                  className="input"
-                  placeholder="ingresa la url"
-                  value={image}
-                  onChange={(e) => setImage(e.target.value)}
-                />
+                  <Input
+                    type='text'
+                    className='input'
+                    placeholder='ingresa la url'
+                    value={image}
+                    onChange={(e) => setImage(e.target.value)}
+                  />
                 </div>
               </label>
-              <div className="containerRadio">
+              <div className='containerRadio'>
                 {listType.map((e) => {
                   //   console.log(e);
                   return (
                     <>
                       <label key={e.type}>
                         <input
-                          type="radio"
+                          type='radio'
                           key={e.id}
-                          name="myRadio"
+                          name='myRadio'
                           value={type}
                           defaultChecked={type === e.type}
                           onChange={() => {
@@ -117,7 +116,7 @@ function ModalEditProduct({ onClose, dataProduct, token, option}) {
                   );
                 })}
               </div>
-              <div className="containerChecks">
+              <div className='containerChecks'>
                 <AiOutlineCheck size={30} onClick={confirm} />
               </div>
             </>

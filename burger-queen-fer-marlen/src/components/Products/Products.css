@@ -1,105 +1,128 @@
 .containerButtons {
-    display: flex;
-    margin: 0 40px;
-    justify-content: space-between;
-    align-items: center;
-  }
-  .addProduct {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: -3%;
-  }
-  .addProduct > span {
-    font-family: "Bitter";
-    font-weight: 700;
-    font-size: 20px;
-    line-height: 150%;
-    letter-spacing: 1px;
-  }
-  .containerButtons > button {
-    width: 300px;
-    margin: 0;
-  }
-  .containerTable {
-    display: grid;
-    grid-template-areas:
-      "hd"
-      "content";
-    margin: 30px;
-    border-radius: 0 0 15px 15px;
-    font-family: "Bitter";
-    font-weight: 700;
-    font-size: 22px;
-    line-height: 150%;
-    letter-spacing: 0.146em;
-  }
-  .columnsNames {
-    grid-area: hd;
-    display: grid;
-    grid-template-areas: "ha he hi ho hu hx hz";
-    grid-template-columns: 12% 14% 14% 16% 16% 16% 14%; 
-    align-items: center;
-    background-color: #bf5b04;
-    border-radius: 15px 15px 0 0;
-    padding: 5px;
-  }
-  .containerIds{
-    background-color: rgba(237, 237, 237, 1);
-    border-bottom-left-radius: 15px;
-    border-bottom-right-radius: 15px;
-    margin-bottom: 80px;
-    align-items: center;
-  }
-  .containerIds > ul {
-    grid-area: content;
+  display: flex;
+  margin: 0 40px;
+  justify-content: space-between;
+  align-items: center;
+  gap: 250px;
+}
+.addProduct {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.addProduct > span {
+  font-family: "Bitter";
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 150%;
+  /* letter-spacing: 0.146em; */
+  letter-spacing: 1px;
+}
+.containerButtons > button {
+  width: 300px;
+  margin: 0;
+}
+.containerButtons {
+  display: flex;
+  margin: 30px 0;
+  justify-content: space-around;
+}
+
+.containerTable {
+  display: grid;
+  grid-template-areas:
+    "hd"
+    "content";
+  /* border: 1px solid black; */
+  margin: 30px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  font-family: "Bitter";
+  font-weight: 700;
+  font-size: 22px;
+  line-height: 150%;
+  letter-spacing: 0.146em;
+}
+
+.columnsNames {
+  grid-area: hd;
+  display: grid;
+  grid-template-columns: 12% 14% 14% 16% 16% 16% 14%;
+  grid-template-areas: "ha he hi ho hu hx hz";
+  align-items: center;
+  background-color: #bf5b04;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+  padding: 5px;
+
+  /* border: 1px solid black; */
+}
+.columnsName > span {
+  color: white;
+}
+.containerIds {
+  background-color: rgba(237, 237, 237, 1);
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+  margin-bottom: 80px;
+  align-items: center;
+}
+.containerIds > ul {
+  grid-area: content;
   display: grid;
   grid-template-areas: "ca ce ci co cu cx cz";
   grid-template-columns: 12% 14% 14% 16% 16% 16% 14%;
-  align-items: center;
-  margin-left: -3%;
-  }
-  .containerIds > ul > li{
-    padding: 0;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-  .icon1 {
-    display: flex;
-    width: 100%;
-    justify-content: space-evenly;
-  }
-  .imageProduct{
-    width: 45px;
-    height: 45px;
-    justify-self: center;
-  }
-  #btnEmployee{
-    margin-left: 10%;
-    width: 120%;
-    height: 95px;
-  }
-  .containerOptions{
-    display: flex;
-    margin: 30px;
-    justify-content: space-evenly;
-    font-family: "Bitter";
-    font-weight: 700;
-    font-size: 22px;
-    line-height: 150%;
-    letter-spacing: 0.146em;
-    border:solid 2px #bf5b04;
-  }
-  .optionDes, .optionAlm, .optionCen{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  .optionDes>label, .optionAlm>label, .optionCen>label{
-    margin-left: 30px;
-    margin-bottom: 5px;
-  }
 
-   
+  align-items: center;
+  padding: 0;
+}
+.containerIds > ul > li {
+  padding: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.icon1 {
+  display: flex;
+  width: 100%;
+  justify-content: space-evenly;
+}
+.imageProduct {
+  width: 45px;
+  height: 45px;
+
+  justify-self: center;
+}
+
+#btnEmployee {
+  margin-right: 40%;
+  width: 150%;
+  height: 95px;
+}
+
+.containerOptions {
+  display: flex;
+  margin: 30px;
+  justify-content: space-evenly;
+  font-family: "Bitter";
+  font-weight: 700;
+  font-size: 22px;
+  line-height: 150%;
+  letter-spacing: 0.146em;
+}
+
+.optionDes,
+.optionAlm,
+.optionCen {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.optionDe > label,
+.optionAlm > label,
+.cena > label {
+  margin-left: 30px;
+}

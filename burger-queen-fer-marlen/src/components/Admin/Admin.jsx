@@ -24,7 +24,7 @@ function Admin() {
   return (
     <>
       <Banner></Banner>
-      <Header user={userInLine} text='Administrador'/>
+      <Header user={userInLine} text={"Administrador"} />
       <div className='containerButton'>
         <Button
           id='btnEmployees'
@@ -32,7 +32,12 @@ function Admin() {
           text='Trabajadores'
           onClick={goEmployees}
         ></Button>
-        <Button id='btnProducts' type='submit' text='Productos' onClick={goProducts}></Button>
+        <Button
+          id='btnProducts'
+          type='submit'
+          text='Productos'
+          onClick={goProducts}
+        ></Button>
       </div>
 
       <Footer></Footer>
