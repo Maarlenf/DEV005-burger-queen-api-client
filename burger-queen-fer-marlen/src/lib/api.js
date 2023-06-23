@@ -151,3 +151,17 @@ export function createProduct(token, product, price, image, type) {
       console.log(err.message);
     });
 }
+export function createOrder(obj, token) {
+  return fetch(`${http}orders`, {
+    method: "POST",
+    headers: {
+      "Content-type": stringJSON,
+      Authorization: token,
+    },
+    body: JSON.stringify(obj),
+  })
+    .then((res) => res.json())
+    .catch((err) => {
+      console.log(err.message);
+    });
+}
