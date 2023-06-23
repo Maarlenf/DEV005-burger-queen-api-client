@@ -44,14 +44,19 @@ function Waiter() {
       setFind(products);
     }
   }
+
   function handleAddToOrder(product) {
     const count = localStorage.getItem("counter");
-    const existingItem = orderItems.find((item) => item.id === product.id);
+    console.log(count);
 
+    const existingItem = orderItems.find((item) => item.id === product.id);
     if (existingItem) {
       const updatedItems = orderItems.map((item) => {
         if (item.id === product.id) {
-          return { ...item, quantity: count + item.quantity };
+          return { ...item, quantity: count };
+        }
+        if (item.quantity === count) {
+          return { ...item, quantity: item.quantity };
         }
         return item;
       });
@@ -106,18 +111,18 @@ function Waiter() {
               <div className='columnHeader'>
                 <span>Name</span>
               </div>
+              {/* <span className="time">{date.date}</span> */}
               <span className='nameUser'>{nameUser}</span>
             </div>
             <div className='columnOrder'>
               <div className='columnHeader'>
                 <span>Order</span>
               </div>
-              <div className='containeOrder'>
+              <div className='containerOrder'>
                 {orderItems.map((item) => (
                   <div key={item.id} className='orderItem'>
-                    <span>{item.name}</span>
                     <span>{item.quantity}</span>
-                    <span>X</span>
+                    <span>{item.name}</span>
                     <span>${item.price * item.quantity}</span>
                   </div>
                 ))}
@@ -125,7 +130,6 @@ function Waiter() {
               <div className='total'>
                 <div className='containerTotal'>
                   <span>Total:</span>
-
                   <span>
                     $
                     {orderItems.reduce(
@@ -134,8 +138,7 @@ function Waiter() {
                     )}
                   </span>
                 </div>
-
-                <Button id='btnSend' text='Enviar a cocina' />
+                <Button text='Enviar a cocina' id='btnSend' />
               </div>
             </div>
           </div>

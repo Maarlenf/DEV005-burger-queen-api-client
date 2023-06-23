@@ -10,6 +10,10 @@
     "test": "jest  --coverage"
   },
   "dependencies": {
+    "@babel/core": "^7.22.5",
+    "@testing-library/react": "^14.0.0",
+    "install": "^0.13.0",
+    "npm": "^9.7.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-icons": "^4.9.0",

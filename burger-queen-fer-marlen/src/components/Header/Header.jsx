@@ -18,7 +18,6 @@ function Header({ user, text }) {
         <img src={logo} className='logoSmall' alt='Logo Burguer Queen' />
         <Title title={text} />
         <div className='containerUser'>
-          {/* icono */}
           <AiOutlineUser size={50} />
           <span>
             {user}{" "}

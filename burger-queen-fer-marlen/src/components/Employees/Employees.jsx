@@ -1,9 +1,7 @@
 import { useState, useEffect } from "react";
 import { cutEmail, getEmployees } from "../../lib/api";
 import Banner from "../Banner/Banner";
-import "../Banner/Banner.css";
 import Footer from "../Footer/Footer";
-import "../Footer/Footer.css";
 import Header from "../Header/Header";
 import "../Header/Header.css";
 import "../Employees/Employees.css";
