@@ -1,0 +1,7 @@
+.banner {
+  display: block;
+  margin-right: auto;
+  margin-left: auto;
+  max-width: 100%;
+  min-width: 100%;
+}

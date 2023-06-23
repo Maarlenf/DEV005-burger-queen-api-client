@@ -1,0 +1,49 @@
+.productCards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.card {
+  width: 210px;
+  min-height: 357px;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+  gap: 19px;
+  margin: 5%;
+  background: #d9d9d9;
+  box-shadow: 5px 4px 4px rgb(0 0 0 / 30%);
+  border-radius: 19px;
+  position: relative;
+}
+
+.card > img {
+  width: 120px;
+}
+
+.counter {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  font-family: "Bitter";
+  font-weight: 700;
+  font-size: 22px;
+  line-height: 150%;
+  letter-spacing: 0.146em;
+  border-radius: 30px;
+  background-color: #bf5b04;
+  color: white;
+  width: 60%;
+  /* position: absolute;
+  bottom: -18px; */
+}
+
+#btnOrder {
+  position: absolute;
+  bottom: -12px;
+  margin: 0;
+  width: 66%;
+  font-size: 18px;
+  padding: 10px;
+}
