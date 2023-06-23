@@ -93,7 +93,9 @@ export function getProducts(token) {
       Authorization: token,
     },
   })
-    .then((res) => res.json())
+    .then((res) => 
+    
+      res.json())
     .catch((err) => {
       console.log(err.message);
       return err;
@@ -146,7 +148,26 @@ export function createProduct(token, product, price, image, type) {
       dateEntry: new Date(),
     }),
   })
-    .then((res) => res.json())
+    .then((res) => {
+    res.json()})
+    .catch((err) => {
+      console.log(err.message);
+    });
+}
+
+export function createOrder(token, object) {
+  return fetch(`${http}orders`, {
+    method: "POST",
+    headers: {
+      "Content-type": stringJSON,
+      Authorization: token,
+    },
+    body: JSON.stringify( object ),
+  })
+    .then((res) => {
+      console.log(res);
+      res.json()
+    })
     .catch((err) => {
       console.log(err.message);
     });

@@ -5,8 +5,8 @@ import Header from "../Header/Header";
 import Input from "../Input/Input";
 import Card from "../Card/Card";
 import "../Waiter/Waiter.css";
-import { useEffect, useState } from "react";
-import { cutEmail } from "../../lib/api";
+import { useEffect, useState , useId } from "react";
+import { createOrder, cutEmail } from "../../lib/api";
 import { getProducts } from "../../lib/api";
 
 function Waiter() {
@@ -20,10 +20,12 @@ function Waiter() {
   localStorage.setItem("userInLine", userInLine);
   const token = localStorage.getItem("token");
   const authorization = `Bearer ${token}`;
-  const now = [{date: new Date()}];
+  const idUser = useId();
+  
   useEffect(() => {
     getProducts(authorization).then((res) => {
       setProducts(res);
+      // console.log(res);
       setFind(res);
     });
   }, [authorization]);
@@ -45,25 +47,56 @@ function Waiter() {
 
   function handleAddToOrder(product, count) {
   //const count= localStorage.getItem('counter');
-  console.log(count);
+ // console.log(count);
 
     const existingItem = orderItems.find((item) => item.id === product.id);
     if (existingItem) {
       const updatedItems = orderItems.map((item) => {
         
         if (item.id === product.id) {
-          return { ...item, quantity: count};
-        } if(item.quantity === count){
-          return {...item, quantity: item.quantity}
+          return {...item, qty: count, };
+        } if(item.qty === count){
+          return {...item, qty: item.qty}
         }
         return item;
       });
       setOrderItems(updatedItems);
     } else {
-      const newItem = { ...product, quantity: count };
+      const newItem = { ...product, qty: count };
       setOrderItems([...orderItems, newItem]);
     }
   }
+
+
+  const product = orderItems.map((x) => {
+    return { qty: x.qty,
+     product: {
+       id: x.id,
+       name: x.name,
+       price: x.price,
+       image: x.image,
+       type: x.type,
+       dateEntry: x.dateEntry
+     }
+   }
+   });
+  const objectOrder = {
+    userId: idUser,
+    client: nameUser,
+    products: [
+      {
+        product
+      }
+    ],
+    status: "pending",
+    dateEntry: new Date()
+  }
+
+function addOrder(){
+  createOrder(authorization, objectOrder)
+  .then((res) => res)
+  .catch((err) => console.log(err))
+}
 
   return (
     <>
@@ -110,7 +143,6 @@ function Waiter() {
               <div className='columnHeader'>
                 <span>Name</span>
               </div>
-              <span className="timeOforder">{now.date}</span>
               <span className='nameUser'>{nameUser}</span>
             </div>
             <div className='columnOrder'>
@@ -120,9 +152,9 @@ function Waiter() {
               <div className="containerOrder">
                 {orderItems.map((item) => (
                   <div key={item.id} className='orderItem'>
-                    <span >{item.quantity}</span>
+                    <span >{item.qty}</span>
                     <span >{item.name}</span>
-                    <span >${item.price * item.quantity}</span>
+                    <span >${item.price * item.qty}</span>
                   </div>
                 ))}
               </div>
@@ -132,12 +164,12 @@ function Waiter() {
                 <span>
                   $
                   {orderItems.reduce(
-                    (total, item) => total + item.price * item.quantity,
+                    (total, item) => total + item.price * item.qty,
                     0
                   )}
                 </span>
                 </div>
-                <Button text='Enviar a cocina' id='btnSend' />
+                <Button text='Enviar a cocina' id='btnSend' onClick={addOrder}/>
               </div>
             </div>
           </div>
