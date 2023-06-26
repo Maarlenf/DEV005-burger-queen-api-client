@@ -20,7 +20,10 @@
 ## Índice
 
 * [1. Preámbulo](#1-preámbulo)
-* [2. Resumen del proyecto](#2-resumen-del-proyecto)
+* [2. Resumen del proyecto](#2-resumen-![Uploading americano.png…]()
+![americano](https://github.com/Maarlenf/DEV005-burger-queen-api-client/assets/65190924/1f826058-699d-4c47-bb68-1619022f3cf2)
+del-proyecto![americano](https://github.com/Maarlenf/DEV005-burger-queen-api-client/assets/65190924/e0a83414-3427-4af5-980b-5cadd77f20c8)
+)
 * [3. Objetivos de aprendizaje](#3-objetivos-de-aprendizaje)
 * [4. Consideraciones](#4-consideraciones)
 * [5. Criterios de aceptación del proyecto](#5-criterios-de-aceptación-del-proyecto)
