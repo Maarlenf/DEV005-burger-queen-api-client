@@ -29,6 +29,7 @@ function Employees() {
   const [editingUser, setEdit] = useState();
   const [deleteUser, setDelete] = useState();
   const navigate = useNavigate();
+  console.log(authorization);
   function goProducts() {
     return navigate("/admin/products");
   }
@@ -69,7 +70,7 @@ function Employees() {
         />
       )}
       <Banner />
-      <Header user={user} />
+      <Header user={user} text='Administrador' />
 
       <div className='containerButtons'>
         <div className='addUser' hidden={showModal} onClick={toggleModal}>

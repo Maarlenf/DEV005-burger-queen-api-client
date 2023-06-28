@@ -15,6 +15,7 @@ function Card({ id, img, alt, nameProduct, price, textBtn, onAddToOrder, product
         <div className='counter'>
           <AiOutlineMinus
             size={25}
+            id='minus'
             onClick={() => {
               setCount(count - 1);
             }}
@@ -22,6 +23,7 @@ function Card({ id, img, alt, nameProduct, price, textBtn, onAddToOrder, product
           <span>{count}</span>
           <AiOutlinePlus
             size={25}
+            id='plus'
             onClick={() => {
               setCount(count + 1);
             }}

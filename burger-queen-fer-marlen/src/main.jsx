@@ -11,6 +11,7 @@ import Admin from "./components/Admin/Admin";
 import Employees from "./components/Employees/Employees"
 import Products from "./components/Products/Products";
 import Waiter from "./components/Waiter/Waiter";
+import Orders from "./components/Orders/Orders";
 
 const router = createBrowserRouter([
   {
@@ -33,6 +34,10 @@ const router = createBrowserRouter([
     path: "/waiter",
     element: <Waiter />,
   },
+  {
+    path: '/waiter/orders',
+    element: <Orders />
+  }
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(

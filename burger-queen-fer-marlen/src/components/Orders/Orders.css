@@ -1,0 +1,95 @@
+.containerTableOrder{
+    display: grid;
+    grid-template-areas: "name";
+    margin: 30px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    font-family: "Bitter";
+    font-weight: 700;
+    font-size: 22px;
+    line-height: 150%;
+    letter-spacing: 0.146em;
+    background-color: rgba(237, 237, 237, 1);
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    margin-bottom: 80px;
+}
+.columns{
+    grid-area: name;
+    display: grid;
+    grid-template-areas: 'h1 h2';
+    grid-template-columns: 30% 70%;
+    background-color: #bf5b04;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    padding: 5px;
+}
+.columns>span{
+    color:white;
+}
+.containerOrders{
+    display: grid;
+    grid-template-areas: "a1 a2";
+    grid-template-columns: 30% 70%;
+}
+.dataClient{
+    border-top: solid 1px black;
+    border-right: solid 1px black;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    height: 100%;
+}
+.dataOrder{
+    border-top: solid 1px black;
+}
+.dataClient>ul{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    height: 100%;
+}
+.dataClient>ul>li{
+    list-style: none;
+}
+.timer, .timeEntry{
+    display: flex;
+    width:100%;
+    justify-content: space-around;
+    margin-left: -20px;
+}
+.timer>li, .timeEntry>li{
+    list-style: none;
+    margin-right: -10px;
+}
+.client{
+    display: flex;
+    width: 100%;
+    margin-left: -20px;
+}
+.client>li{
+    list-style: none;
+    margin-left: 10px;
+}
+
+.dataOrder>ul{
+    grid-area: a2;
+    display: grid;
+    grid-template-areas: "d1 d2 d3 d4";
+    grid-template-columns: 5% 20% 60% 15%;
+    width:90%;
+    justify-content:space-between;
+    align-items: center;
+}
+
+.dataOrder>ul>li{
+    display: flex;
+    margin-right: 5%;
+    word-break:break-all; 
+} 
+
+
+
+

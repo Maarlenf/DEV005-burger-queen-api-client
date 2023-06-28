@@ -5,9 +5,12 @@ import Header from "../Header/Header";
 import Input from "../Input/Input";
 import Card from "../Card/Card";
 import "../Waiter/Waiter.css";
-import { useEffect, useState , useId } from "react";
+import { useEffect, useState , useId, } from "react";
+import { useNavigate } from 'react-router-dom';
 import { createOrder, cutEmail } from "../../lib/api";
-import { getProducts } from "../../lib/api";
+import { getProducts, getOrders } from "../../lib/api";
+import {MdOutlineNoFood} from "react-icons/md";
+
 
 function Waiter() {
   const [products, setProducts] = useState([]);
@@ -21,6 +24,8 @@ function Waiter() {
   const token = localStorage.getItem("token");
   const authorization = `Bearer ${token}`;
   const idUser = useId();
+  const navigate = useNavigate();
+  const [selectedTypes, setSelectedTypes] = useState([]);
   
   useEffect(() => {
     getProducts(authorization).then((res) => {
@@ -94,8 +99,30 @@ function Waiter() {
 
 function addOrder(){
   createOrder(authorization, objectOrder)
-  .then((res) => res)
+  .then((res) => {
+    res
+    setOrderItems([]);
+    setNameUser('');
+  })
   .catch((err) => console.log(err))
+}
+function filter(param) {
+  if (selectedTypes.includes(param)) {
+    // El tipo ya se selccionó, se tiene  que remover
+    setSelectedTypes(selectedTypes.filter((type) => type !== param));
+  } else {
+    // El tipo no estaba seleccionado, se tiene que agregar
+    setSelectedTypes([...selectedTypes, param]);
+  }
+}
+function goToOrders(){
+  navigate('/waiter/orders')
+}
+
+function deleteItem(item){
+ let newArray = [...orderItems];
+  newArray = newArray.filter(i => {return i.name !== item.name});
+  setOrderItems(newArray);
 }
 
   return (
@@ -103,8 +130,8 @@ function addOrder(){
       <Banner></Banner>
       <Header user={userInLine} text={"Mesero/a"} />
       <div className='containerButtons'>
-        <Button text={"Hacer Pedido"} />
-        <Button text={"Entregas"} />
+        {/* <Button text={"Hacer Pedido"} /> */}
+        <Button text={"Entregas"} onClick={goToOrders} />
       </div>
       <div className='containerRoot'>
         <div className='columnA'>
@@ -113,9 +140,48 @@ function addOrder(){
             textLabel='Busca tu producto:'
             value={search}
             onChange={(event) => setSearch(event.target.value)}
-          />
+          /><div className='containerOptions'>
+          <div className='optionDes'>
+            <span>Desayuno</span>
+            <Input
+              type='checkbox'
+              id='topping'
+              value='Desayuno'
+              checked={selectedTypes.includes("Desayuno")}
+              onChange={(e) => filter(e.target.value)}
+            />
+          </div>
+          <div className='optionAlm'>
+            <span>Almuerzo</span>
+            <Input
+              type='checkbox'
+              name='Almuerzo'
+              id='topping'
+              value='Almuerzo'
+              checked={selectedTypes.includes("Almuerzo")}
+              onChange={(e) => filter(e.target.value)}
+            />
+          </div>
+          <div className='optionCen'>
+            <span>Cena</span>
+            <Input
+              type='checkbox'
+              id='topping'
+              value='Cena'
+              checked={selectedTypes.includes("Cena")}
+              onChange={(e) => filter(e.target.value)}
+            />
+          </div>
+        </div>
           <div className='productCards'>
-            {find.map((e) => {
+            {
+            find
+            .filter((product) =>
+              selectedTypes.length === 0
+                ? true
+                : selectedTypes.includes(product.type)
+            )
+            .map((e) => {
               return (
                 <Card
                   key={e.id}
@@ -155,6 +221,11 @@ function addOrder(){
                     <span >{item.qty}</span>
                     <span >{item.name}</span>
                     <span >${item.price * item.qty}</span>
+                    <MdOutlineNoFood
+                      size={30}
+                      style={{color:"red"}}
+                      onClick={() => deleteItem(item)}
+                    />
                   </div>
                 ))}
               </div>

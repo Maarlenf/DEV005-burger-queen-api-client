@@ -31,6 +31,7 @@ function Products() {
 
   useEffect(() => {
     getProducts(authorization).then((res) => {
+      console.log(res)
       setDataProducts(res);
     });
   }, [authorization, showModalDelete, showModalEditProduct]);
@@ -81,7 +82,7 @@ function Products() {
         />
       )}
       <Banner />
-      <Header user={user} />
+      <Header user={user} text= 'Administrador' />
       <div className='containerButtons'>
         <div className='addUser'>
           <Button

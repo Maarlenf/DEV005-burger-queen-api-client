@@ -1,6 +1,6 @@
 import { useState } from "react";
 import "./App.css";
-import logo from "../../assets/logo.png";
+import { logo } from "../../images";
 import Banner from "../Banner/Banner";
 import "../Banner/Banner.css";
 import Title from "../Title/Title";
@@ -58,7 +58,7 @@ function App() {
       </div>
       <Title title='Iniciar Sesión' />
       <div className='formLogin'>
-        <form method='post' onSubmit={handleSubmit}>
+        <form method='post' onSubmit={handleSubmit} className="formLogin">
           <Input
             textLabel='Correo Electrónico'
             type='email'
@@ -82,7 +82,7 @@ function App() {
           />
           {fail && <span className='failLogin'>{fail}</span>}
 
-          <Button id='btnLogin' type='submit' text='Iniciar Sesión' />
+          <Button id='btnLogin' className='btnLogin' type='submit' text='Iniciar Sesión' />
         </form>
       </div>
       <Footer />

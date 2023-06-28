@@ -25,7 +25,8 @@ export function getEmployees(token) {
       Authorization: token,
     },
   })
-    .then((res) => res.json())
+    .then((res) => 
+      res.json())
     .catch((err) => {
       console.log(err.message);
       return err;
@@ -94,7 +95,6 @@ export function getProducts(token) {
     },
   })
     .then((res) => 
-    
       res.json())
     .catch((err) => {
       console.log(err.message);
@@ -170,5 +170,19 @@ export function createOrder(token, object) {
     })
     .catch((err) => {
       console.log(err.message);
+    });
+}
+
+export function getOrders(token) {
+  return fetch(`${http}orders`, {
+    method: "GET",
+    headers: {
+      Authorization: token,
+    },
+  })
+    .then((res) => res.json())
+    .catch((err) => {
+      console.log(err.message);
+      return err;
     });
 }
