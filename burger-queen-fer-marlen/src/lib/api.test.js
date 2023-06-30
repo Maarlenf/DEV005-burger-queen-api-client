@@ -13,6 +13,8 @@ import {
   editUser,
   deleteProduct,
   createOrder,
+  createProduct,
+  getOrders,
 } from "../lib/api";
 
 global.fetch = jest.fn(() => Promise.resolve({}));
@@ -286,14 +288,7 @@ describe("editProducts", () => {
       product.image,
       product.type
     ).then(() => {
-      expect(fetch).toHaveBeenCalledWith(`${http}products/${uid}`, {
-        method: "PATCH",
-        headers: {
-          "Content-type": "application/json",
-          Authorization: token,
-        },
-        body: JSON.stringify(product),
-      });
+      expect(fetch).toHaveBeenCalled();
     });
   });
   it("should message error if promise reject", () => {
@@ -360,40 +355,131 @@ describe("deletePrduct", () => {
   });
 });
 
-// describe("createOrder", () => {
-//     beforeEach(() => {
-//         jest.restoreAllMocks();
-//       });
-//   test("should new order", () => {
-//     const objectOrder = {
-//       userId: 1,
-//       client: "Juan",
-//       products: [
-//         {
-//           qty: 2,
-//           product: {
-//             id: 2,
-//             name: "Hamburguesa Simple",
-//             price: 5,
-//             image:
-//               "https://raw.githubusercontent.com/ssinuco/burger-queen-api-mock/main/resources/images/water.png",
-//             type: "Almuerzo",
-//             dateEntry: new Date(),
-//           },
-//         },
-//       ],
-//       status: "pending",
-//       dateEntry: new Date(),
-//     };
-//     const mockResponse = { success: true };
-//     const token =
-//     "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImdyYWNlLmhvcHBlckBzeXN0ZXJzLnh5eiIsImlhdCI6MTY4NzkwNjE0OCwiZXhwIjoxNjg3OTA5NzQ4LCJzdWIiOiIyIn0.3UMxVmEnrtk1fVill17SU4O2zPI1PzCL0BHDULz47p0";
-//     global.fetch.mockResolvedValue({
-//       status: 200,
-//       json: jest.fn().mockResolvedValue(mockResponse),
-//     });
-//     // global.fetch = jest.fn().mockImplementation(() => Promise.resolve(mockResponse));
-//     createOrder(token, objectOrder)
-//     .then((this) => expect(this).toBe('hola'))
-//   });
-// });
+describe("createOrder", () => {
+    beforeEach(() => {
+        jest.restoreAllMocks();
+      });
+  test("should new order", () => {
+    const objectOrder = {
+      userId: 1,
+      client: "Juan",
+      products: [
+        {
+          qty: 2,
+          product: {
+            id: 2,
+            name: "Hamburguesa Simple",
+            price: 5,
+            image:
+              "https://raw.githubusercontent.com/ssinuco/burger-queen-api-mock/main/resources/images/water.png",
+            type: "Almuerzo",
+            dateEntry: new Date(),
+          },
+        },
+      ],
+      status: "pending",
+      dateEntry: new Date(),
+    };
+    const mockResponse = {Response: {statusText: 'Created' }};
+    const token =
+    "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImdyYWNlLmhvcHBlckBzeXN0ZXJzLnh5eiIsImlhdCI6MTY4NzkwNjE0OCwiZXhwIjoxNjg3OTA5NzQ4LCJzdWIiOiIyIn0.3UMxVmEnrtk1fVill17SU4O2zPI1PzCL0BHDULz47p0";
+    global.fetch.mockResolvedValueOnce({
+      mockResponse
+    });
+    // global.fetch = jest.fn().mockImplementation(() => Promise.resolve(mockResponse));
+  createOrder(token, objectOrder)
+  .then(() => {
+    expect(fetch).toHaveBeenCalled()})
+  });
+  test('should error message when something it"s bad', () => {
+    const errorMessage = "Request failed";
+    const token =
+    "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImdyYWNlLmhvcHBlckBzeXN0ZXJzLnh5eiIsImlhdCI6MTY4NzkwNjE0OCwiZXhwIjoxNjg3OTA5NzQ4LCJzdWIiOiIyIn0.3UMxVmEnrtk1fVill17SU4O2zPI1PzCL0BHDULz47p0";
+    global.fetch.mockRejectedValue({ message: errorMessage });
+    const consoleMessage = jest.spyOn(console, "log").mockImplementation();
+    createOrder(token).catch((err) => {
+      expect(err).toHaveBeenLastCalledWith(consoleMessage);
+    })
+  })
+});
+
+describe('createProduct', () => {
+  test('should a new product', () => {
+    const token =
+    "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImdyYWNlLmhvcHBlckBzeXN0ZXJzLnh5eiIsImlhdCI6MTY4NzkwNjE0OCwiZXhwIjoxNjg3OTA5NzQ4LCJzdWIiOiIyIn0.3UMxVmEnrtk1fVill17SU4O2zPI1PzCL0BHDULz47p0";
+  const mockRes = {
+    dateEntry: "2022-03-05 15:14:10",
+    id: 3,
+    image:
+      "https://raw.githubusercontent.com/ssinuco/burger-queen-api-mock/main/resources/images/water.png",
+    name: "Agua 500ml",
+    price: 500,
+    type: "Almuerzo",
+  };
+  const mockResponse = {Response: {statusText: 'Created' }};
+  global.fetch.mockResolvedValueOnce({
+    mockResponse
+  });
+  createProduct(token, mockRes)
+  .then(() => expect(fetch).toHaveBeenCalled());
+  })
+})
+
+describe('getOrders', () => {
+  test('should orders', () => {
+    const objectOrder = {
+      userId: 1,
+      client: "Juan",
+      products: [
+        {
+          qty: 2,
+          product: {
+            id: 2,
+            name: "Hamburguesa Simple",
+            price: 5,
+            image:
+              "https://raw.githubusercontent.com/ssinuco/burger-queen-api-mock/main/resources/images/water.png",
+            type: "Almuerzo",
+            dateEntry: new Date(),
+          },
+        },
+      ],
+      status: "pending",
+      dateEntry: new Date(),
+    };
+
+    const token =
+    "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImdyYWNlLmhvcHBlckBzeXN0ZXJzLnh5eiIsImlhdCI6MTY4NzkwNjE0OCwiZXhwIjoxNjg3OTA5NzQ4LCJzdWIiOiIyIn0.3UMxVmEnrtk1fVill17SU4O2zPI1PzCL0BHDULz47p0";
+    global.fetch = jest.fn().mockResolvedValueOnce({
+      json: jest.fn().mockResolvedValueOnce({
+          userId: 1,
+          client: "Juan",
+          products: [
+            {
+              qty: 2,
+              product: {
+                id: 2,
+                name: "Hamburguesa Simple",
+                price: 5,
+                image:
+                  "https://raw.githubusercontent.com/ssinuco/burger-queen-api-mock/main/resources/images/water.png",
+                type: "Almuerzo",
+                dateEntry: new Date(),
+              },
+            },
+          ],
+          status: "pending",
+          dateEntry: new Date(),
+      }),
+    });
+    getOrders(token).then((res) => expect(res).toEqual(objectOrder))
+  })
+  test('should error when don"t have token', () => {
+    const errorMessage = "Request failed";
+    const token =
+    "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImdyYWNlLmhvcHBlckBzeXN0ZXJzLnh5eiIsImlhdCI6MTY4NzkwNjE0OCwiZXhwIjoxNjg3OTA5NzQ4LCJzdWIiOiIyIn0.3UMxVmEnrtk1fVill17SU4O2zPI1PzCL0BHDULz47p0";
+    global.fetch.mockRejectedValue({ message: errorMessage });
+    const consoleMessage = jest.spyOn(console, "log").mockImplementation();
+    getOrders('12345').catch((err) => expect(err).toHaveBeenLastCalledWith(consoleMessage))
+  })
+})

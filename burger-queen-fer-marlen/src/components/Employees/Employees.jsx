@@ -17,8 +17,6 @@ import Button from "../Button/Button";
 import { useNavigate } from "react-router-dom";
 
 function Employees() {
-  // const [worker, setWorker] = useState("");
-  // const [email, setEmail] = useState("");
   const user = localStorage.getItem("userInLine");
   const token = localStorage.getItem("token");
   const authorization = `Bearer ${token}`;
@@ -29,7 +27,7 @@ function Employees() {
   const [editingUser, setEdit] = useState();
   const [deleteUser, setDelete] = useState();
   const navigate = useNavigate();
-  console.log(authorization);
+  // console.log(authorization);
   function goProducts() {
     return navigate("/admin/products");
   }
@@ -47,6 +45,7 @@ function Employees() {
   };
   useEffect(() => {
     getEmployees(authorization).then((res) => {
+      // console.log(res);
       setDataUser(res);
     });
   }, [showModal, authorization, showModalDelete, showModalEdit]);
@@ -111,10 +110,12 @@ function Employees() {
                   <div className='icon1'>
                     <AiOutlineEdit
                       size={30}
+                      id="editModal"
                       onClick={() => toggleModalEdit(obj)}
                     />
                     <AiOutlineUserDelete
                       onClick={() => toggleModalDelete(obj.id)}
+                      id="deleteModal"
                       size={30}
                     />
                   </div>

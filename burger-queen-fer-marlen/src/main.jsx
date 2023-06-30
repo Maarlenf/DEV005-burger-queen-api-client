@@ -11,7 +11,7 @@ import Admin from "./components/Admin/Admin";
 import Employees from "./components/Employees/Employees"
 import Products from "./components/Products/Products";
 import Waiter from "./components/Waiter/Waiter";
-import Orders from "./components/Orders/Orders";
+import Chef from "./components/Chef/Chef";
 
 const router = createBrowserRouter([
   {
@@ -35,8 +35,8 @@ const router = createBrowserRouter([
     element: <Waiter />,
   },
   {
-    path: '/waiter/orders',
-    element: <Orders />
+    path: '/chef',
+    element: <Chef />
   }
 ]);
 

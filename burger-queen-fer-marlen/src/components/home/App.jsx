@@ -29,7 +29,10 @@ function App() {
           navigate("/admin");
         } else if (res.user.role == "waiter") {
           navigate("/waiter");
+        } else if (res.user.role === "chef") {
+          navigate("/chef");
         }
+        console.log(res.user.email);
         localStorage.setItem("token", res.accessToken);
         localStorage.setItem("user", res.user.email);
       })
@@ -54,35 +57,40 @@ function App() {
     <>
       <Banner />
       <div>
-        <img src={logo} className='logo' alt='Logo Burguer Queen' />
+        <img src={logo} className="logo" alt="Logo Burguer Queen" />
       </div>
-      <Title title='Iniciar Sesión' />
-      <div className='formLogin'>
-        <form method='post' onSubmit={handleSubmit} className="formLogin">
+      <Title title="Iniciar Sesión" />
+      <div className="formLogin">
+        <form method="post" onSubmit={handleSubmit} className="formLogin">
           <Input
-            textLabel='Correo Electrónico'
-            type='email'
-            className='input'
-            id='email'
-            placeholder='example@examle.com'
+            textLabel="Correo Electrónico"
+            type="email"
+            className="input"
+            id="email"
+            placeholder="example@examle.com"
             value={valueEmail}
             onChange={(e) => setEmail(e.target.value)}
           />
 
           <Input
-            textLabel='Contraseña'
-            type='password'
-            className='input'
-            autoComplete='current-password'
-            id='password'
-            name='myInput'
-            placeholder='******'
+            textLabel="Contraseña"
+            type="password"
+            className="input"
+            autoComplete="current-password"
+            id="password"
+            name="myInput"
+            placeholder="******"
             value={valuePwd}
             onChange={(e) => setPwd(e.target.value)}
           />
-          {fail && <span className='failLogin'>{fail}</span>}
+          {fail && <span className="failLogin">{fail}</span>}
 
-          <Button id='btnLogin' className='btnLogin' type='submit' text='Iniciar Sesión' />
+          <Button
+            id="btnLogin"
+            className="btnLogin"
+            type="submit"
+            text="Iniciar Sesión"
+          />
         </form>
       </div>
       <Footer />

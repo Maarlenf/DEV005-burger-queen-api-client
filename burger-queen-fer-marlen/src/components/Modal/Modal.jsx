@@ -22,7 +22,7 @@ function Modal({ onClose }) {
 
   return (
     <>
-      <div className='modal'>
+      <div className='modal' id="modalCreateUser">
         <div className='innerModal'>
           <div className='containerClose'>
             <AiOutlineClose size={30} onClick={onClose} />

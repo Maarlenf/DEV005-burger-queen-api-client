@@ -43,4 +43,32 @@ describe('Card component', () => {
         fireEvent.click(rest);
         expect(container.querySelector('.counter')).toHaveTextContent('-1');
     })
+    test("calls onAddToOrder function when button is clicked", () => {
+        const mockRes = {
+          dateEntry: "2022-03-05 15:14:10",
+          id: 3,
+          image:
+            "https://raw.githubusercontent.com/ssinuco/burger-queen-api-mock/main/resources/images/water.png",
+          name: "Agua 500ml",
+          price: 500,
+          type: "Almuerzo",
+        };
+        const onAddToOrder = jest.fn();
+    
+        const { container } = render(
+          <Card
+            id={mockRes.id}
+            img={mockRes.image}
+            alt='image product'
+            nameProduct={mockRes.name}
+            price={mockRes.price}
+            textBtn='Agregar'
+            onAddToOrder={onAddToOrder}
+          />
+        );
+    
+        const addButton = container.querySelector("#btnOrder");
+        fireEvent.click(addButton);
+        expect(onAddToOrder).toHaveBeenCalledTimes(1);
+      });
 })
