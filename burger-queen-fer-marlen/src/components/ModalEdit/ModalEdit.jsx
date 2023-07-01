@@ -16,13 +16,12 @@ function ModalEdit({ onClose, userData, token }) {
   ];
   const confirm = () => {
     editUser(token, userData.id, employee, pass, role)
-      .then((res) => console.log(res))
-      .catch((err) => console.log(err.message));
+      .then((res) => res)
     onClose();
   };
   return (
     <>
-      <div className='modal'>
+      <div className='modal' id="modalEdit">
         <div className='innerModal'>
           <div className='containerClose'>
             <AiOutlineClose size={30} onClick={onClose} />
@@ -71,8 +70,8 @@ function ModalEdit({ onClose, userData, token }) {
                   );
                 })}
               </div>
-              <div className='containerChecks'>
-                <AiOutlineCheck size={30} onClick={confirm} />
+              <div className='containerChecks' >
+                <AiOutlineCheck size={30} onClick={confirm} data-testid="confirmEditUsers" />
               </div>
             </>
           </form>

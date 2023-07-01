@@ -16,9 +16,8 @@ import ModalEdit from "../ModalEdit/ModalEdit";
 import Button from "../Button/Button";
 import { useNavigate } from "react-router-dom";
 
+
 function Employees() {
-  // const [worker, setWorker] = useState("");
-  // const [email, setEmail] = useState("");
   const user = localStorage.getItem("userInLine");
   const token = localStorage.getItem("token");
   const authorization = `Bearer ${token}`;
@@ -29,7 +28,8 @@ function Employees() {
   const [editingUser, setEdit] = useState();
   const [deleteUser, setDelete] = useState();
   const navigate = useNavigate();
-  console.log(authorization);
+  const [getEmployeesStatus, setGetEmployeesStatus] = useState('loading')
+ 
   function goProducts() {
     return navigate("/admin/products");
   }
@@ -48,7 +48,12 @@ function Employees() {
   useEffect(() => {
     getEmployees(authorization).then((res) => {
       setDataUser(res);
-    });
+      setGetEmployeesStatus('success');
+    })
+    .catch((error) => {
+      error
+      setGetEmployeesStatus('error')
+    })
   }, [showModal, authorization, showModalDelete, showModalEdit]);
 
   return (
@@ -86,44 +91,49 @@ function Employees() {
           />
         </div>
       </div>
-
-      <div className='containerTable'>
-        <div className='columnsName'>
-          <span className='id'>ID</span>
-          <span className='email'>Email</span>
-          <span className='pwd'>Contraseña</span>
-          <span className='role'>Rol</span>
-          <span className='action'>Acción</span>
-        </div>
-        <div className='containerId'>
-          {dataUser.map((obj) => {
-            const email = cutEmail(obj.email);
-            localStorage.setItem("id", obj.id);
-            localStorage.setItem("id", obj.id);
-            console.log(obj);
-            return (
-              <ul key={obj.id}>
-                <li>{obj.id}</li>
-                <li>{email}</li>
-                <li>{"******"}</li>
-                <li>{obj.role}</li>
-                <div>
-                  <div className='icon1'>
-                    <AiOutlineEdit
-                      size={30}
-                      onClick={() => toggleModalEdit(obj)}
-                    />
-                    <AiOutlineUserDelete
-                      onClick={() => toggleModalDelete(obj.id)}
-                      size={30}
-                    />
-                  </div>
-                </div>
-              </ul>
-            );
-          })}
-        </div>
+      {getEmployeesStatus === 'loading' ? (
+        <p data-testid='loadingEmployees'>Cargando...</p>
+      ): getEmployeesStatus === 'success' ? (  <div className='containerTable' data-testid="employeesTable">
+      <div className='columnsName'>
+        <span className='id'>ID</span>
+        <span className='email'>Email</span>
+        <span className='pwd'>Contraseña</span>
+        <span className='role'>Rol</span>
+        <span className='action'>Acción</span>
       </div>
+      <div className='containerId'>
+        {dataUser.map((obj) => {
+          const email = cutEmail(obj.email);
+          localStorage.setItem("id", obj.id);
+          localStorage.setItem("id", obj.id);
+          console.log(obj);
+          return (
+            <ul key={obj.id}>
+              <li>{obj.id}</li>
+              <li>{email}</li>
+              <li>{"******"}</li>
+              <li>{obj.role}</li>
+              <div>
+                <div className='icon1'>
+                  <AiOutlineEdit
+                    size={30}
+                    id="editModal"
+                    onClick={() => toggleModalEdit(obj)}
+                  />
+                  <AiOutlineUserDelete
+                    onClick={() => toggleModalDelete(obj.id)}
+                    id="deleteModal"
+                    size={30}
+                  />
+                </div>
+              </div>
+            </ul>
+          );
+        })}
+      </div>
+    </div>) : getEmployeesStatus === "error" ? (
+      <p data-testid="employeesError">Ha ocurrido un error</p>
+    ): null}
       <Footer />
     </>
   );

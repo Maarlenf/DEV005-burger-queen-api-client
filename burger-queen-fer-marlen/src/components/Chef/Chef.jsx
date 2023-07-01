@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { getOrders } from "../../lib/api";
+import { cutEmail, getOrders } from "../../lib/api";
 import Banner from "../Banner/Banner";
 import Footer from "../Footer/Footer";
 import Header from "../Header/Header";
@@ -11,15 +11,18 @@ import { TfiTimer } from "react-icons/tfi";
 import { AiOutlineUser } from "react-icons/ai";
 import { BsCalendarDate } from "react-icons/bs";
 import Timer from "../Timer/Timer";
-import "../Orders/Orders.css";
+import "./Chef.css";
+import Button from "../Button/Button";
 
-function Orders() {
+function Chef() {
   const [dataOrders, setDataOrders] = useState([]);
   const token = localStorage.getItem("token");
   const authorization = `Bearer ${token}`;
-  const user = localStorage.getItem("userInLine");
+  const user = localStorage.getItem("user");
+  const userInLine = cutEmail(user);
+  localStorage.setItem("userInLine", userInLine);
+  console.log(user)
   const navigate = useNavigate();
-  // const [showTime, setShowTime] = useState(new Date());
 
   useEffect(() => {
     getOrders(authorization).then((res) => {
@@ -27,20 +30,20 @@ function Orders() {
     });
   }, []);
 
-  function toDoOrder() {
-    navigate("/waiter");
-  }
+  // function toDoOrder() {
+  //   navigate("/waiter");
+  // }
 
   return (
     <>
       <Banner />
-      <Header user={user} text="Mesera/o" />
+      <Header user={userInLine} text="Chef" />
       <div className="containerButtons">
         {/* <div className="addUser">
           <Button text="Pedidos" id="btnEmployee" />
         </div> */}
         <div className="addProduct">
-          <IoFastFoodOutline size={50} onClick={toDoOrder} />
+          {/* <IoFastFoodOutline size={50} onClick={toDoOrder} /> */}
           <span>Ir a tomar Pedido</span>
         </div>
       </div>
@@ -87,7 +90,7 @@ function Orders() {
                             style={{ width: "70px", height: "70px" }}
                           />
                           <li>{e.product.name}</li>
-                          <div className="icon1">
+                          {/* <div className="icon1">
                             <AiOutlineEdit
                               size={30}
                               //   onClick={() => toggleModalEdit(obj)}
@@ -96,11 +99,12 @@ function Orders() {
                               //   onClick={() => toggleModalDelete(obj.id)}
                               size={30}
                             />
-                          </div>
+                          </div> */}
                         </ul>
                       </>
                     );
                   })}
+                  <Button text='Entregar orden'/>
                 </div>
               </>
             );
@@ -112,4 +116,4 @@ function Orders() {
   );
 }
 
-export default Orders;
+export default Chef;

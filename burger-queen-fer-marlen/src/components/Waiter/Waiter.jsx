@@ -131,7 +131,7 @@ function deleteItem(item){
       <Header user={userInLine} text={"Mesero/a"} />
       <div className='containerButtons'>
         {/* <Button text={"Hacer Pedido"} /> */}
-        <Button text={"Entregas"} onClick={goToOrders} />
+        {/* <Button text={"Entregas"} onClick={goToOrders} /> */}
       </div>
       <div className='containerRoot'>
         <div className='columnA'>

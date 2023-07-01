@@ -22,13 +22,13 @@ function Modal({ onClose }) {
 
   return (
     <>
-      <div className='modal'>
+      <div className='modal' id="modalCreateUser">
         <div className='innerModal'>
           <div className='containerClose'>
             <AiOutlineClose size={30} onClick={onClose} />
           </div>
 
-          <form action='submit' className='viewAdmin'>
+          <form action='submit' className='viewAdmin' >
             <label>
               <Input
                 textLabel='Correo Electrónico'
@@ -74,7 +74,7 @@ function Modal({ onClose }) {
               );
             })}
             <div>
-              <AiOutlineCheck size={30} onClick={saveUser} />
+              <AiOutlineCheck size={30} onClick={saveUser} data-testid='saveUser'/>
             </div>
           </form>
         </div>
