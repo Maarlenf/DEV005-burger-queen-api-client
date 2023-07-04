@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 function Input({
   textLabel,
   type,
@@ -16,7 +18,7 @@ function Input({
           className={className}
           id={id}
           placeholder={placeholder}
-          value={value}
+          value={value || ''}
           onChange={onChange}
         />
       </label>

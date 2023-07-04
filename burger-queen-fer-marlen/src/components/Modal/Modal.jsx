@@ -21,14 +21,13 @@ function Modal({ onClose }) {
   };
 
   return (
-    <>
       <div className='modal' id="modalCreateUser">
         <div className='innerModal'>
           <div className='containerClose'>
             <AiOutlineClose size={30} onClick={onClose} />
           </div>
 
-          <form action='submit' className='viewAdmin' >
+          <form action='submit' className='viewAdmin'>
             <label>
               <Input
                 textLabel='Correo Electrónico'
@@ -52,14 +51,11 @@ function Modal({ onClose }) {
               />
             </label>
             {listRole.map((e) => {
-              //   console.log(e);
               return (
-                <>
-                  <div className='containerRadio'>
-                    <label key={e.role}>
+                  <div className='containerRadio' key={e.role}>
+                    <label >
                       <input
                         type='radio'
-                        key={e.id}
                         name='myRadio'
                         value={e.role}
                         checked={newRole === e.role}
@@ -70,7 +66,6 @@ function Modal({ onClose }) {
                       {e.title}
                     </label>
                   </div>
-                </>
               );
             })}
             <div>
@@ -79,7 +74,6 @@ function Modal({ onClose }) {
           </form>
         </div>
       </div>
-    </>
   );
 }
 

@@ -9,10 +9,9 @@ import {
   render,
   waitFor,
   screen,
+  cleanup,
 } from "@testing-library/react";
-import { getEmployees } from "../../lib/api";
 import { useNavigate } from "react-router-dom";
-import { act } from "react-dom/test-utils";
 
 jest.mock("../../images.js", () => ({
   bannerBurger: "banner-opacity.png",
@@ -64,37 +63,92 @@ jest.mock("../../lib/api", () => ({
 }));
 
 describe("Employees component", () => {
-  test("have icon for delete employee", async () => {
+  test("have a icon for delete employee", async () => {
     const navigate = jest.fn();
     useNavigate.mockReturnValue(navigate);
     const { container } = render(<Employees />);
-    expect(container.querySelector("#modalDelete")).not.toBeTruthy();
-    expect(container.querySelector("#modalCreateUser")).not.toBeTruthy();
-    expect(container.querySelector("#modalEdit")).not.toBeTruthy();
-    const navigateProduct = container.querySelector("#btnProduct");
-    fireEvent.click(navigateProduct);
-    expect(navigate).toHaveBeenCalledWith("/admin/products");
     await waitFor(() => {
       screen.getByTestId("employeesTable");
     });
+    expect(container.querySelector("#modalDelete")).not.toBeTruthy();
     expect(container.querySelector("#deleteModal")).toBeInTheDocument();
     const clickModalDelete = container.querySelector("#deleteModal");
     fireEvent.click(clickModalDelete);
     expect(container.querySelector("#modalDelete")).toBeTruthy();
-
-    const div = container.querySelector(".addUser");
-    fireEvent.click(div);
-    expect(container.querySelector("#modalCreateUser")).toBeTruthy();
-
+    cleanup();
+  });
+  test("have a button to navigate to products", async () => {
+    const navigate = jest.fn();
+    useNavigate.mockReturnValue(navigate);
+    const { container } = render(<Employees />);
+    await waitFor(() => {
+      screen.getByTestId("employeesTable");
+    });
+    const navigateProduct = container.querySelector("#btnProduct");
+    fireEvent.click(navigateProduct);
+    expect(navigate).toHaveBeenCalledWith("/admin/products");
+    cleanup();
+  });
+  test("have a button for edit employee", async () => {
+    const navigate = jest.fn();
+    useNavigate.mockReturnValue(navigate);
+    const { container } = render(<Employees />);
+    await waitFor(() => {
+      screen.getByTestId("employeesTable");
+    });
+    expect(container.querySelector("#modalEdit")).not.toBeTruthy();
     const clickModalEdit = container.querySelector("#editModal");
     fireEvent.click(clickModalEdit);
     expect(container.querySelector("#modalEdit")).toBeTruthy();
+    cleanup();
   });
-  // test("something it's bad", async () => {
-  //   const {container}=render(<Employees/>);
-  //   if(getEmployees('123456')){
-  //       screen.getAllByTestId('employeesError');
-  //   }
-  //     expect(container).toHaveTextContent('Ha ocurrido un error');
-  // })
+  test("have a button for add employee", async () => {
+    const navigate = jest.fn();
+    useNavigate.mockReturnValue(navigate);
+    const { container } = render(<Employees />);
+    await waitFor(() => {
+      screen.getByTestId("employeesTable");
+    });
+    expect(container.querySelector("#modalCreateUser")).not.toBeTruthy();
+    const div = container.querySelector(".addUser");
+    fireEvent.click(div);
+    expect(container.querySelector("#modalCreateUser")).toBeTruthy();
+    cleanup();
+  });
 });
+
+// describe("Employees component", () => {
+//   test("have icon for delete employee", async () => {
+//     const navigate = jest.fn();
+//     useNavigate.mockReturnValue(navigate);
+//     const { container } = render(<Employees />);
+//     expect(container.querySelector("#modalDelete")).not.toBeTruthy();
+//     expect(container.querySelector("#modalCreateUser")).not.toBeTruthy();
+//     expect(container.querySelector("#modalEdit")).not.toBeTruthy();
+//     const navigateProduct = container.querySelector("#btnProduct");
+//     fireEvent.click(navigateProduct);
+//     expect(navigate).toHaveBeenCalledWith("/admin/products");
+//     await waitFor(() => {
+//       screen.getByTestId("employeesTable");
+//     });
+//     expect(container.querySelector("#deleteModal")).toBeInTheDocument();
+//     const clickModalDelete = container.querySelector("#deleteModal");
+//     fireEvent.click(clickModalDelete);
+//     expect(container.querySelector("#modalDelete")).toBeTruthy();
+
+//     const div = container.querySelector(".addUser");
+//     fireEvent.click(div);
+//     expect(container.querySelector("#modalCreateUser")).toBeTruthy();
+
+//     const clickModalEdit = container.querySelector("#editModal");
+//     fireEvent.click(clickModalEdit);
+//     expect(container.querySelector("#modalEdit")).toBeTruthy();
+//   });
+//   // test("something it's bad", async () => {
+//   //   const {container}=render(<Employees/>);
+//   //   if(getEmployees('123456')){
+//   //       screen.getAllByTestId('employeesError');
+//   //   }
+//   //     expect(container).toHaveTextContent('Ha ocurrido un error');
+//   // })
+// });

@@ -14,7 +14,8 @@ export function getLogin(email, password) {
   })
     .then((res) => res.json())
     .catch((err) => {
-      console.log(err.message);
+      err
+      // console.log(err.message);
     });
 }
 
@@ -165,12 +166,13 @@ export function createOrder(token, object) {
     body: JSON.stringify( object ),
   })
     .then((res) => {
-      console.log(res);
-      console.log(res.statusText)
-      // res.json()
+      //console.log(res);
+      // console.log(res.statusText)
+       res.json()
     })
     .catch((err) => {
-      console.log(err.message);
+      err
+      // console.log(err.message);
     });
 }
 

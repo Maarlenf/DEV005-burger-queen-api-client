@@ -25,7 +25,7 @@ function Home() {
     getLogin(valueEmail, valuePwd)
       .then((res) => {
         if (res.user.role === "admin") {
-          console.log(res);
+          // console.log(res);
           navigate("/admin");
         } else if (res.user.role == "waiter") {
           navigate("/waiter");
@@ -36,7 +36,7 @@ function Home() {
         localStorage.setItem("user", res.user.email);
       })
       .catch((err) => {
-        console.log(err);
+        //console.log(err);
         new Error(
           setFail(
             "¡Ups! Ha ocurrido un error. Por favor verifica tu credenciales"

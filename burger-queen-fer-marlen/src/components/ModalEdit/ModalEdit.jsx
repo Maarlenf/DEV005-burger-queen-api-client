@@ -52,11 +52,10 @@ function ModalEdit({ onClose, userData, token }) {
                 {listRole.map((e) => {
                   //   console.log(e);
                   return (
-                    <>
                       <label key={e.role}>
                         <input
                           type='radio'
-                          key={e.id}
+                          // key={e.id}
                           name='myRadio'
                           value={role}
                           defaultChecked={role === e.role}
@@ -66,7 +65,6 @@ function ModalEdit({ onClose, userData, token }) {
                         />
                         {e.title}
                       </label>
-                    </>
                   );
                 })}
               </div>

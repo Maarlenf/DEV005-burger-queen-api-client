@@ -51,8 +51,6 @@ function Waiter() {
   }
 
   function handleAddToOrder(product, count) {
-  //const count= localStorage.getItem('counter');
- // console.log(count);
 
     const existingItem = orderItems.find((item) => item.id === product.id);
     if (existingItem) {
@@ -60,10 +58,10 @@ function Waiter() {
         
         if (item.id === product.id) {
           return {...item, qty: count, };
-        } if(item.qty === count){
-          return {...item, qty: item.qty}
-        }
-        return item;
+         }//  if(item.qty === count){
+        //   return {...item, qty: item.qty}
+        // }
+       return item;
       });
       setOrderItems(updatedItems);
     } else {
@@ -104,7 +102,6 @@ function addOrder(){
     setOrderItems([]);
     setNameUser('');
   })
-  .catch((err) => console.log(err))
 }
 function filter(param) {
   if (selectedTypes.includes(param)) {
@@ -115,9 +112,9 @@ function filter(param) {
     setSelectedTypes([...selectedTypes, param]);
   }
 }
-function goToOrders(){
-  navigate('/waiter/orders')
-}
+// function goToOrders(){
+//   navigate('/waiter/orders')
+// }
 
 function deleteItem(item){
  let newArray = [...orderItems];
@@ -139,13 +136,14 @@ function deleteItem(item){
             className='input'
             textLabel='Busca tu producto:'
             value={search}
+            id="inputForSearch"
             onChange={(event) => setSearch(event.target.value)}
           /><div className='containerOptions'>
           <div className='optionDes'>
             <span>Desayuno</span>
             <Input
               type='checkbox'
-              id='topping'
+              id='desTopping'
               value='Desayuno'
               checked={selectedTypes.includes("Desayuno")}
               onChange={(e) => filter(e.target.value)}
@@ -156,7 +154,7 @@ function deleteItem(item){
             <Input
               type='checkbox'
               name='Almuerzo'
-              id='topping'
+              id='almTopping'
               value='Almuerzo'
               checked={selectedTypes.includes("Almuerzo")}
               onChange={(e) => filter(e.target.value)}
@@ -166,14 +164,14 @@ function deleteItem(item){
             <span>Cena</span>
             <Input
               type='checkbox'
-              id='topping'
+              id='cenTopping'
               value='Cena'
               checked={selectedTypes.includes("Cena")}
               onChange={(e) => filter(e.target.value)}
             />
           </div>
         </div>
-          <div className='productCards'>
+          <div className='productCards' data-testid='tableWaiter'>
             {
             find
             .filter((product) =>
@@ -202,6 +200,8 @@ function deleteItem(item){
           <Input
             className='input'
             textLabel='Nombre Cliente:'
+            id="nameClient"
+            value={nameUser}
             onChange={(event) => setNameUser(event.target.value)}
           />
           <div className='tableOrder'>
@@ -224,6 +224,7 @@ function deleteItem(item){
                     <MdOutlineNoFood
                       size={30}
                       style={{color:"red"}}
+                      id="deleteItemOrder"
                       onClick={() => deleteItem(item)}
                     />
                   </div>

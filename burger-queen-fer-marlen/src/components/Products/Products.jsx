@@ -31,7 +31,7 @@ function Products() {
 
   useEffect(() => {
     getProducts(authorization).then((res) => {
-      console.log(res)
+      // console.log(res)
       setDataProducts(res);
     });
   }, [authorization, showModalDelete, showModalEditProduct]);
@@ -102,7 +102,7 @@ function Products() {
           <span>Desayuno</span>
           <Input
             type='checkbox'
-            id='topping'
+            id='toppingDes'
             value='Desayuno'
             checked={selectedTypes.includes("Desayuno")}
             onChange={(e) => filter(e.target.value)}
@@ -113,7 +113,7 @@ function Products() {
           <Input
             type='checkbox'
             name='Almuerzo'
-            id='topping'
+            id='toppingAlm'
             value='Almuerzo'
             checked={selectedTypes.includes("Almuerzo")}
             onChange={(e) => filter(e.target.value)}
@@ -123,7 +123,7 @@ function Products() {
           <span>Cena</span>
           <Input
             type='checkbox'
-            id='topping'
+            id='toppingCen'
             value='Cena'
             checked={selectedTypes.includes("Cena")}
             onChange={(e) => filter(e.target.value)}
@@ -131,7 +131,7 @@ function Products() {
         </div>
       </div>
 
-      <div className='containerTable'>
+      <div className='containerTable' data-testid='tableProducts'>
         <div className='columnsNames'>
           <span className='id'>ID</span>
           <span className='email'>Nombre</span>
@@ -166,10 +166,12 @@ function Products() {
                       <AiOutlineEdit
                         size={30}
                         onClick={() => toggleModalEdit(obj)}
+                        data-testid="checkEditProduct"
                       />
                       <MdOutlineNoFood
                         onClick={() => toggleModalDelete(obj.id)}
                         size={30}
+                        data-testid= 'deleteProduct'
                       />
                     </div>
                   </div>

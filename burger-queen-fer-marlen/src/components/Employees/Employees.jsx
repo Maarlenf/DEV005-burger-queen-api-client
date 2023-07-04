@@ -104,9 +104,6 @@ function Employees() {
       <div className='containerId'>
         {dataUser.map((obj) => {
           const email = cutEmail(obj.email);
-          localStorage.setItem("id", obj.id);
-          localStorage.setItem("id", obj.id);
-          console.log(obj);
           return (
             <ul key={obj.id}>
               <li>{obj.id}</li>

@@ -5,13 +5,12 @@ import "../Input/Input.css";
 import "../ModalEdit/ModalEdit.css";
 import { createProduct, editProduct } from "../../lib/api";
 
-function ModalEditProduct({ onClose, dataProduct, token, option }) {
+function ModalEditProduct({ onClose, dataProduct, token }) {
   const [product, setProduct] = useState(dataProduct.name);
   const [price, setPrice] = useState(dataProduct.price);
   const [image, setImage] = useState(dataProduct.image);
   const [type, setType] = useState(dataProduct.type);
-  const [failImage, setViewImage] = useState(dataProduct.image);
-
+  
   if (!{ dataProduct }) {
     setProduct("");
     setPrice("");
@@ -28,18 +27,16 @@ function ModalEditProduct({ onClose, dataProduct, token, option }) {
   const confirm = () => {
     if (!dataProduct.id) {
       createProduct(token, product, price, image, type)
-        .then((res) => console.log(res))
-        .catch((err) => console.log(err.message));
+        .then((res) => res)
     } else {
       editProduct(token, dataProduct.id, product, price, image, type)
-        .then((res) => console.log(res))
-        .catch((err) => console.log(err.message));
+        .then((res) => res)
     }
     onClose();
   };
   return (
     <>
-      <div className='modal'>
+      <div className='modal' id='modalEditProduct'>
         <div className='innerModal'>
           <div className='containerClose'>
             <AiOutlineClose size={30} onClick={onClose} />
@@ -75,17 +72,6 @@ function ModalEditProduct({ onClose, dataProduct, token, option }) {
                     style={{ margin: "10px", width: "100px", height: "100px" }}
                   />
                   <Input
-                    type='file'
-                    className='input'
-                    placeholder='imageBurger.png...'
-                    alt='image product'
-                    onChange={(e) => {
-                      if (e.target.files && e.target.files[0]) {
-                        setViewImage(URL.createObjectURL(e.target.files[0]));
-                      }
-                    }}
-                  />
-                  <Input
                     type='text'
                     className='input'
                     placeholder='ingresa la url'
@@ -98,7 +84,6 @@ function ModalEditProduct({ onClose, dataProduct, token, option }) {
                 {listType.map((e) => {
                   //   console.log(e);
                   return (
-                    <>
                       <label key={e.type}>
                         <input
                           type='radio'
@@ -112,12 +97,11 @@ function ModalEditProduct({ onClose, dataProduct, token, option }) {
                         />
                         {e.title}
                       </label>
-                    </>
                   );
                 })}
               </div>
               <div className='containerChecks'>
-                <AiOutlineCheck size={30} onClick={confirm} />
+                <AiOutlineCheck size={30} onClick={confirm} data-testid="modalOptionProducts" />
               </div>
             </>
           </form>

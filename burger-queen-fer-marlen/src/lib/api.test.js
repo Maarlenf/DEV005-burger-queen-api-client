@@ -194,7 +194,7 @@ describe("getProducts", () => {
       }),
     });
     return getProducts(token).then((res) => {
-      console.log(res);
+      // console.log(res);
       expect(res).toEqual(mockRes);
     });
   });

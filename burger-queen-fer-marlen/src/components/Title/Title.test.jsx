@@ -12,7 +12,7 @@ describe("test on title component", () => {
     expect(getByText(title)).toBeTruthy();
 
     const h1 = container.querySelector("h1");
-    console.log(h1.innerHTML);
+   // console.log(h1.innerHTML);
     expect(h1.innerHTML).toBe(title);
     expect(h1.textContent).toContain(title);
 

@@ -22,7 +22,7 @@ function Timer({ time }) {
 
     return () => clearInterval(interval);
   }, [time]);
-  return <span>{elapsedTime}</span>;
+  return <span data-testid="timerTest">{elapsedTime}</span>;
 }
 
 export default Timer;
