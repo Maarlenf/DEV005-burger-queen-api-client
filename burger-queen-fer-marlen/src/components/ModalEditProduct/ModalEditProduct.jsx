@@ -27,19 +27,19 @@ function ModalEditProduct({ onClose, dataProduct, token, option }) {
 
   const confirm = () => {
     if (!dataProduct.id) {
-      createProduct(token, product, price, image, type)
-        .then((res) => console.log(res))
-        .catch((err) => console.log(err.message));
+      createProduct(token, product, price, image, type).then((res) =>
+        console.log(res)
+      );
     } else {
-      editProduct(token, dataProduct.id, product, price, image, type)
-        .then((res) => console.log(res))
-        .catch((err) => console.log(err.message));
+      editProduct(token, dataProduct.id, product, price, image, type).then(
+        (res) => console.log(res)
+      );
     }
     onClose();
   };
   return (
     <>
-      <div className='modal'>
+      <div className='modal' id='modalEditProduct'>
         <div className='innerModal'>
           <div className='containerClose'>
             <AiOutlineClose size={30} onClick={onClose} />
@@ -74,7 +74,7 @@ function ModalEditProduct({ onClose, dataProduct, token, option }) {
                     src={image}
                     style={{ margin: "10px", width: "100px", height: "100px" }}
                   />
-                  <Input
+                  {/* <Input
                     type='file'
                     className='input'
                     placeholder='imageBurger.png...'
@@ -84,7 +84,7 @@ function ModalEditProduct({ onClose, dataProduct, token, option }) {
                         setViewImage(URL.createObjectURL(e.target.files[0]));
                       }
                     }}
-                  />
+                  /> */}
                   <Input
                     type='text'
                     className='input'
@@ -98,26 +98,28 @@ function ModalEditProduct({ onClose, dataProduct, token, option }) {
                 {listType.map((e) => {
                   //   console.log(e);
                   return (
-                    <>
-                      <label key={e.type}>
-                        <input
-                          type='radio'
-                          key={e.id}
-                          name='myRadio'
-                          value={type}
-                          defaultChecked={type === e.type}
-                          onChange={() => {
-                            setType(e.type);
-                          }}
-                        />
-                        {e.title}
-                      </label>
-                    </>
+                    <label key={e.type}>
+                      <input
+                        type='radio'
+                        key={e.id}
+                        name='myRadio'
+                        value={type}
+                        defaultChecked={type === e.type}
+                        onChange={() => {
+                          setType(e.type);
+                        }}
+                      />
+                      {e.title}
+                    </label>
                   );
                 })}
               </div>
               <div className='containerChecks'>
-                <AiOutlineCheck size={30} onClick={confirm} />
+                <AiOutlineCheck
+                  data-testid='modalOptionProducts'
+                  size={30}
+                  onClick={confirm}
+                />
               </div>
             </>
           </form>

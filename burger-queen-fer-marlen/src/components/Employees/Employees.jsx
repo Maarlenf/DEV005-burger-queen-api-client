@@ -17,8 +17,6 @@ import Button from "../Button/Button";
 import { useNavigate } from "react-router-dom";
 
 function Employees() {
-  // const [worker, setWorker] = useState("");
-  // const [email, setEmail] = useState("");
   const user = localStorage.getItem("userInLine");
   const token = localStorage.getItem("token");
   const authorization = `Bearer ${token}`;
@@ -28,7 +26,9 @@ function Employees() {
   const [showModalEdit, setModalEdit] = useState(false);
   const [editingUser, setEdit] = useState();
   const [deleteUser, setDelete] = useState();
+  const [getEmployeesStatus, setGetEmployeesStatus] = useState("loading");
   const navigate = useNavigate();
+  // console.log(authorization);
   function goProducts() {
     return navigate("/admin/products");
   }
@@ -45,9 +45,15 @@ function Employees() {
     setEdit(user);
   };
   useEffect(() => {
-    getEmployees(authorization).then((res) => {
-      setDataUser(res);
-    });
+    getEmployees(authorization)
+      .then((res) => {
+        setGetEmployeesStatus("success");
+        // console.log(res);
+        setDataUser(res);
+      })
+      .catch((error) => {
+        setGetEmployeesStatus("error");
+      });
   }, [showModal, authorization, showModalDelete, showModalEdit]);
 
   return (
@@ -69,7 +75,7 @@ function Employees() {
         />
       )}
       <Banner />
-      <Header user={user} />
+      <Header user={user} text='Administrador' />
 
       <div className='containerButtons'>
         <div className='addUser' hidden={showModal} onClick={toggleModal}>
@@ -85,44 +91,52 @@ function Employees() {
           />
         </div>
       </div>
+      {getEmployeesStatus === "loading" ? (
+        <p data-testid='loadingEmployees'>Cargando...</p>
+      ) : getEmployeesStatus === "success" ? (
+        <div className='containerTable' data-testid='employeesTable'>
+          <div className='columnsName'>
+            <span className='id'>ID</span>
+            <span className='email'>Email</span>
+            <span className='pwd'>Contraseña</span>
+            <span className='role'>Rol</span>
+            <span className='action'>Acción</span>
+          </div>
+          <div className='containerId'>
+            {dataUser.map((obj) => {
+              const email = cutEmail(obj.email);
+              localStorage.setItem("id", obj.id);
+              localStorage.setItem("id", obj.id);
 
-      <div className='containerTable'>
-        <div className='columnsName'>
-          <span className='id'>ID</span>
-          <span className='email'>Email</span>
-          <span className='pwd'>Contraseña</span>
-          <span className='role'>Rol</span>
-          <span className='action'>Acción</span>
-        </div>
-        <div className='containerId'>
-          {dataUser.map((obj) => {
-            const email = cutEmail(obj.email);
-            localStorage.setItem("id", obj.id);
-            localStorage.setItem("id", obj.id);
-            console.log(obj);
-            return (
-              <ul key={obj.id}>
-                <li>{obj.id}</li>
-                <li>{email}</li>
-                <li>{"******"}</li>
-                <li>{obj.role}</li>
-                <div>
-                  <div className='icon1'>
-                    <AiOutlineEdit
-                      size={30}
-                      onClick={() => toggleModalEdit(obj)}
-                    />
-                    <AiOutlineUserDelete
-                      onClick={() => toggleModalDelete(obj.id)}
-                      size={30}
-                    />
+              return (
+                <ul key={obj.id}>
+                  <li>{obj.id}</li>
+                  <li>{email}</li>
+                  <li>{"******"}</li>
+                  <li>{obj.role}</li>
+                  <div>
+                    <div className='icon1'>
+                      <AiOutlineEdit
+                        size={30}
+                        id='editModal'
+                        onClick={() => toggleModalEdit(obj)}
+                      />
+                      <AiOutlineUserDelete
+                        onClick={() => toggleModalDelete(obj.id)}
+                        id='deleteModal'
+                        size={30}
+                      />
+                    </div>
                   </div>
-                </div>
-              </ul>
-            );
-          })}
+                </ul>
+              );
+            })}
+          </div>
         </div>
-      </div>
+      ) : getEmployeesStatus === "error" ? (
+        <p>Ha ocurrido un error</p>
+      ) : null}
+
       <Footer />
     </>
   );

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { AiOutlineClose, AiOutlineCheck } from "react-icons/ai";
 import Input from "../Input/Input";
-import "../Input/Input.css";
+// import "../Input/Input.css";
 import { editUser } from "../../lib/api";
 
 function ModalEdit({ onClose, userData, token }) {
@@ -15,14 +15,14 @@ function ModalEdit({ onClose, userData, token }) {
     { role: "waiter", title: "Mesera/o" },
   ];
   const confirm = () => {
-    editUser(token, userData.id, employee, pass, role)
-      .then((res) => console.log(res))
-      .catch((err) => console.log(err.message));
+    editUser(token, userData.id, employee, pass, role).then((res) =>
+      console.log(res)
+    );
     onClose();
   };
   return (
     <>
-      <div className='modal'>
+      <div className='modal' id='modalEdit'>
         <div className='innerModal'>
           <div className='containerClose'>
             <AiOutlineClose size={30} onClick={onClose} />
@@ -53,26 +53,28 @@ function ModalEdit({ onClose, userData, token }) {
                 {listRole.map((e) => {
                   //   console.log(e);
                   return (
-                    <>
-                      <label key={e.role}>
-                        <input
-                          type='radio'
-                          key={e.id}
-                          name='myRadio'
-                          value={role}
-                          defaultChecked={role === e.role}
-                          onChange={() => {
-                            setRole(e.role);
-                          }}
-                        />
-                        {e.title}
-                      </label>
-                    </>
+                    <label key={e.role}>
+                      <input
+                        type='radio'
+                        // key={e.id}
+                        name='myRadio'
+                        value={role}
+                        defaultChecked={role === e.role}
+                        onChange={() => {
+                          setRole(e.role);
+                        }}
+                      />
+                      {e.title}
+                    </label>
                   );
                 })}
               </div>
               <div className='containerChecks'>
-                <AiOutlineCheck size={30} onClick={confirm} />
+                <AiOutlineCheck
+                  size={30}
+                  onClick={confirm}
+                  data-testid='confirmEditUsers'
+                />
               </div>
             </>
           </form>

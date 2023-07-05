@@ -67,6 +67,7 @@ function Products() {
     <>
       {showModalEditProduct && (
         <ModalEditProduct
+          id='modalEditProduct'
           onClose={toggleModalEdit}
           dataProduct={editingProduct}
           token={authorization}
@@ -101,7 +102,7 @@ function Products() {
           <span>Desayuno</span>
           <Input
             type='checkbox'
-            id='topping'
+            id='toppingDes'
             value='Desayuno'
             checked={selectedTypes.includes("Desayuno")}
             onChange={(e) => filter(e.target.value)}
@@ -112,7 +113,7 @@ function Products() {
           <Input
             type='checkbox'
             name='Almuerzo'
-            id='topping'
+            id='toppingAlm'
             value='Almuerzo'
             checked={selectedTypes.includes("Almuerzo")}
             onChange={(e) => filter(e.target.value)}
@@ -122,7 +123,7 @@ function Products() {
           <span>Cena</span>
           <Input
             type='checkbox'
-            id='topping'
+            id='toppingCen'
             value='Cena'
             checked={selectedTypes.includes("Cena")}
             onChange={(e) => filter(e.target.value)}
@@ -130,7 +131,7 @@ function Products() {
         </div>
       </div>
 
-      <div className='containerTable'>
+      <div className='containerTable' data-testid='tableProducts'>
         <div className='columnsNames'>
           <span className='id'>ID</span>
           <span className='email'>Nombre</span>
@@ -163,10 +164,12 @@ function Products() {
                   <div>
                     <div className='icon1'>
                       <AiOutlineEdit
+                        data-testid='checkEditProduct'
                         size={30}
                         onClick={() => toggleModalEdit(obj)}
                       />
                       <MdOutlineNoFood
+                        data-testid='deleteProduct'
                         onClick={() => toggleModalDelete(obj.id)}
                         size={30}
                       />

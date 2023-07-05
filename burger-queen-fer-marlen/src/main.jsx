@@ -5,17 +5,18 @@ import * as React from "react";
 import * as ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
-import App from "./components/home/App";
+import Home from "./components/Home/Home";
 import "./index.css";
 import Admin from "./components/Admin/Admin";
-import Employees from "./components/Employees/Employees"
+import Employees from "./components/Employees/Employees";
 import Products from "./components/Products/Products";
 import Waiter from "./components/Waiter/Waiter";
+import Chef from "./components/Chef/Chef";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <App />,
+    element: <Home />,
   },
   {
     path: "/admin",
@@ -32,6 +33,14 @@ const router = createBrowserRouter([
   {
     path: "/waiter",
     element: <Waiter />,
+  },
+  {
+    path: "/waiter/orders",
+    element: <Chef />,
+  },
+  {
+    path: "/chef",
+    element: <Chef />,
   },
 ]);
 

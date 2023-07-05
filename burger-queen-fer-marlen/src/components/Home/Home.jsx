@@ -1,6 +1,5 @@
 import { useState } from "react";
-import "./App.css";
-import logo from "../../assets/logo.png";
+import "./Home.css";
 import Banner from "../Banner/Banner";
 import "../Banner/Banner.css";
 import Title from "../Title/Title";
@@ -13,8 +12,9 @@ import Footer from "../Footer/Footer";
 import "../Footer/Footer.css";
 import { useNavigate } from "react-router-dom";
 import { getLogin } from "../../lib/api";
+import { logo } from "../../images";
 
-function App() {
+function Home() {
   const navigate = useNavigate();
 
   const [valueEmail, setEmail] = useState("");
@@ -25,16 +25,17 @@ function App() {
     getLogin(valueEmail, valuePwd)
       .then((res) => {
         if (res.user.role === "admin") {
-          console.log(res);
           navigate("/admin");
         } else if (res.user.role == "waiter") {
           navigate("/waiter");
+        } else if (res.user.role == "chef") {
+          navigate("/chef");
         }
+
         localStorage.setItem("token", res.accessToken);
         localStorage.setItem("user", res.user.email);
       })
       .catch((err) => {
-        console.log(err);
         new Error(
           setFail(
             "¡Ups! Ha ocurrido un error. Por favor verifica tu credenciales"
@@ -90,4 +91,4 @@ function App() {
   );
 }
 
-export default App;
+export default Home;

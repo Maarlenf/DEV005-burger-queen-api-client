@@ -82,8 +82,8 @@
 
 .orderItem {
   display: grid;
-  grid-template-areas: "a b d";
-  grid-template-columns: 10% 60% 30%;
+  grid-template-areas: "a b c d";
+  grid-template-columns: 8% 60% 20% 10%;
   width: 100%;
   margin-left: 2%;
   margin-top: 30px;

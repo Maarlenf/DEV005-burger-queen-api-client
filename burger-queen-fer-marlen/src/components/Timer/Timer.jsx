@@ -1,0 +1,30 @@
+import { useState, useEffect } from "react";
+
+function Timer({ time }) {
+  const [elapsedTime, setElapsedTime] = useState("");
+  console.log(time);
+  useEffect(() => {
+    const interval = setInterval(() => {
+      let fechaActual = new Date();
+      let fechaAPI = new Date(time);
+      // console.log(fechaActual.getTime());
+      let diferenciaTiempo = fechaActual.getTime() - fechaAPI.getTime();
+      let segundosTranscurridos = Math.floor(diferenciaTiempo / 1000);
+      let minutosTranscurridos = Math.floor(segundosTranscurridos / 60);
+      let horasTranscurridas = Math.floor(minutosTranscurridos / 60);
+      let diasTranscurridos = Math.floor(horasTranscurridas / 24);
+      //   console.log(fechaAPI);
+      //   console.log(`${diasTranscurridos}`);
+      setElapsedTime(
+        `${diasTranscurridos} dias, ${horasTranscurridas % 24}:${
+          minutosTranscurridos % 60
+        }:${segundosTranscurridos % 60} hrs.`
+      );
+    }, 1000);
+
+    return () => clearInterval(interval);
+  }, [time]);
+  return <span>{elapsedTime}</span>;
+}
+
+export default Timer;

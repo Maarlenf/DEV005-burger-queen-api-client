@@ -8,26 +8,32 @@ import "../Waiter/Waiter.css";
 import { useEffect, useState, useId } from "react";
 import { createOrder, cutEmail } from "../../lib/api";
 import { getProducts } from "../../lib/api";
-
+import { useNavigate } from "react-router-dom";
+import { MdOutlineNoFood } from "react-icons/md";
 function Waiter() {
+  const navigate = useNavigate();
+
   const [products, setProducts] = useState([]);
   const [find, setFind] = useState([]);
   const [search, setSearch] = useState("");
   const [nameUser, setNameUser] = useState("");
   const [orderItems, setOrderItems] = useState([]);
-  console.log(orderItems);
-  // const [count, setCount] = useState(  localStorage.getItem("counter"););
-  const quantityPr = localStorage.getItem("counter");
+
+  const [selectedTypes, setSelectedTypes] = useState([]);
+
   const user = localStorage.getItem("user");
   const userInLine = cutEmail(user);
   localStorage.setItem("userInLine", userInLine);
   const token = localStorage.getItem("token");
   const authorization = `Bearer ${token}`;
-  const now = [{ date: new Date() }];
   const idUser = useId();
+  // function goToOrders() {
+  //   return navigate("/waiter/orders");
+  // }
   useEffect(() => {
     getProducts(authorization).then((res) => {
       setProducts(res);
+
       setFind(res);
     });
   }, [authorization]);
@@ -48,18 +54,13 @@ function Waiter() {
   }
 
   function handleAddToOrder(product, count) {
-    //const count= localStorage.getItem('counter');
-    console.log(count);
-
     const existingItem = orderItems.find((item) => item.id === product.id);
     if (existingItem) {
       const updatedItems = orderItems.map((item) => {
         if (item.id === product.id) {
           return { ...item, qty: count };
         }
-        // if (item.qty === count) {
-        //   return { ...item, qty: item.qty };
-        // }
+
         return item;
       });
       setOrderItems(updatedItems);
@@ -68,76 +69,141 @@ function Waiter() {
       setOrderItems([...orderItems, newItem]);
     }
   }
-  function handleSubmitOrder() {
-    const objOrder = {
-      userId: 35345,
-      client: nameUser,
-      products: orderItems.map((item) => {
-        return {
-          qty: item.qty,
-          product: {
-            id: item.id,
-            name: item.name,
-            prce: item.price,
-            image: item.image,
-            type: item.type,
-            dataEntry: item.dataEntry,
-          },
-        };
-      }),
-      status: "pending",
-      dateEntry: new Date(),
-    };
 
-    createOrder(authorization, objOrder)
-      .then((res) => {
-        console.log("orden creada", res);
-      })
-      .catch((err) => {
-        console.log("error al crear la orden", err);
-      });
+  const product = orderItems.map((x) => {
+    return {
+      qty: x.qty,
+      product: {
+        id: x.id,
+        name: x.name,
+        price: x.price,
+        image: x.image,
+        type: x.type,
+        dateEntry: x.dateEntry,
+      },
+    };
+  });
+  const objectOrder = {
+    userId: idUser,
+    client: nameUser,
+    products: [
+      {
+        product,
+      },
+    ],
+    status: "pending",
+    dateEntry: new Date(),
+  };
+
+  function addOrder() {
+    createOrder(authorization, objectOrder).then((res) => {
+      alert("La orden ha sido enviada a cocina");
+
+      setOrderItems([]);
+      setNameUser("");
+    });
+    // .catch((err) => console.log(err));
+  }
+  // ---
+  function filter(param) {
+    if (selectedTypes.includes(param)) {
+      // El tipo ya se selccionó, se tiene  que remover
+      setSelectedTypes(selectedTypes.filter((type) => type !== param));
+    } else {
+      // El tipo no estaba seleccionado, se tiene que agregar
+      setSelectedTypes([...selectedTypes, param]);
+    }
   }
 
+  function deleteItem(item) {
+    let newArray = [...orderItems];
+    newArray = newArray.filter((i) => {
+      return i.name !== item.name;
+    });
+    setOrderItems(newArray);
+  }
   return (
     <>
       <Banner></Banner>
       <Header user={userInLine} text={"Mesero/a"} />
       <div className='containerButtons'>
-        <Button text={"Hacer Pedido"} />
-        <Button text={"Entregas"} />
+        {/* <Button text={"Hacer Pedido"} /> */}
+        {/* <Button id='btnGoToORders' text={"Entregas"} onClick={goToOrders} /> */}
       </div>
       <div className='containerRoot'>
         <div className='columnA'>
           <Input
+            id='inputForSearch'
             className='input'
             textLabel='Busca tu producto:'
             value={search}
             onChange={(event) => setSearch(event.target.value)}
           />
-          <div className='productCards'>
-            {find.map((e) => {
-              return (
-                <Card
-                  key={e.id}
-                  id={e.id}
-                  img={e.image}
-                  alt={e.name}
-                  nameProduct={e.name}
-                  price={e.price}
-                  textBtn={"Agregar"}
-                  product={e}
-                  onAddToOrder={(product, count) =>
-                    handleAddToOrder(product, count)
-                  }
-                />
-              );
-            })}
+          <div className='containerOptions'>
+            <div className='optionDes'>
+              <span>Desayuno</span>
+              <Input
+                type='checkbox'
+                id='desTopping'
+                value='Desayuno'
+                checked={selectedTypes.includes("Desayuno")}
+                onChange={(e) => filter(e.target.value)}
+              />
+            </div>
+            <div className='optionAlm'>
+              <span>Almuerzo</span>
+              <Input
+                type='checkbox'
+                name='Almuerzo'
+                id='almTopping'
+                value='Almuerzo'
+                checked={selectedTypes.includes("Almuerzo")}
+                onChange={(e) => filter(e.target.value)}
+              />
+            </div>
+            <div className='optionCen'>
+              <span>Cena</span>
+              <Input
+                type='checkbox'
+                id='cenTopping'
+                value='Cena'
+                checked={selectedTypes.includes("Cena")}
+                onChange={(e) => filter(e.target.value)}
+              />
+            </div>
+          </div>
+          <div className='productCards' data-testid='tableWaiter'>
+            {find
+              .filter((product) =>
+                selectedTypes.length === 0
+                  ? true
+                  : selectedTypes.includes(product.type)
+              )
+              .map((e) => {
+                return (
+                  <Card
+                    key={e.id}
+                    id={e.id}
+                    img={e.image}
+                    alt={e.name}
+                    nameProduct={e.name}
+                    price={e.price}
+                    textBtn={"Agregar"}
+                    product={e}
+                    onAddToOrder={(product, count) =>
+                      handleAddToOrder(product, count)
+                    }
+                  />
+                );
+              })}
           </div>
         </div>
         <div className='columnB'>
           <Input
+            id='nameClient'
             className='input'
             textLabel='Nombre Cliente:'
+            value={nameUser}
             onChange={(event) => setNameUser(event.target.value)}
           />
           <div className='tableOrder'>
@@ -145,7 +211,6 @@ function Waiter() {
               <div className='columnHeader'>
                 <span>Name</span>
               </div>
-              <span className='timeOforder'>{now.date}</span>
               <span className='nameUser'>{nameUser}</span>
             </div>
             <div className='columnOrder'>
@@ -154,10 +219,20 @@ function Waiter() {
               </div>
               <div className='containerOrder'>
                 {orderItems.map((item) => (
-                  <div key={item.id} className='orderItem'>
+                  <div
+                    key={item.id}
+                    className='orderItem'
+                    data-testid='order-item'
+                  >
                     <span>{item.qty}</span>
                     <span>{item.name}</span>
                     <span>${item.price * item.qty}</span>
+                    <MdOutlineNoFood
+                      size={30}
+                      style={{ color: "red" }}
+                      onClick={() => deleteItem(item)}
+                      id='deleteItemOrder'
+                    />
                   </div>
                 ))}
               </div>
@@ -175,7 +250,7 @@ function Waiter() {
                 <Button
                   text='Enviar a cocina'
                   id='btnSend'
-                  onClick={handleSubmitOrder}
+                  onClick={addOrder}
                 />
               </div>
             </div>

@@ -14,7 +14,7 @@ export function getLogin(email, password) {
   })
     .then((res) => res.json())
     .catch((err) => {
-      console.log(err.message);
+      return err;
     });
 }
 
@@ -27,7 +27,6 @@ export function getEmployees(token) {
   })
     .then((res) => res.json())
     .catch((err) => {
-      console.log(err.message);
       return err;
     });
 }
@@ -146,12 +145,15 @@ export function createProduct(token, product, price, image, type) {
       dateEntry: new Date(),
     }),
   })
-    .then((res) => res.json())
+    .then((res) => {
+      res.json();
+    })
     .catch((err) => {
       console.log(err.message);
     });
 }
-export function createOrder(obj, token) {
+
+export function createOrder(token, obj) {
   return fetch(`${http}orders`, {
     method: "POST",
     headers: {
@@ -164,4 +166,35 @@ export function createOrder(obj, token) {
     .catch((err) => {
       console.log(err.message);
     });
+}
+export function getOrders(token) {
+  return fetch(`${http}orders`, {
+    method: "GET",
+    headers: {
+      Authorization: token,
+    },
+  })
+    .then((res) => res.json())
+    .catch((err) => {
+      console.log(err.message);
+      return err;
+    });
+}
+
+export function updateOrder(token, uid, status) {
+  return fetch(`${http}orders/${uid}`, {
+    method: "PATCH",
+    headers: {
+      "Content-type": stringJSON,
+      Authorization: token,
+    },
+    body: JSON.stringify({
+      status: status,
+      dateProcessed: new Date(),
+    }),
+  })
+    .then((res) => {
+      res;
+    })
+    .catch((err) => console.log(err.message));
 }

@@ -22,7 +22,7 @@ function Modal({ onClose }) {
 
   return (
     <>
-      <div className='modal'>
+      <div className='modal' id='modalCreateUser'>
         <div className='innerModal'>
           <div className='containerClose'>
             <AiOutlineClose size={30} onClick={onClose} />
@@ -35,7 +35,7 @@ function Modal({ onClose }) {
                 type='email'
                 className='input'
                 id='email'
-                placeholder='example@examle.com'
+                placeholder='example@example.com'
                 value={newUser}
                 onChange={(e) => setNewUser(e.target.value)}
               />
@@ -54,27 +54,29 @@ function Modal({ onClose }) {
             {listRole.map((e) => {
               //   console.log(e);
               return (
-                <>
-                  <div className='containerRadio'>
-                    <label key={e.role}>
-                      <input
-                        type='radio'
-                        key={e.id}
-                        name='myRadio'
-                        value={e.role}
-                        checked={newRole === e.role}
-                        onChange={() => {
-                          setNewRole(e.role);
-                        }}
-                      />
-                      {e.title}
-                    </label>
-                  </div>
-                </>
+                <div className='containerRadio' key={e.role}>
+                  <label>
+                    <input
+                      type='radio'
+                      key={e.id}
+                      name='myRadio'
+                      value={e.role}
+                      checked={newRole === e.role}
+                      onChange={() => {
+                        setNewRole(e.role);
+                      }}
+                    />
+                    {e.title}
+                  </label>
+                </div>
               );
             })}
             <div>
-              <AiOutlineCheck size={30} onClick={saveUser} />
+              <AiOutlineCheck
+                data-testid='saveUser'
+                size={30}
+                onClick={saveUser}
+              />
             </div>
           </form>
         </div>

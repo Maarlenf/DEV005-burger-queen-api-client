@@ -27,6 +27,7 @@ function Card({
             onClick={() => {
               setCount(count - 1);
             }}
+            id='minus'
           />
           <span>{count}</span>
           <AiOutlinePlus
@@ -34,6 +35,7 @@ function Card({
             onClick={() => {
               setCount(count + 1);
             }}
+            id='plus'
           />
         </div>
         <Button

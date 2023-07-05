@@ -6,7 +6,7 @@ import { render } from "@testing-library/react";
 import Banner from "../Banner/Banner";
 
 jest.mock("../../images.js", () => ({
-  bannerBurguer: "banner-opacity.png",
+  bannerBurger: "banner-opacity.png",
 }));
 
 describe("Banner component", () => {
