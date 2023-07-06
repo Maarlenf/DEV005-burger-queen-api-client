@@ -2,12 +2,11 @@ import { useState, useEffect } from "react";
 
 function Timer({ time }) {
   const [elapsedTime, setElapsedTime] = useState("");
-  console.log(time);
+  // console.log(elapsedTime);
   useEffect(() => {
     const interval = setInterval(() => {
       let fechaActual = new Date();
       let fechaAPI = new Date(time);
-      // console.log(fechaActual.getTime());
       let diferenciaTiempo = fechaActual.getTime() - fechaAPI.getTime();
       let segundosTranscurridos = Math.floor(diferenciaTiempo / 1000);
       let minutosTranscurridos = Math.floor(segundosTranscurridos / 60);

@@ -198,3 +198,19 @@ export function updateOrder(token, uid, status) {
     })
     .catch((err) => console.log(err.message));
 }
+
+export function deleteOrder(id, token) {
+  return fetch(`${http}orders/${id}`, {
+    method: "DELETE",
+    headers: {
+      Authorization: token,
+    },
+  })
+    .then((res) => {
+      console.log(res);
+      res;
+    })
+    .catch((err) => {
+      console.log(err + "Error al eliminar la orden");
+    });
+}

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1688491854531" clover="3.2.0">
-  <project timestamp="1688491854532" name="All files">
-    <metrics statements="278" coveredstatements="267" conditionals="50" coveredconditionals="38" methods="142" coveredmethods="141" elements="470" coveredelements="446" complexity="0" loc="278" ncloc="278" packages="18" files="19" classes="19"/>
+<coverage generated="1688670591167" clover="3.2.0">
+  <project timestamp="1688670591167" name="All files">
+    <metrics statements="315" coveredstatements="298" conditionals="60" coveredconditionals="45" methods="160" coveredmethods="154" elements="535" coveredelements="497" complexity="0" loc="315" ncloc="315" packages="19" files="20" classes="20"/>
     <package name="components.Admin">
       <metrics statements="7" coveredstatements="7" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="3"/>
       <file name="Admin.jsx" path="C:\Users\hp\Documents\BOOTCAMP LABO\DEV005-burger-queen-api-client\burger-queen-fer-marlen\src\components\Admin\Admin.jsx">
@@ -19,14 +19,14 @@
       <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
       <file name="Banner.jsx" path="C:\Users\hp\Documents\BOOTCAMP LABO\DEV005-burger-queen-api-client\burger-queen-fer-marlen\src\components\Banner\Banner.jsx">
         <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
-        <line num="4" count="77" type="stmt"/>
+        <line num="4" count="83" type="stmt"/>
       </file>
     </package>
     <package name="components.Button">
       <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
       <file name="Button.jsx" path="C:\Users\hp\Documents\BOOTCAMP LABO\DEV005-burger-queen-api-client\burger-queen-fer-marlen\src\components\Button\Button.jsx">
         <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
-        <line num="2" count="128" type="stmt"/>
+        <line num="2" count="164" type="stmt"/>
       </file>
     </package>
     <package name="components.Card">
@@ -38,6 +38,40 @@
         <line num="28" count="2" type="stmt"/>
         <line num="36" count="3" type="stmt"/>
         <line num="44" count="6" type="stmt"/>
+      </file>
+    </package>
+    <package name="components.Chef">
+      <metrics statements="28" coveredstatements="27" conditionals="10" coveredconditionals="7" methods="11" coveredmethods="10"/>
+      <file name="Chef.jsx" path="C:\Users\hp\Documents\BOOTCAMP LABO\DEV005-burger-queen-api-client\burger-queen-fer-marlen\src\components\Chef\Chef.jsx">
+        <metrics statements="28" coveredstatements="27" conditionals="10" coveredconditionals="7" methods="11" coveredmethods="10"/>
+        <line num="17" count="7" type="stmt"/>
+        <line num="19" count="7" type="stmt"/>
+        <line num="20" count="6" type="stmt"/>
+        <line num="21" count="6" type="stmt"/>
+        <line num="22" count="6" type="stmt"/>
+        <line num="23" count="6" type="stmt"/>
+        <line num="25" count="6" type="stmt"/>
+        <line num="26" count="6" type="stmt"/>
+        <line num="27" count="6" type="stmt"/>
+        <line num="28" count="6" type="stmt"/>
+        <line num="29" count="6" type="stmt"/>
+        <line num="31" count="6" type="stmt"/>
+        <line num="32" count="3" type="stmt"/>
+        <line num="34" count="3" type="stmt"/>
+        <line num="35" count="3" type="stmt"/>
+        <line num="36" count="3" type="stmt"/>
+        <line num="37" count="3" type="stmt"/>
+        <line num="45" count="0" type="stmt"/>
+        <line num="50" count="1" type="stmt"/>
+        <line num="51" count="1" type="stmt"/>
+        <line num="52" count="1" type="stmt"/>
+        <line num="53" count="1" type="stmt"/>
+        <line num="54" count="1" type="stmt"/>
+        <line num="56" count="1" type="stmt"/>
+        <line num="59" count="6" type="stmt"/>
+        <line num="75" count="2" type="stmt"/>
+        <line num="100" count="2" type="stmt"/>
+        <line num="115" count="1" type="stmt"/>
       </file>
     </package>
     <package name="components.Employees">
@@ -82,16 +116,16 @@
       <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
       <file name="Footer.jsx" path="C:\Users\hp\Documents\BOOTCAMP LABO\DEV005-burger-queen-api-client\burger-queen-fer-marlen\src\components\Footer\Footer.jsx">
         <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
-        <line num="2" count="76" type="stmt"/>
+        <line num="2" count="82" type="stmt"/>
       </file>
     </package>
     <package name="components.Header">
       <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
       <file name="Header.jsx" path="C:\Users\hp\Documents\BOOTCAMP LABO\DEV005-burger-queen-api-client\burger-queen-fer-marlen\src\components\Header\Header.jsx">
         <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
-        <line num="9" count="74" type="stmt"/>
+        <line num="9" count="80" type="stmt"/>
         <line num="12" count="2" type="stmt"/>
-        <line num="15" count="74" type="stmt"/>
+        <line num="15" count="80" type="stmt"/>
       </file>
     </package>
     <package name="components.Home">
@@ -259,32 +293,32 @@
       <metrics statements="13" coveredstatements="13" conditionals="0" coveredconditionals="0" methods="4" coveredmethods="4"/>
       <file name="Timer.jsx" path="C:\Users\hp\Documents\BOOTCAMP LABO\DEV005-burger-queen-api-client\burger-queen-fer-marlen\src\components\Timer\Timer.jsx">
         <metrics statements="13" coveredstatements="13" conditionals="0" coveredconditionals="0" methods="4" coveredmethods="4"/>
-        <line num="4" count="3" type="stmt"/>
-        <line num="5" count="3" type="stmt"/>
-        <line num="6" count="2" type="stmt"/>
-        <line num="7" count="1" type="stmt"/>
+        <line num="4" count="5" type="stmt"/>
+        <line num="6" count="5" type="stmt"/>
+        <line num="7" count="4" type="stmt"/>
         <line num="8" count="1" type="stmt"/>
         <line num="9" count="1" type="stmt"/>
         <line num="10" count="1" type="stmt"/>
         <line num="11" count="1" type="stmt"/>
         <line num="12" count="1" type="stmt"/>
         <line num="13" count="1" type="stmt"/>
-        <line num="16" count="1" type="stmt"/>
-        <line num="23" count="2" type="stmt"/>
-        <line num="25" count="3" type="stmt"/>
+        <line num="14" count="1" type="stmt"/>
+        <line num="17" count="1" type="stmt"/>
+        <line num="24" count="4" type="stmt"/>
+        <line num="26" count="5" type="stmt"/>
       </file>
     </package>
     <package name="components.Title">
       <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
       <file name="Title.jsx" path="C:\Users\hp\Documents\BOOTCAMP LABO\DEV005-burger-queen-api-client\burger-queen-fer-marlen\src\components\Title\Title.jsx">
         <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
-        <line num="2" count="82" type="stmt"/>
+        <line num="2" count="88" type="stmt"/>
       </file>
     </package>
     <package name="components.Waiter">
-      <metrics statements="58" coveredstatements="57" conditionals="10" coveredconditionals="9" methods="27" coveredmethods="27"/>
+      <metrics statements="60" coveredstatements="58" conditionals="10" coveredconditionals="9" methods="28" coveredmethods="27"/>
       <file name="Waiter.jsx" path="C:\Users\hp\Documents\BOOTCAMP LABO\DEV005-burger-queen-api-client\burger-queen-fer-marlen\src\components\Waiter\Waiter.jsx">
-        <metrics statements="58" coveredstatements="57" conditionals="10" coveredconditionals="9" methods="27" coveredmethods="27"/>
+        <metrics statements="60" coveredstatements="58" conditionals="10" coveredconditionals="9" methods="28" coveredmethods="27"/>
         <line num="14" count="34" type="stmt"/>
         <line num="16" count="34" type="stmt"/>
         <line num="17" count="34" type="stmt"/>
@@ -298,6 +332,7 @@
         <line num="27" count="34" type="stmt"/>
         <line num="28" count="34" type="stmt"/>
         <line num="29" count="34" type="stmt"/>
+        <line num="31" count="0" type="stmt"/>
         <line num="33" count="34" type="stmt"/>
         <line num="34" count="6" type="stmt"/>
         <line num="35" count="6" type="stmt"/>
@@ -323,34 +358,35 @@
         <line num="86" count="34" type="stmt"/>
         <line num="99" count="2" type="stmt"/>
         <line num="100" count="2" type="stmt"/>
-        <line num="101" count="2" type="stmt"/>
-        <line num="107" count="5" type="cond" truecount="2" falsecount="0"/>
-        <line num="109" count="4" type="stmt"/>
-        <line num="112" count="3" type="stmt"/>
-        <line num="117" count="1" type="stmt"/>
-        <line num="118" count="1" type="stmt"/>
+        <line num="102" count="2" type="stmt"/>
+        <line num="103" count="2" type="stmt"/>
+        <line num="109" count="5" type="cond" truecount="2" falsecount="0"/>
+        <line num="111" count="4" type="stmt"/>
+        <line num="114" count="3" type="stmt"/>
         <line num="119" count="1" type="stmt"/>
+        <line num="120" count="1" type="stmt"/>
         <line num="121" count="1" type="stmt"/>
-        <line num="123" count="34" type="stmt"/>
-        <line num="138" count="1" type="stmt"/>
-        <line num="148" count="1" type="stmt"/>
-        <line num="159" count="2" type="stmt"/>
-        <line num="169" count="2" type="stmt"/>
-        <line num="176" count="44" type="cond" truecount="2" falsecount="0"/>
-        <line num="181" count="39" type="stmt"/>
-        <line num="192" count="5" type="stmt"/>
-        <line num="205" count="3" type="stmt"/>
-        <line num="220" count="7" type="stmt"/>
-        <line num="231" count="1" type="stmt"/>
-        <line num="243" count="7" type="stmt"/>
+        <line num="123" count="1" type="stmt"/>
+        <line num="125" count="34" type="stmt"/>
+        <line num="139" count="1" type="stmt"/>
+        <line num="149" count="1" type="stmt"/>
+        <line num="160" count="2" type="stmt"/>
+        <line num="170" count="2" type="stmt"/>
+        <line num="177" count="44" type="cond" truecount="2" falsecount="0"/>
+        <line num="182" count="39" type="stmt"/>
+        <line num="193" count="5" type="stmt"/>
+        <line num="206" count="3" type="stmt"/>
+        <line num="221" count="7" type="stmt"/>
+        <line num="232" count="1" type="stmt"/>
+        <line num="244" count="7" type="stmt"/>
       </file>
     </package>
     <package name="lib">
-      <metrics statements="40" coveredstatements="40" conditionals="0" coveredconditionals="0" methods="34" coveredmethods="34"/>
+      <metrics statements="47" coveredstatements="43" conditionals="0" coveredconditionals="0" methods="40" coveredmethods="37"/>
       <file name="api.js" path="C:\Users\hp\Documents\BOOTCAMP LABO\DEV005-burger-queen-api-client\burger-queen-fer-marlen\src\lib\api.js">
-        <metrics statements="40" coveredstatements="40" conditionals="0" coveredconditionals="0" methods="34" coveredmethods="34"/>
-        <line num="1" count="5" type="stmt"/>
-        <line num="2" count="5" type="stmt"/>
+        <metrics statements="47" coveredstatements="43" conditionals="0" coveredconditionals="0" methods="40" coveredmethods="37"/>
+        <line num="1" count="6" type="stmt"/>
+        <line num="2" count="6" type="stmt"/>
         <line num="5" count="2" type="stmt"/>
         <line num="15" count="2" type="stmt"/>
         <line num="17" count="1" type="stmt"/>
@@ -389,6 +425,13 @@
         <line num="177" count="1" type="stmt"/>
         <line num="179" count="1" type="stmt"/>
         <line num="180" count="1" type="stmt"/>
+        <line num="185" count="2" type="stmt"/>
+        <line num="197" count="1" type="stmt"/>
+        <line num="199" count="1" type="stmt"/>
+        <line num="203" count="0" type="stmt"/>
+        <line num="210" count="0" type="stmt"/>
+        <line num="211" count="0" type="stmt"/>
+        <line num="214" count="0" type="stmt"/>
       </file>
     </package>
   </project>

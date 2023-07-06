@@ -15,6 +15,7 @@ import {
   createProduct,
   createOrder,
   getOrders,
+  updateOrder,
 } from "../lib/api.js";
 
 global.fetch = jest.fn(() => Promise.resolve({}));
@@ -488,5 +489,67 @@ describe("createOrder", () => {
     createOrder(token).catch((err) => {
       expect(err).toHaveBeenLastCalledWith(consoleMessage);
     });
+  });
+});
+describe("updateOrders", () => {
+  test('should all products when is authorization it"s ok', () => {
+    const token =
+      "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImdyYWNlLmhvcHBlckBzeXN0ZXJzLnh5eiIsImlhdCI6MTY4NzkwNjE0OCwiZXhwIjoxNjg3OTA5NzQ4LCJzdWIiOiIyIn0.3UMxVmEnrtk1fVill17SU4O2zPI1PzCL0BHDULz47p0";
+    const mockResOrd = {
+      userId: 1,
+      client: "Juanito",
+      products: [
+        {
+          product: [
+            {
+              id: 1,
+              qty: 2,
+              product: {
+                name: "Burger",
+                image: "burger.jpg",
+              },
+            },
+          ],
+        },
+      ],
+      status: "pending",
+      dateEntry: "2023-07-05T10:30:00.102Z",
+    };
+    global.fetch = jest.fn(() => Promise.resolve({ status: 200 }));
+
+    return updateOrder(token, mockResOrd.userId, mockResOrd.status).then(() => {
+      expect(fetch).toHaveBeenCalled();
+    });
+  });
+  test('something it"s bad', () => {
+    const token =
+      "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImdyYWNlLmhvcHBlckBzeXN0ZXJzLnh5eiIsImlhdCI6MTY4NzkwNjE0OCwiZXhwIjoxNjg3OTA5NzQ4LCJzdWIiOiIyIn0.3UMxVmEnrtk1fVill17SU4O2zPI1PzCL0BHDULz47p0";
+    const mockResOrd = {
+      userId: 1,
+      client: "Juanito",
+      products: [
+        {
+          product: [
+            {
+              id: 1,
+              qty: 2,
+              product: {
+                name: "Burger",
+                image: "burger.jpg",
+              },
+            },
+          ],
+        },
+      ],
+      status: "pending",
+      dateEntry: "2023-07-05T10:30:00.102Z",
+    };
+    const errorMessage = "Hubo un error en la solicitud PATCH";
+    jest.spyOn(console, "log").mockImplementation();
+    global.fetch = jest.fn(() => Promise.reject(new Error(errorMessage)));
+
+    updateOrder("122334", mockResOrd.userId).catch((err) =>
+      expect(err).toEqual(errorMessage)
+    );
   });
 });

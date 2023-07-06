@@ -27,9 +27,9 @@ function Waiter() {
   const token = localStorage.getItem("token");
   const authorization = `Bearer ${token}`;
   const idUser = useId();
-  // function goToOrders() {
-  //   return navigate("/waiter/orders");
-  // }
+  function goToOrders() {
+    return navigate("/waiter/orders");
+  }
   useEffect(() => {
     getProducts(authorization).then((res) => {
       setProducts(res);
@@ -127,8 +127,7 @@ function Waiter() {
       <Banner></Banner>
       <Header user={userInLine} text={"Mesero/a"} />
       <div className='containerButtons'>
-        {/* <Button text={"Hacer Pedido"} /> */}
-        {/* <Button id='btnGoToORders' text={"Entregas"} onClick={goToOrders} /> */}
+        <Button id='btnGoToOrders' text={"Entregas"} onClick={goToOrders} />
       </div>
       <div className='containerRoot'>
         <div className='columnA'>
