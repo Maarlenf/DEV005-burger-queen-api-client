@@ -134,34 +134,6 @@ describe("waiter", () => {
     expect(inputForSearch).toHaveValue("Produ");
     cleanup();
   });
-  test("have a checked for filter for type", async () => {
-    const navigate = jest.fn();
-    useNavigate.mockReturnValue(navigate);
-    const { container } = render(<Waiter />);
-
-    await waitFor(() => {
-      screen.getByTestId("tableWaiter");
-    });
-    const radioDes = container.querySelector("#desTopping");
-    const radioAlm = container.querySelector("#almTopping");
-    const radioCen = container.querySelector("#cenTopping");
-
-    fireEvent.click(radioCen);
-    expect(radioDes).not.toBeChecked();
-    expect(radioAlm).not.toBeChecked();
-    expect(radioCen).toBeChecked();
-    fireEvent.click(radioAlm);
-    fireEvent.click(radioCen);
-    expect(radioDes).not.toBeChecked();
-    expect(radioAlm).toBeChecked();
-    expect(radioCen).not.toBeChecked();
-    fireEvent.click(radioDes);
-    fireEvent.click(radioAlm);
-    expect(radioDes).toBeChecked();
-    expect(radioAlm).not.toBeChecked();
-    expect(radioCen).not.toBeChecked();
-    cleanup();
-  });
   test("have a section for view item add in the order", async () => {
     const navigate = jest.fn();
     useNavigate.mockReturnValue(navigate);

@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { cutEmail, getOrders, deleteOrder } from "../../lib/api";
+import { cutEmail, getOrders, deleteOrder, updateOrder } from "../../lib/api";
 import Banner from "../Banner/Banner";
 import Footer from "../Footer/Footer";
 import Header from "../Header/Header";
@@ -56,10 +56,12 @@ function Chef() {
     navigate("/waiter");
   }
 
-  function deleteOrderId(id) {
-    deleteOrder(id, authorization).then((res) => {
-      return res;
-    });
+  function deleteOrderId(id, status) {
+    status = 'deleted'
+    updateOrder(authorization, id, status).then((res) => {
+      res;
+    })
+    alert('Entregado con éxito');
     let newList = [...dataOrders];
     newList = newList.filter((i) => i.id !== id);
     setDataOrders(newList);
@@ -102,56 +104,45 @@ function Chef() {
             <span className="id">Orden</span>
             <span className="email">Detalle</span>
           </div>
-          <div className="containerOrders">
-            {dataOrders.map((order) => {
+          {dataOrders.map((order) => {
+            const childrenOfOrder = order.products.map((e) => {
               return (
-                <>
-                  <div className="dataClient">
-                    <ul>
-                      <div className="client">
-                        <AiOutlineUser size={25} />
-                        <li>{order.client}</li>
-                      </div>
-                      <div className="timeEntry">
-                        <BsCalendarDate size={25} />
-                        <li>
-                          {order.dateEntry.replace("T", " ").slice(0, -5) +
-                            "hrs."}
-                        </li>
-                      </div>
-                      <div className="timer">
-                        <TfiTimer size={25} />
-                        <li>
-                          {/* <Timer time={order.dateEntry} /> */}
-                          {getTime(order.dateEntry, order.dateProcessed)}
-                        </li>
-                      </div>
-                    </ul>
-                  </div>
-                  <div className="dataOrder">
-                    {order.products[0].product.map((e) => {
-                      return (
-                        <ul key={e.id}>
-                          <li>{e.qty}</li>
-                          <img
-                            src={e.product.image}
-                            alt="img product"
-                            style={{ width: "70px", height: "70px" }}
-                          />
-                          <li>{e.product.name}</li>
-                        </ul>
-                      );
-                    })}
-                    <Button
-                      text="Entregado"
-                      id="btnUpdate"
-                      onClick={() => deleteOrderId(order.id)}
-                    />
-                  </div>
-                </>
+                <ul key={e.product.id}>
+                  <li>{e.qty}</li>
+                  <img
+                    src={e.product.image}
+                    alt="img product"
+                    style={{ width: "70px", height: "70px" }}
+                  />
+                  <li>{e.product.name}</li>
+                </ul>
               );
-            })}
-          </div>
+            });
+            return (
+              <div key={order.id} className="containerOrders">
+                <div className="dataClient">
+                  <ul>
+                    <div className="client">
+                      <AiOutlineUser size={25} />
+                      <li>{order.client}</li>
+                    </div>
+                    <div className="timer">
+                      <TfiTimer size={25} />
+                   {getTime(order.dateEntry, order.dateProcessed)}
+                    </div>
+                  </ul>
+                </div>
+                <div className="dataOrder">
+                  {childrenOfOrder}
+                  <Button
+                    id="btnUpdate"
+                    text="Entregado"
+                    onClick={() => deleteOrderId(order.id, order.status)}
+                  />
+                </div>
+              </div>
+            );
+          })}
         </div>
       ) : getOrdersStatus === "error" ? (
         <p data-testid="ordersError">Ha ocurrido un error</p>

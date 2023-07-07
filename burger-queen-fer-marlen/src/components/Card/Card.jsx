@@ -29,7 +29,9 @@ function Card({ id, img, alt, nameProduct, price, textBtn, onAddToOrder, product
             }}
           />
         </div>
-        <Button id='btnOrder' text={textBtn} onClick={() => onAddToOrder(product, count)} />
+        <Button id='btnOrder' text={textBtn} onClick={() => {
+          setCount(0);
+          return onAddToOrder(product, count)}} />
       </div>
     </>
   );

@@ -29,78 +29,62 @@
 }
 .containerOrders{
     display: grid;
-    grid-template-areas: "a1 a2";
-    grid-template-columns: 30% 70%;
-    height: auto;
+    grid-template-areas: 'client order';
+    grid-template-columns: 40% 60%;  
 }
 .dataClient{
+    grid-area: client;
     border-top: solid 1px black;
     border-right: solid 1px black;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: flex-start;
-    height: 100%;
 }
 .dataOrder{
+    grid-area: order;
     border-top: solid 1px black;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: space-around;
 }
 .dataClient>ul{
     display: flex;
-    flex-direction: column;
+    list-style: none;
     justify-content: space-between;
-    align-items: flex-start;
-    height: 100%;
+    flex-direction: column;
+    height: 200px;
 }
-.dataClient>ul>li{
-    list-style: none;
-}
-.timer, .timeEntry{
-    display: flex;
-    width:100%;
-    justify-content: space-around;
-    margin-left: -20px;
-}
-.timer>li, .timeEntry>li{
-    list-style: none;
-    margin-right: -10px;
-}
-.client{
-    display: flex;
-    width: 100%;
-    margin-left: -20px;
-}
-.client>li{
-    list-style: none;
-    margin-left: 10px;
-}
-
 .dataOrder>ul{
-    grid-area: a2;
     display: grid;
     grid-template-areas: "d1 d2 d3";
     grid-template-columns: 10% 20% 60% ;
     width:90%;
     justify-content:space-between;
     align-items: center;
+    list-style: none;
 }
 
-.dataOrder>ul>li{
+.client{
     display: flex;
-    margin-right: 5%;
-    word-break:break-all; 
-} 
+    width:100%;
+    justify-content: space-around;
+    margin-left: -55px;
+    align-items: flex-start;
+    list-style: none;
+}
+.timer{
+    display: flex;
+    width:100%;
+    justify-content: space-around;
+    margin-left: -20px;
+    list-style: none;
+    margin-right: -10px;
+}
 
 #btnUpdate{
-    width: 30%;
+    width: 35%;
     align-self: end;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 0 2px 2px 0;
+    margin: 0 10px 3px 0;
 }
 p{
     font-family: "Bitter";
