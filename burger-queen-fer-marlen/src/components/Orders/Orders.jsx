@@ -1,17 +1,17 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { cutEmail, getOrders, updateOrder } from "../../lib/api";
+import { cutEmail, getOrders, deleteOrder } from "../../lib/api";
 import Banner from "../Banner/Banner";
 import Footer from "../Footer/Footer";
 import Header from "../Header/Header";
 import { TfiTimer } from "react-icons/tfi";
 import { AiOutlineUser } from "react-icons/ai";
 import { BsCalendarDate } from "react-icons/bs";
-import Timer from "../Timer/Timer";
-import "./Chef.css";
+import "../Chef/Chef.css";
 import Button from "../Button/Button";
 
 function Chef() {
+  const navigate = useNavigate();
   const [dataOrders, setDataOrders] = useState([]);
   const token = localStorage.getItem("token");
   const authorization = `Bearer ${token}`;
@@ -23,10 +23,11 @@ function Chef() {
   useEffect(() => {
     getOrders(authorization)
       .then((res) => {
-        const listWithStatusPending = [...res].filter(
-          (e) => e.status === "pending"
+        console.log(res);
+        const listWithStatusDelivered = [...res].filter(
+          (e) => e.status === "delivered"
         );
-        setDataOrders(listWithStatusPending);
+        setDataOrders(listWithStatusDelivered);
         setGetOrdersStatus("success");
       })
       .catch((error) => {
@@ -35,12 +36,33 @@ function Chef() {
       });
   }, [authorization]);
 
-  function confirmUpdate(id, status) {
-    status = "delivered";
-    updateOrder(authorization, id, status).then((res) => res);
+  function getTime(dateEntry, dateProcessed) {
+    const inicio = new Date(dateEntry);
+    const fin = new Date(dateProcessed);
+    console.log(dateEntry, dateProcessed);
+    let diff = fin - inicio;
+    let h, m, s;
+    h = Math.floor(diff / 1000 / 60 / 60);
+    m = Math.floor((diff / 1000 / 60 / 60 - h) * 60);
+    s = Math.floor(((diff / 1000 / 60 / 60 - h) * 60 - m) * 60);
+    s < 10 ? (s = `0${s}`) : (s = `${s}`);
+    m < 10 ? (m = `0${m}`) : (m = `${m}`);
+    h < 10 ? (h = `0${h}`) : (h = `${h}`);
 
-    const newList = [...dataOrders].filter((e) => e.id !== id);
-    return setDataOrders(newList);
+    return <span>{"Pasaron: " + h + ":" + m + ":" + s}</span>;
+  }
+
+  function goTakeOrder() {
+    navigate("/waiter");
+  }
+
+  function deleteOrderId(id) {
+    deleteOrder(id, authorization).then((res) => {
+      return res;
+    });
+    let newList = [...dataOrders];
+    newList = newList.filter((i) => i.id !== id);
+    setDataOrders(newList);
   }
 
   // Otra manera de renderizar las ordenes
@@ -66,7 +88,10 @@ function Chef() {
   return (
     <>
       <Banner />
-      <Header user={userInLine} text="Chef" />
+      <Header user={userInLine} text="Mesera/o" />
+      <div className="containerButtons">
+        <Button text="Tomar pedido" onClick={goTakeOrder} />
+      </div>
       {getOrdersStatus === "loading" ? (
         <p data-testid="loadingOrders">Cargando...</p>
       ) : getOrdersStatus === "success" && dataOrders.length === 0 ? (
@@ -80,7 +105,7 @@ function Chef() {
           <div className="containerOrders">
             {dataOrders.map((order) => {
               return (
-              <>
+                <>
                   <div className="dataClient">
                     <ul>
                       <div className="client">
@@ -97,7 +122,8 @@ function Chef() {
                       <div className="timer">
                         <TfiTimer size={25} />
                         <li>
-                          <Timer time={order.dateEntry} />
+                          {/* <Timer time={order.dateEntry} /> */}
+                          {getTime(order.dateEntry, order.dateProcessed)}
                         </li>
                       </div>
                     </ul>
@@ -117,12 +143,12 @@ function Chef() {
                       );
                     })}
                     <Button
-                      text="Realizado"
+                      text="Entregado"
                       id="btnUpdate"
-                      onClick={() => confirmUpdate(order.id, order.status)}
+                      onClick={() => deleteOrderId(order.id)}
                     />
-                </div>
-              </>
+                  </div>
+                </>
               );
             })}
           </div>

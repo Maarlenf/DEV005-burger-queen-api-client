@@ -26,6 +26,8 @@ function Waiter() {
   const idUser = useId();
   const navigate = useNavigate();
   const [selectedTypes, setSelectedTypes] = useState([]);
+  const [delivered, setDelivered] = useState([]);
+  
   
   useEffect(() => {
     getProducts(authorization).then((res) => {
@@ -112,9 +114,6 @@ function filter(param) {
     setSelectedTypes([...selectedTypes, param]);
   }
 }
-// function goToOrders(){
-//   navigate('/waiter/orders')
-// }
 
 function deleteItem(item){
  let newArray = [...orderItems];
@@ -122,13 +121,32 @@ function deleteItem(item){
   setOrderItems(newArray);
 }
 
+function goToOrders(){
+  navigate('/waiter/orders')
+}
+
+useEffect(() => {
+  getOrders(authorization)
+  .then((res) => {
+    console.log(res);
+    const listWithStatusDelivered = [...res].filter(
+      (e) => e.status === "delivered"
+    )
+    setDelivered(listWithStatusDelivered);
+  })
+},[]);
+ 
+  
+
   return (
     <>
+   
       <Banner></Banner>
       <Header user={userInLine} text={"Mesero/a"} />
       <div className='containerButtons'>
         {/* <Button text={"Hacer Pedido"} /> */}
-        {/* <Button text={"Entregas"} onClick={goToOrders} /> */}
+        {delivered.length !== 0 ? (<Button text={delivered.length + " Entregas"} onClick={goToOrders} id='goToOrders'/>):null}
+       
       </div>
       <div className='containerRoot'>
         <div className='columnA'>

@@ -12,6 +12,7 @@ import Employees from "./components/Employees/Employees"
 import Products from "./components/Products/Products";
 import Waiter from "./components/Waiter/Waiter";
 import Chef from "./components/Chef/Chef";
+import Orders from "./components/Orders/Orders";
 
 const router = createBrowserRouter([
   {
@@ -37,6 +38,9 @@ const router = createBrowserRouter([
   {
     path: '/chef',
     element: <Chef />
+  },{
+    path: '/waiter/orders',
+    element: <Orders />
   }
 ]);
 

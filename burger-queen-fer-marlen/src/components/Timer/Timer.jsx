@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 
 function Timer({ time }) {
   const [elapsedTime, setElapsedTime] = useState("");
+  
   useEffect(() => {
     const interval = setInterval(() => {
       let fechaActual = new Date();

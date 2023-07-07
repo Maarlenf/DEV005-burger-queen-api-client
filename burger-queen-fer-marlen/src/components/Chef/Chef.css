@@ -31,6 +31,7 @@
     display: grid;
     grid-template-areas: "a1 a2";
     grid-template-columns: 30% 70%;
+    height: auto;
 }
 .dataClient{
     border-top: solid 1px black;
@@ -43,6 +44,9 @@
 }
 .dataOrder{
     border-top: solid 1px black;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 .dataClient>ul{
     display: flex;
@@ -77,8 +81,8 @@
 .dataOrder>ul{
     grid-area: a2;
     display: grid;
-    grid-template-areas: "d1 d2 d3 d4";
-    grid-template-columns: 5% 20% 60% 15%;
+    grid-template-areas: "d1 d2 d3";
+    grid-template-columns: 10% 20% 60% ;
     width:90%;
     justify-content:space-between;
     align-items: center;
@@ -89,6 +93,26 @@
     margin-right: 5%;
     word-break:break-all; 
 } 
+
+#btnUpdate{
+    width: 30%;
+    align-self: end;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 2px 2px 0;
+}
+p{
+    font-family: "Bitter";
+    font-weight: 700;
+    font-size: 22px;
+    line-height: 150%;
+    letter-spacing: 0.146em;
+    text-align: center; 
+    margin-bottom: 80px;
+}
+
+
 
 
 

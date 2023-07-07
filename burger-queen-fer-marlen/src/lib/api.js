@@ -189,3 +189,35 @@ export function getOrders(token) {
       return err;
     });
 }
+export function updateOrder(token, uid, status) {
+  return fetch(`${http}orders/${uid}`, {
+    method: "PATCH",
+    headers: {
+      "Content-type": stringJSON,
+      Authorization: token,
+    },
+    body: JSON.stringify({
+      status: status,
+      dateProcessed: new Date()
+    }),
+  })
+    .then((res) => {
+      res;
+      console.log(res);
+    })
+    .catch((err) => console.log(err.message));
+}
+export function deleteOrder(id, token) {
+  return fetch(`${http}orders/${id}`, {
+    method: "DELETE",
+    headers: {
+      Authorization: token,
+    },
+  })
+    .then((res) => {
+      console.log(res);
+      return res.json()})
+    .catch((err) => {
+      console.log(err + "Error al eliminar la orden");
+    });
+}

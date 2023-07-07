@@ -31,7 +31,52 @@ jest.mock("react-router-dom", () => ({
   useNavigate: jest.fn(),
 }));
 jest.mock("../../lib/api", () => ({
-  getProducts: jest.fn(),
+  ...jest.requireActual("../../lib/api"),
+  getOrders: jest.fn(() =>
+    Promise.resolve([
+      {
+        id: 1,
+        client: "Juanito",
+        dateEntry: "2023-07-05T10:30:00.102Z",
+        products: [
+          {
+            product: [
+              {
+                id: 1,
+                qty: 2,
+                product: {
+                  name: "Burger",
+                  image: "burger.jpg",
+                },
+              },
+            ],
+          },
+        ],
+        status: "delivered",
+      },
+    ])
+  ),
+  getProducts: jest.fn(() =>
+    Promise.resolve(
+      {
+        id: 1,
+        name: "Product 1",
+        price: 10,
+        image: "image1.jpg",
+        type: "Desayuno",
+        dateEntry: "2023-07-04T01:23:05.486Z",
+       
+      },
+      {
+        id: 2,
+        name: "Product 2",
+        price: 20,
+        image: "image2.jpg",
+        type: "Almuerzo",
+        dateEntry: "2023-07-04T01:23:05.486Z",
+      }
+    )
+  ),
   createOrder: jest.fn(),
   cutEmail: jest.fn(),
 }));
@@ -185,53 +230,20 @@ describe("waiter", () => {
     expect(createOrder).toHaveBeenCalled();
     cleanup();
   });
-  //   it("test add to order multiple products", () => {
-  //     const product1 = {
-  //       id: 1,
-  //       name: "Product 1",
-  //       price: 10,
-  //       image: "image1.jpg",
-  //       type: "Desayuno",
-  //       dateEntry: "2023-07-04T01:23:05.486Z",
-  //     };
-  //     const product2 = {
-  //       id: 2,
-  //       name: "Product 2",
-  //       price: 20,
-  //       image: "image2.jpg",
-  //       type: "Almuerzo",
-  //       dateEntry: "2023-07-04T01:23:05.486Z",
-  //     };
-  //     const count = 2;
-  //     const handleAddToOrder = jest.fn();
-  //     const orderItems = [
-  //       {
-  //         dateEntry: "2023-07-04T01:23:05.486Z",
-  //         id: 1,
-  //         image: "image1.jpg",
-  //         name: "Product 1",
-  //         price: 10,
-  //         qty: 2,
-  //         type: "Desayuno",
-  //       },
-  //       {
-  //         dateEntry: "2023-07-04T01:23:05.486Z",
-  //         id: 2,
-  //         image: "image2.jpg",
-  //         name: "Product 2",
-  //         price: 20,
-  //         qty: 2,
-  //         type: "Almuerzo",
-  //       },
-  //     ];
-  //     const setOrderItems = (items) => {
-  //       orderItems.push(...items);
-  //     };
-  //     handleAddToOrder(product1, count);
-  //     handleAddToOrder(product2, count);
-  //     expect(orderItems).toEqual([
-  //       { ...product1, qty: count },
-  //       { ...product2, qty: count },
-  //     ]);
-  //   });
-});
+  test('have a button for go to orders readys', async () =>{
+    const navigate = jest.fn();
+    useNavigate.mockReturnValue(navigate);
+
+    const { container } = render(<Waiter />);
+
+    await waitFor(() => {
+      screen.getByTestId("tableWaiter");
+    });
+    const buttonReady = container.querySelector('#goToOrders');
+    fireEvent.click(buttonReady);
+    await waitFor(() => {
+      expect(navigate).toHaveBeenCalled();
+    })
+    cleanup();
+  })
+ });
