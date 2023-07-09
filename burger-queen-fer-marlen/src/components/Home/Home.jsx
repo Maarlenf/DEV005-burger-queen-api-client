@@ -86,7 +86,7 @@ function Home() {
           <Button id='btnLogin' type='submit' text='Iniciar Sesión' />
         </form>
       </div>
-      <Footer />
+      {/* <Footer /> */}
     </>
   );
 }

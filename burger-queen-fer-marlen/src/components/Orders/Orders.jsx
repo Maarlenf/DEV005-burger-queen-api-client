@@ -114,7 +114,7 @@ function Orders() {
                     </ul>
                   </div>
                   <div className='dataOrder'>
-                    {order.products[0].product.map((e) => {
+                    {order.products.map((e) => {
                       return (
                         <ul key={e.id}>
                           <li>{e.qty}</li>
@@ -141,7 +141,7 @@ function Orders() {
       ) : getOrdersStatus === "error" ? (
         <p data-testid='ordersError'>Ha ocurrido un error</p>
       ) : null}
-      <Footer />
+      {/* <Footer /> */}
     </>
   );
 }

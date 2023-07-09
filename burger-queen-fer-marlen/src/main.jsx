@@ -13,6 +13,7 @@ import Products from "./components/Products/Products";
 import Waiter from "./components/Waiter/Waiter";
 import Chef from "./components/Chef/Chef";
 import Orders from "./components/Orders/Orders";
+import Footer from "./components/Footer/Footer";
 
 const router = createBrowserRouter([
   {
@@ -48,5 +49,6 @@ const router = createBrowserRouter([
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <RouterProvider router={router} />
+    <Footer></Footer>
   </React.StrictMode>
 );

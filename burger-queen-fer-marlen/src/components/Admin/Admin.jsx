@@ -40,7 +40,7 @@ function Admin() {
         ></Button>
       </div>
 
-      <Footer></Footer>
+      {/* <Footer></Footer> */}
     </>
   );
 }

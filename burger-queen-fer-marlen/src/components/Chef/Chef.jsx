@@ -70,22 +70,28 @@ function Chef() {
             <span className='id'>Orden</span>
             <span className='email'>Detalle</span>
           </div>
-          <div className='containerOrders'>
+          <div className='containerOrdersChef'>
             {filteredOrders.map((order) => {
+              const childrenOfOrder = order.products.map((e) => {
+                return (
+                  <ul key={e.product.id}>
+                    <li>{e.qty}</li>
+                    <img
+                      src={e.product.image}
+                      alt='img product'
+                      style={{ width: "70px", height: "70px" }}
+                    />
+                    <li>{e.product.name}</li>
+                  </ul>
+                );
+              });
               return (
-                <>
-                  <div className='dataClient' key={order.id}>
+                <div key={order.id} className='containerOrders'>
+                  <div className='dataClient'>
                     <ul>
                       <div className='client'>
                         <AiOutlineUser size={25} />
                         <li>{order.client}</li>
-                      </div>
-                      <div className='timeEntry'>
-                        <BsCalendarDate size={25} />
-                        <li>
-                          {order.dateEntry.replace("T", " ").slice(0, -5) +
-                            "hrs."}
-                        </li>
                       </div>
                       <div className='timer'>
                         <TfiTimer size={25} />
@@ -96,26 +102,14 @@ function Chef() {
                     </ul>
                   </div>
                   <div className='dataOrder'>
-                    {order.products[0].product.map((e) => {
-                      return (
-                        <ul key={e.id}>
-                          <li>{e.qty}</li>
-                          <img
-                            src={e.product.image}
-                            alt='img product'
-                            style={{ width: "70px", height: "70px" }}
-                          />
-                          <li>{e.product.name}</li>
-                        </ul>
-                      );
-                    })}
+                    {childrenOfOrder}
                     <Button
-                      text='Realizado'
                       id='btnUpdate'
+                      text='Preparado'
                       onClick={() => confirmUpdate(order.id, order.status)}
                     />
                   </div>
-                </>
+                </div>
               );
             })}
           </div>
@@ -123,7 +117,7 @@ function Chef() {
       ) : getOrdersStatus === "error" ? (
         <p data-testid='ordersError'>Ha ocurrido un error</p>
       ) : null}
-      <Footer />
+      {/* <Footer /> */}
     </>
   );
 }

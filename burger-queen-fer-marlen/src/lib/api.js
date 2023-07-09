@@ -206,10 +206,7 @@ export function deleteOrder(id, token) {
       Authorization: token,
     },
   })
-    .then((res) => {
-      console.log(res);
-      res;
-    })
+    .then((res) => res)
     .catch((err) => {
       console.log(err + "Error al eliminar la orden");
     });

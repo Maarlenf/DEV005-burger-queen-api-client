@@ -86,11 +86,8 @@ function Waiter() {
   const objectOrder = {
     userId: idUser,
     client: nameUser,
-    products: [
-      {
-        product,
-      },
-    ],
+    products: product,
+
     status: "pending",
     dateEntry: new Date(),
   };
@@ -105,15 +102,15 @@ function Waiter() {
     // .catch((err) => console.log(err));
   }
   // ---
-  function filter(param) {
-    if (selectedTypes.includes(param)) {
-      // El tipo ya se selccionó, se tiene  que remover
-      setSelectedTypes(selectedTypes.filter((type) => type !== param));
-    } else {
-      // El tipo no estaba seleccionado, se tiene que agregar
-      setSelectedTypes([...selectedTypes, param]);
-    }
-  }
+  // function filter(param) {
+  //   if (selectedTypes.includes(param)) {
+  //     // El tipo ya se selccionó, se tiene  que remover
+  //     setSelectedTypes(selectedTypes.filter((type) => type !== param));
+  //   } else {
+  //     // El tipo no estaba seleccionado, se tiene que agregar
+  //     setSelectedTypes([...selectedTypes, param]);
+  //   }
+  // }
 
   function deleteItem(item) {
     let newArray = [...orderItems];
@@ -138,7 +135,7 @@ function Waiter() {
             value={search}
             onChange={(event) => setSearch(event.target.value)}
           />
-          <div className='containerOptions'>
+          {/* <div className='containerOptions'>
             <div className='optionDes'>
               <span>Desayuno</span>
               <Input
@@ -170,7 +167,7 @@ function Waiter() {
                 onChange={(e) => filter(e.target.value)}
               />
             </div>
-          </div>
+          </div> */}
           <div className='productCards' data-testid='tableWaiter'>
             {find
               .filter((product) =>
@@ -206,12 +203,12 @@ function Waiter() {
             onChange={(event) => setNameUser(event.target.value)}
           />
           <div className='tableOrder'>
-            <div className='columnName'>
+            {/* <div className='columnName'>
               <div className='columnHeader'>
                 <span>Name</span>
               </div>
               <span className='nameUser'>{nameUser}</span>
-            </div>
+            </div> */}
             <div className='columnOrder'>
               <div className='columnHeader'>
                 <span>Order</span>
@@ -257,7 +254,7 @@ function Waiter() {
         </div>
       </div>
 
-      <Footer />
+      {/* <Footer /> */}
     </>
   );
 }

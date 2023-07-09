@@ -180,7 +180,7 @@ function Products() {
             })}
         </div>
       </div>
-      <Footer />
+      {/* <Footer /> */}
     </>
   );
 }
