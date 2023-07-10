@@ -46,7 +46,8 @@ jest.mock("../../lib/api", () => ({
         ],
         status: "delivered",
         dateEntry: "2023-07-05T10:30:00.102Z",
-        dateProcessed: "2023-07-05T10:38:00.102Z"
+        dateProcessed: "2023-07-05T10:38:00.102Z",
+        id: 1
       },
     ]),
     // Promise.reject({error: 'Ha ocurrido un error'});

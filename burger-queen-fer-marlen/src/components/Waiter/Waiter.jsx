@@ -1,6 +1,5 @@
 import Banner from "../Banner/Banner";
 import Button from "../Button/Button";
-import Footer from "../Footer/Footer";
 import Header from "../Header/Header";
 import Input from "../Input/Input";
 import Card from "../Card/Card";
@@ -257,7 +256,6 @@ useEffect(() => {
         </div>
       </div>
 
-      <Footer />
     </>
   );
 }

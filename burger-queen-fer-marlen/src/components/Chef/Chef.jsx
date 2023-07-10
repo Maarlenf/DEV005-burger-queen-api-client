@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { cutEmail, getOrders, updateOrder } from "../../lib/api";
 import Banner from "../Banner/Banner";
-import Footer from "../Footer/Footer";
 import Header from "../Header/Header";
 import { TfiTimer } from "react-icons/tfi";
 import { AiOutlineUser } from "react-icons/ai";
@@ -70,7 +69,7 @@ function Chef() {
       {getOrdersStatus === "loading" ? (
         <p data-testid="loadingOrders">Cargando...</p>
       ) : getOrdersStatus === "success" && dataOrders.length === 0 ? (
-        <p data-testid="successWithNothing">Aún no hay pedidos</p>
+        <p data-testid="successWithNothing" className='viewChef'>Aún no hay pedidos</p>
       ) : getOrdersStatus === "success" ? (
         <div className="containerTableOrder" data-testid="tableOrders">
           <div className="columns">
@@ -80,7 +79,7 @@ function Chef() {
           {dataOrders.map((order) => {
             const childrenOfOrder = order.products.map((e) => {
               return (
-                <ul key={e.product.id}>
+                <ul key={order.id + '-' + e.product.id}>
                   <li>{e.qty}</li>
                   <img
                     src={e.product.image}
@@ -120,10 +119,8 @@ function Chef() {
           })}
         </div>
       ) : getOrdersStatus === "error" ? (
-        <p data-testid="ordersError">Ha ocurrido un error</p>
+        <p className='viewChef' data-testid="ordersError">Ha ocurrido un error</p>
       ) : null}
-
-      <Footer />
     </>
   );
 }

@@ -1,8 +1,6 @@
 import { useEffect, useState } from "react";
 import Banner from "../Banner/Banner";
 import "../Banner/Banner.css";
-import Footer from "../Footer/Footer";
-import "../Footer/Footer.css";
 import Header from "../Header/Header";
 import "../Header/Header.css";
 import { getProducts } from "../../lib/api";
@@ -180,7 +178,6 @@ function Products() {
             })}
         </div>
       </div>
-      <Footer />
     </>
   );
 }

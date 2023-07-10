@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { cutEmail, getEmployees } from "../../lib/api";
 import Banner from "../Banner/Banner";
-import Footer from "../Footer/Footer";
 import Header from "../Header/Header";
 import "../Header/Header.css";
 import "../Employees/Employees.css";
@@ -131,7 +130,6 @@ function Employees() {
     </div>) : getEmployeesStatus === "error" ? (
       <p data-testid="employeesError">Ha ocurrido un error</p>
     ): null}
-      <Footer />
     </>
   );
 }

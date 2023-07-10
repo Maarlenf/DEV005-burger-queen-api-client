@@ -46,6 +46,7 @@ jest.mock("../../lib/api", () => ({
         ],
         status: "pending",
         dateEntry: "2023-07-05T10:30:00.102Z",
+        id: 1
       },
     ]),
     // Promise.reject({error: 'Ha ocurrido un error'});

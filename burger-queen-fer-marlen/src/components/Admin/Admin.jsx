@@ -2,8 +2,6 @@ import Banner from "../Banner/Banner";
 import "../Banner/Banner.css";
 import Button from "../Button/Button";
 import "../Button/Button.css";
-import Footer from "../Footer/Footer";
-import "../Footer/Footer.css";
 import Header from "../Header/Header";
 import "../Header/Header.css";
 import "../Admin/Admin.css";
@@ -39,8 +37,6 @@ function Admin() {
           onClick={goProducts}
         ></Button>
       </div>
-
-      <Footer></Footer>
     </>
   );
 }

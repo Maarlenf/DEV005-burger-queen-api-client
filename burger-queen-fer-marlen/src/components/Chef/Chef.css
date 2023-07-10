@@ -12,7 +12,7 @@
     background-color: rgba(237, 237, 237, 1);
     border-bottom-left-radius: 15px;
     border-bottom-right-radius: 15px;
-    margin-bottom: 80px;
+    margin-bottom: 113px;
 }
 .columns{
     grid-area: name;
@@ -94,6 +94,14 @@ p{
     letter-spacing: 0.146em;
     text-align: center; 
     margin-bottom: 80px;
+}
+.viewChef{
+    display: inline-block;
+    height: 585px;
+}
+.viewOrders{
+    display: inline-block;
+    height: 460px;
 }
 
 
