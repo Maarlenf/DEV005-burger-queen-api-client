@@ -14,7 +14,8 @@ export function getLogin(email, password) {
   })
     .then((res) => res.json())
     .catch((err) => {
-      return err;
+      err;
+      // console.log(err.message);
     });
 }
 
@@ -162,9 +163,14 @@ export function createOrder(token, obj) {
     },
     body: JSON.stringify(obj),
   })
-    .then((res) => res.json())
+    .then((res) => {
+      //console.log(res);
+      // console.log(res.statusText)
+      res.json();
+    })
     .catch((err) => {
-      console.log(err.message);
+      err;
+      // console.log(err.message);
     });
 }
 export function getOrders(token) {
@@ -180,7 +186,6 @@ export function getOrders(token) {
       return err;
     });
 }
-
 export function updateOrder(token, uid, status) {
   return fetch(`${http}orders/${uid}`, {
     method: "PATCH",
@@ -195,10 +200,10 @@ export function updateOrder(token, uid, status) {
   })
     .then((res) => {
       res;
+      console.log(res);
     })
     .catch((err) => console.log(err.message));
 }
-
 // export function deleteOrder(id, token) {
 //   return fetch(`${http}orders/${id}`, {
 //     method: "DELETE",
@@ -206,7 +211,9 @@ export function updateOrder(token, uid, status) {
 //       Authorization: token,
 //     },
 //   })
-//     .then((res) => res)
+//     .then((res) => {
+//       console.log(res);
+//       return res.json()})
 //     .catch((err) => {
 //       console.log(err + "Error al eliminar la orden");
 //     });

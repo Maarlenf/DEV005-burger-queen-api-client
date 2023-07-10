@@ -1,14 +1,43 @@
-.containerOrdersChef {
+.containerTableOrder {
   display: grid;
-  /* grid-template-areas: "client order";
-  grid-template-columns: 40% 60%; */
+  grid-template-areas: "name";
+  margin: 30px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  font-family: "Bitter";
+  font-weight: 700;
+  font-size: 22px;
+  line-height: 150%;
+  letter-spacing: 0.146em;
+  background-color: rgba(237, 237, 237, 1);
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+  margin-bottom: 113px;
 }
-.dataClientChef {
+.columns {
+  grid-area: name;
+  display: grid;
+  grid-template-areas: "h1 h2";
+  grid-template-columns: 30% 70%;
+  background-color: #bf5b04;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+  padding: 5px;
+}
+.columns > span {
+  color: white;
+}
+.containerOrders {
+  display: grid;
+  grid-template-areas: "client order";
+  grid-template-columns: 40% 60%;
+}
+.dataClient {
   grid-area: client;
   border-top: solid 1px black;
   border-right: solid 1px black;
 }
-.dataOrderChef {
+.dataOrder {
   grid-area: order;
   border-top: solid 1px black;
   display: flex;
@@ -22,7 +51,7 @@
   flex-direction: column;
   height: 200px;
 }
-.dataOrderChef > ul {
+.dataOrder > ul {
   display: grid;
   grid-template-areas: "d1 d2 d3";
   grid-template-columns: 10% 20% 60%;
@@ -32,7 +61,7 @@
   list-style: none;
 }
 
-.clientChef {
+.client {
   display: flex;
   width: 100%;
   justify-content: space-around;
@@ -40,7 +69,7 @@
   align-items: flex-start;
   list-style: none;
 }
-.timerChef {
+.timer {
   display: flex;
   width: 100%;
   justify-content: space-around;
@@ -65,4 +94,12 @@ p {
   letter-spacing: 0.146em;
   text-align: center;
   margin-bottom: 80px;
+}
+.viewChef {
+  display: inline-block;
+  height: 585px;
+}
+.viewOrders {
+  display: inline-block;
+  height: 460px;
 }

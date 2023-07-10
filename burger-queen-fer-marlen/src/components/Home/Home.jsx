@@ -1,5 +1,6 @@
 import { useState } from "react";
 import "./Home.css";
+import { logo } from "../../images";
 import Banner from "../Banner/Banner";
 import "../Banner/Banner.css";
 import Title from "../Title/Title";
@@ -25,10 +26,11 @@ function Home() {
     getLogin(valueEmail, valuePwd)
       .then((res) => {
         if (res.user.role === "admin") {
+          // console.log(res);
           navigate("/admin");
         } else if (res.user.role == "waiter") {
           navigate("/waiter");
-        } else if (res.user.role == "chef") {
+        } else if (res.user.role === "chef") {
           navigate("/chef");
         }
 
@@ -36,6 +38,7 @@ function Home() {
         localStorage.setItem("user", res.user.email);
       })
       .catch((err) => {
+        //console.log(err);
         new Error(
           setFail(
             "¡Ups! Ha ocurrido un error. Por favor verifica tu credenciales"
@@ -59,13 +62,13 @@ function Home() {
       </div>
       <Title title='Iniciar Sesión' />
       <div className='formLogin'>
-        <form method='post' onSubmit={handleSubmit}>
+        <form method='post' onSubmit={handleSubmit} className='formLogin'>
           <Input
             textLabel='Correo Electrónico'
             type='email'
             className='input'
             id='email'
-            placeholder='ejemplo@ejemplo.com'
+            placeholder='example@examle.com'
             value={valueEmail}
             onChange={(e) => setEmail(e.target.value)}
           />
@@ -83,7 +86,12 @@ function Home() {
           />
           {fail && <span className='failLogin'>{fail}</span>}
 
-          <Button id='btnLogin' type='submit' text='Iniciar Sesión' />
+          <Button
+            id='btnLogin'
+            className='btnLogin'
+            type='submit'
+            text='Iniciar Sesión'
+          />
         </form>
       </div>
       {/* <Footer /> */}

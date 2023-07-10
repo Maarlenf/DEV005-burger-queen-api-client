@@ -1,8 +1,6 @@
 import { useEffect, useState } from "react";
 import Banner from "../Banner/Banner";
 import "../Banner/Banner.css";
-import Footer from "../Footer/Footer";
-import "../Footer/Footer.css";
 import Header from "../Header/Header";
 import "../Header/Header.css";
 import { getProducts } from "../../lib/api";
@@ -31,6 +29,7 @@ function Products() {
 
   useEffect(() => {
     getProducts(authorization).then((res) => {
+      // console.log(res)
       setDataProducts(res);
     });
   }, [authorization, showModalDelete, showModalEditProduct]);
@@ -82,7 +81,7 @@ function Products() {
         />
       )}
       <Banner />
-      <Header user={user} />
+      <Header user={user} text='Administrador' />
       <div className='containerButtons'>
         <div className='addUser'>
           <Button
@@ -180,7 +179,6 @@ function Products() {
             })}
         </div>
       </div>
-      {/* <Footer /> */}
     </>
   );
 }

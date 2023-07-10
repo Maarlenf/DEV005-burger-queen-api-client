@@ -21,7 +21,7 @@ import { useNavigate } from "react-router-dom";
 jest.mock("../../images.js", () => ({
   bannerBurger: "banner-opacity.png",
 }));
-jest.mock("../Orders/Orders.css", () => ({
+jest.mock("../Chef/Chef.css", () => ({
   banner: {},
 }));
 jest.mock("../Title/Title.css", () => ({

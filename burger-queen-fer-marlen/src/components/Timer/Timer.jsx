@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 
 function Timer({ time }) {
   const [elapsedTime, setElapsedTime] = useState("");
-  // console.log(elapsedTime);
+
   useEffect(() => {
     const interval = setInterval(() => {
       let fechaActual = new Date();
@@ -23,7 +23,7 @@ function Timer({ time }) {
 
     return () => clearInterval(interval);
   }, [time]);
-  return <span>{elapsedTime}</span>;
+  return <span data-testid='timerTest'>{elapsedTime}</span>;
 }
 
 export default Timer;

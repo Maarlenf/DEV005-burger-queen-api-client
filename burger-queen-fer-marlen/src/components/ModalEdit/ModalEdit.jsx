@@ -15,9 +15,7 @@ function ModalEdit({ onClose, userData, token }) {
     { role: "waiter", title: "Mesera/o" },
   ];
   const confirm = () => {
-    editUser(token, userData.id, employee, pass, role).then((res) =>
-      console.log(res)
-    );
+    editUser(token, userData.id, employee, pass, role).then((res) => res);
     onClose();
   };
   return (

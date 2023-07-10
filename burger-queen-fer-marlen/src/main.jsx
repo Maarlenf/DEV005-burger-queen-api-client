@@ -14,6 +14,7 @@ import Waiter from "./components/Waiter/Waiter";
 import Chef from "./components/Chef/Chef";
 import Orders from "./components/Orders/Orders";
 import Footer from "./components/Footer/Footer";
+import "./components/Footer/Footer.css";
 
 const router = createBrowserRouter([
   {
@@ -37,12 +38,12 @@ const router = createBrowserRouter([
     element: <Waiter />,
   },
   {
-    path: "/waiter/orders",
-    element: <Orders />,
-  },
-  {
     path: "/chef",
     element: <Chef />,
+  },
+  {
+    path: "/waiter/orders",
+    element: <Orders />,
   },
 ]);
 

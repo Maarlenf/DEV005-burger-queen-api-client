@@ -100,13 +100,13 @@ describe("ModalEditProduct component", () => {
   });
   test("show modal whit nothing text when create product", () => {
     const dataProduct = {
-      dateEntry: "2022-03-05 15:14:10",
-      id: 3,
-      image:
-        "https://raw.githubusercontent.com/ssinuco/burger-queen-api-mock/main/resources/images/water.png",
-      name: "Agua 500ml",
-      price: 500,
-      type: "Almuerzo",
+      // dateEntry: "2022-03-05 15:14:10",
+      // id: 3,
+      // image:
+      //   "https://raw.githubusercontent.com/ssinuco/burger-queen-api-mock/main/resources/images/water.png",
+      // name: "Agua 500ml",
+      // price: 500,
+      // type: "Almuerzo",
     };
     const onCloseMock = jest.fn();
     const { getByLabelText, getByText } = render(

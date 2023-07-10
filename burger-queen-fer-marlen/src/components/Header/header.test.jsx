@@ -10,7 +10,6 @@ jest.mock("../../images.js", () => ({
 jest.mock("../Title/Title.css", () => ({
   h1: {},
 }));
-const logout = jest.fn();
 
 describe("test forHeader component", () => {
   test("show the title", () => {

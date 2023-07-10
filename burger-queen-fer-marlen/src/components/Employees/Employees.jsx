@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { cutEmail, getEmployees } from "../../lib/api";
 import Banner from "../Banner/Banner";
-import Footer from "../Footer/Footer";
 import Header from "../Header/Header";
 import "../Header/Header.css";
 import "../Employees/Employees.css";
@@ -28,7 +27,7 @@ function Employees() {
   const [deleteUser, setDelete] = useState();
   const [getEmployeesStatus, setGetEmployeesStatus] = useState("loading");
   const navigate = useNavigate();
-  // console.log(authorization);
+
   function goProducts() {
     return navigate("/admin/products");
   }
@@ -47,11 +46,11 @@ function Employees() {
   useEffect(() => {
     getEmployees(authorization)
       .then((res) => {
-        setGetEmployeesStatus("success");
-        // console.log(res);
         setDataUser(res);
+        setGetEmployeesStatus("success");
       })
       .catch((error) => {
+        error;
         setGetEmployeesStatus("error");
       });
   }, [showModal, authorization, showModalDelete, showModalEdit]);
@@ -105,9 +104,6 @@ function Employees() {
           <div className='containerId'>
             {dataUser.map((obj) => {
               const email = cutEmail(obj.email);
-              localStorage.setItem("id", obj.id);
-              localStorage.setItem("id", obj.id);
-
               return (
                 <ul key={obj.id}>
                   <li>{obj.id}</li>
@@ -134,10 +130,8 @@ function Employees() {
           </div>
         </div>
       ) : getEmployeesStatus === "error" ? (
-        <p>Ha ocurrido un error</p>
+        <p data-testid='employeesError'>Ha ocurrido un error</p>
       ) : null}
-
-      {/* <Footer /> */}
     </>
   );
 }

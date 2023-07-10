@@ -29,25 +29,12 @@
   margin-top: 30px;
 }
 
-.columnName {
-  grid-area: order;
-  width: 100%;
-  background-color: #ededed;
-  height: auto;
-  border-radius: 30px 0 0 0;
-}
 .columnOrder {
   grid-area: order;
   width: 100%;
   background-color: #ededed;
   height: auto;
-
   border-radius: 30px 30px 0 0;
-  font-size: 22px;
-  font-family: Bitter;
-  font-weight: 700;
-  line-height: 150%;
-  letter-spacing: 0.146em;
 }
 
 .columnHeader {
@@ -56,7 +43,6 @@
   display: grid;
   justify-content: center;
   align-items: center;
-  border-radius: 30px 0 0 0;
   font-family: "Bitter";
   font-weight: 700;
   font-size: 22px;
@@ -68,23 +54,11 @@
 .columnOrder > .columnHeader {
   border-radius: 30px 30px 0 0;
 }
-.nameUser {
-  display: inline-block;
-  margin-top: 30px;
-  font-size: 24px;
-  font-family: Bitter;
-  font-weight: 700;
-  line-height: 150%;
-  letter-spacing: -0.528px;
-  width: 80%;
-  height: 20%;
-  word-wrap: break-word;
-}
 
 .orderItem {
   display: grid;
   grid-template-areas: "a b c d";
-  grid-template-columns: 8% 60% 20% 10%;
+  grid-template-columns: 8% 50% 26% 5%;
   width: 100%;
   margin-left: 2%;
   margin-top: 30px;

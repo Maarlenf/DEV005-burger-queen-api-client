@@ -1,48 +1,39 @@
 import { useState, useEffect } from "react";
-import { getOrders, cutEmail, deleteOrder } from "../../lib/api";
-import Banner from "../Banner/Banner";
-import Button from "../Button/Button";
-import Footer from "../Footer/Footer";
-import Header from "../Header/Header";
-import { AiOutlineEdit, AiOutlineUser } from "react-icons/ai";
-import { IoFastFoodOutline } from "react-icons/io5";
-import { MdOutlineNoFood } from "react-icons/md";
-import "./Orders.css";
-import { TfiTimer } from "react-icons/tfi";
-import { BsCalendarDate } from "react-icons/bs";
 import { useNavigate } from "react-router-dom";
-import Timer from "../Timer/Timer";
+import { cutEmail, getOrders, updateOrder } from "../../lib/api";
+import Banner from "../Banner/Banner";
+import Header from "../Header/Header";
+import { TfiTimer } from "react-icons/tfi";
+import { AiOutlineUser } from "react-icons/ai";
+import "../Chef/Chef.css";
+import Button from "../Button/Button";
 
-function Orders() {
+function Chef() {
   const navigate = useNavigate();
-
-  const [filteredOrders, setFilteredOrders] = useState([]);
-
-  console.log(filteredOrders);
-  const [getOrdersStatus, setGetOrdersStatus] = useState("loading");
-
+  const [dataOrders, setDataOrders] = useState([]);
   const token = localStorage.getItem("token");
   const authorization = `Bearer ${token}`;
   const user = localStorage.getItem("user");
   const userInLine = cutEmail(user);
   localStorage.setItem("userInLine", userInLine);
+  const [getOrdersStatus, setGetOrdersStatus] = useState("loading");
 
   useEffect(() => {
     getOrders(authorization)
       .then((res) => {
         console.log(res);
+        const listWithStatusDelivered = [...res].filter(
+          (e) => e.status === "delivered"
+        );
+        setDataOrders(listWithStatusDelivered);
         setGetOrdersStatus("success");
-
-        const filtered = res.filter((order) => {
-          console.log(order);
-          return order.status === "delivered";
-        });
-        setFilteredOrders(filtered);
       })
       .catch((error) => {
+        error;
         setGetOrdersStatus("error");
       });
-  }, []);
+  }, [authorization]);
+
   function getTime(dateEntry, dateProcessed) {
     const inicio = new Date(dateEntry);
     const fin = new Date(dateProcessed);
@@ -58,35 +49,62 @@ function Orders() {
 
     return <span>{"Pasaron: " + h + ":" + m + ":" + s}</span>;
   }
-  function deleteOrderId(id) {
-    deleteOrder(id, authorization).then((res) => {
-      let newList = [...filteredOrders];
-      newList = newList.filter((i) => i.id !== id);
-      setFilteredOrders(newList);
+
+  function goTakeOrder() {
+    navigate("/waiter");
+  }
+
+  function deleteOrderId(id, status) {
+    status = "deleted";
+    updateOrder(authorization, id, status).then((res) => {
       res;
     });
+    alert("Entregado con éxito");
+    let newList = [...dataOrders];
+    newList = newList.filter((i) => i.id !== id);
+    setDataOrders(newList);
   }
-  function goToOrders() {
-    return navigate("/waiter");
-  }
+
+  // Otra manera de renderizar las ordenes
+  //   const [filteredOrders, setFilteredOrders] = useState([]);
+
+  // //dentro de useEffect:
+  // const filtered = res.filter((order) => order.status !== "delivered");
+  //       setFilteredOrders(filtered);
+
+  // function confirmUpdate(id, status) {
+  //     status = "delivered";
+  //     updateOrder(authorization, id, status).then((res) => {
+  //       const updatedOrders = filteredOrders.filter((order) => order.id !== id);
+  //       setFilteredOrders(updatedOrders);
+  //       return res;
+  //     });
+  //   }
+
+  // //para renderizar:
+
+  // filteredOrders.map((order) => {
+
   return (
     <>
       <Banner />
-      <Header user={userInLine} text={"Mesero/Órdenes"} />
+      <Header user={userInLine} text='Mesera/o' />
       <div className='containerButtons'>
-        <Button id='btnGoToOrders' text={"Tomar Pedido"} onClick={goToOrders} />
+        <Button text='Tomar pedido' onClick={goTakeOrder} />
       </div>
       {getOrdersStatus === "loading" ? (
         <p data-testid='loadingOrders'>Cargando...</p>
-      ) : getOrdersStatus === "success" && filteredOrders.length === 0 ? (
-        <p data-testid='successWithNothing'>Aún no hay pedidos</p>
+      ) : getOrdersStatus === "success" && dataOrders.length === 0 ? (
+        <p data-testid='successWithNothing' className='viewOrders'>
+          Aún no hay pedidos
+        </p>
       ) : getOrdersStatus === "success" ? (
         <div className='containerTableOrder' data-testid='tableOrders'>
           <div className='columns'>
             <span className='id'>Orden</span>
             <span className='email'>Detalle</span>
           </div>
-          {filteredOrders.map((order) => {
+          {dataOrders.map((order) => {
             const childrenOfOrder = order.products.map((e) => {
               return (
                 <ul key={order.id + "-" + e.product.id}>
@@ -127,12 +145,12 @@ function Orders() {
           })}
         </div>
       ) : getOrdersStatus === "error" ? (
-        <p data-testid='ordersError'>Ha ocurrido un error</p>
+        <p data-testid='ordersError' className='viewChef'>
+          Ha ocurrido un error
+        </p>
       ) : null}
-
-      {/* <Footer /> */}
     </>
   );
 }
 
-export default Orders;
+export default Chef;

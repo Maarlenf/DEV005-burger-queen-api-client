@@ -5,12 +5,11 @@ import "../Input/Input.css";
 import "../ModalEdit/ModalEdit.css";
 import { createProduct, editProduct } from "../../lib/api";
 
-function ModalEditProduct({ onClose, dataProduct, token, option }) {
+function ModalEditProduct({ onClose, dataProduct, token }) {
   const [product, setProduct] = useState(dataProduct.name);
   const [price, setPrice] = useState(dataProduct.price);
   const [image, setImage] = useState(dataProduct.image);
   const [type, setType] = useState(dataProduct.type);
-  const [failImage, setViewImage] = useState(dataProduct.image);
 
   if (!{ dataProduct }) {
     setProduct("");
@@ -27,12 +26,10 @@ function ModalEditProduct({ onClose, dataProduct, token, option }) {
 
   const confirm = () => {
     if (!dataProduct.id) {
-      createProduct(token, product, price, image, type).then((res) =>
-        console.log(res)
-      );
+      createProduct(token, product, price, image, type).then((res) => res);
     } else {
       editProduct(token, dataProduct.id, product, price, image, type).then(
-        (res) => console.log(res)
+        (res) => res
       );
     }
     onClose();
@@ -74,17 +71,6 @@ function ModalEditProduct({ onClose, dataProduct, token, option }) {
                     src={image}
                     style={{ margin: "10px", width: "100px", height: "100px" }}
                   />
-                  {/* <Input
-                    type='file'
-                    className='input'
-                    placeholder='imageBurger.png...'
-                    alt='image product'
-                    onChange={(e) => {
-                      if (e.target.files && e.target.files[0]) {
-                        setViewImage(URL.createObjectURL(e.target.files[0]));
-                      }
-                    }}
-                  /> */}
                   <Input
                     type='text'
                     className='input'
@@ -116,9 +102,9 @@ function ModalEditProduct({ onClose, dataProduct, token, option }) {
               </div>
               <div className='containerChecks'>
                 <AiOutlineCheck
-                  data-testid='modalOptionProducts'
                   size={30}
                   onClick={confirm}
+                  data-testid='modalOptionProducts'
                 />
               </div>
             </>

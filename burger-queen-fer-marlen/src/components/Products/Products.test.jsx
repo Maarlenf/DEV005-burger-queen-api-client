@@ -131,10 +131,11 @@ describe("Products component", () => {
     expect(container.querySelector(".icon1")).toBeTruthy();
     cleanup();
   });
-  test("have a input for search results", async () => {
+  test("have a checked for filter for type", async () => {
     const navigate = jest.fn();
     useNavigate.mockReturnValue(navigate);
     const { container } = render(<Products />);
+
     await waitFor(() => {
       screen.getByTestId("tableProducts");
     });
