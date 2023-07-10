@@ -1,7 +1,7 @@
 /**
  * @jest-environment jsdom
  */
-import Chef from "./Chef";
+import Orders from "./Orders";
 import React from "react";
 import {
   fireEvent,
@@ -21,7 +21,7 @@ import { useNavigate } from "react-router-dom";
 jest.mock("../../images.js", () => ({
   bannerBurger: "banner-opacity.png",
 }));
-jest.mock("../Chef/Chef.css", () => ({
+jest.mock("../Orders/Orders.css", () => ({
   banner: {},
 }));
 jest.mock("../Title/Title.css", () => ({
@@ -51,8 +51,9 @@ jest.mock("../../lib/api", () => ({
               },
             },
           ],
-          status: "pending",
+          status: "delivered",
           dateEntry: "2023-07-05T10:30:00.102Z",
+          dateProcessed: "2023-07-05T10:38:00.102Z",
           id: 1,
         },
       ])
@@ -63,7 +64,7 @@ jest.mock("../../lib/api", () => ({
 }));
 describe("Chef component", () => {
   test("renders orders correctly", async () => {
-    render(<Chef />);
+    render(<Orders />);
 
     await waitFor(() => {
       screen.getByTestId("tableOrders");
@@ -72,11 +73,11 @@ describe("Chef component", () => {
     expect(screen.getByText("2")).toBeInTheDocument();
     expect(screen.getByAltText("img product")).toBeInTheDocument();
     expect(screen.getByText("Burger")).toBeInTheDocument();
-    expect(screen.getByText("Preparado")).toBeInTheDocument();
+    expect(screen.getByText("Entregado")).toBeInTheDocument();
     cleanup();
   });
   test("call confirmUpdate", async () => {
-    const { container } = render(<Chef />);
+    const { container } = render(<Orders />);
 
     await waitFor(() => {
       screen.getByTestId("tableOrders");
@@ -89,7 +90,7 @@ describe("Chef component", () => {
   });
   test('something it"s bad', async () => {
     getOrders.mockRejectedValue({ error: "error" });
-    const { container } = render(<Chef />);
+    const { container } = render(<Orders />);
 
     await waitFor(() => {
       screen.getByTestId("ordersError");

@@ -74,7 +74,7 @@ function Chef() {
             {filteredOrders.map((order) => {
               const childrenOfOrder = order.products.map((e) => {
                 return (
-                  <ul key={e.product.id}>
+                  <ul key={order.id + "-" + e.product.id}>
                     <li>{e.qty}</li>
                     <img
                       src={e.product.image}

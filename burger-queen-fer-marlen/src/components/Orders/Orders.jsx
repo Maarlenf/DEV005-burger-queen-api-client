@@ -81,66 +81,55 @@ function Orders() {
       ) : getOrdersStatus === "success" && filteredOrders.length === 0 ? (
         <p data-testid='successWithNothing'>Aún no hay pedidos</p>
       ) : getOrdersStatus === "success" ? (
-        <div data-testid='tableOrders' className='containerTableOrder'>
+        <div className='containerTableOrder' data-testid='tableOrders'>
           <div className='columns'>
             <span className='id'>Orden</span>
             <span className='email'>Detalle</span>
           </div>
-          <div className='containerOrders'>
-            {filteredOrders.map((order) => {
-              console.log(order);
+          {filteredOrders.map((order) => {
+            const childrenOfOrder = order.products.map((e) => {
               return (
-                <>
-                  <div className='dataClient' key={order.id}>
-                    <ul>
-                      <div className='client'>
-                        <AiOutlineUser size={25} />
-                        <li>{order.client}</li>
-                      </div>
-                      <div className='timeEntry'>
-                        <BsCalendarDate size={25} />
-                        <li>
-                          {order.dateEntry.replace("T", " ").slice(0, -5) +
-                            "hrs."}
-                        </li>
-                      </div>
-                      <div className='timer'>
-                        <TfiTimer size={25} />
-                        <li>
-                          {/* <Timer time={order.dateEntry} /> */}
-                          {getTime(order.dateEntry, order.dateProcessed)}
-                        </li>
-                      </div>
-                    </ul>
-                  </div>
-                  <div className='dataOrder'>
-                    {order.products.map((e) => {
-                      return (
-                        <ul key={e.id}>
-                          <li>{e.qty}</li>
-                          <img
-                            src={e.product.image}
-                            alt='img product'
-                            style={{ width: "70px", height: "70px" }}
-                          />
-                          <li>{e.product.name}</li>
-                        </ul>
-                      );
-                    })}
-                    <Button
-                      text='Entregar'
-                      id='btnUpdate'
-                      onClick={() => deleteOrderId(order.id)}
-                    />
-                  </div>
-                </>
+                <ul key={order.id + "-" + e.product.id}>
+                  <li>{e.qty}</li>
+                  <img
+                    src={e.product.image}
+                    alt='img product'
+                    style={{ width: "70px", height: "70px" }}
+                  />
+                  <li>{e.product.name}</li>
+                </ul>
               );
-            })}
-          </div>
+            });
+            return (
+              <div key={order.id} className='containerOrders'>
+                <div className='dataClient'>
+                  <ul>
+                    <div className='client'>
+                      <AiOutlineUser size={25} />
+                      <li>{order.client}</li>
+                    </div>
+                    <div className='timer'>
+                      <TfiTimer size={25} />
+                      {getTime(order.dateEntry, order.dateProcessed)}
+                    </div>
+                  </ul>
+                </div>
+                <div className='dataOrder'>
+                  {childrenOfOrder}
+                  <Button
+                    id='btnUpdate'
+                    text='Entregado'
+                    onClick={() => deleteOrderId(order.id, order.status)}
+                  />
+                </div>
+              </div>
+            );
+          })}
         </div>
       ) : getOrdersStatus === "error" ? (
         <p data-testid='ordersError'>Ha ocurrido un error</p>
       ) : null}
+
       {/* <Footer /> */}
     </>
   );

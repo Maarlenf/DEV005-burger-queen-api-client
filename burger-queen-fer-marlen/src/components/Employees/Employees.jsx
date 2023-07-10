@@ -137,7 +137,7 @@ function Employees() {
         <p>Ha ocurrido un error</p>
       ) : null}
 
-      <Footer />
+      {/* <Footer /> */}
     </>
   );
 }
