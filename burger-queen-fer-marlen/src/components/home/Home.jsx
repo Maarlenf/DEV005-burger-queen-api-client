@@ -9,8 +9,6 @@ import Input from "../Input/Input";
 import "../Input/Input.css";
 import Button from "../Button/Button";
 import "../Button/Button.css";
-import Footer from "../Footer/Footer";
-import "../Footer/Footer.css";
 import { useNavigate } from "react-router-dom";
 import { getLogin } from "../../lib/api";
 
@@ -26,7 +24,7 @@ function Home() {
       .then((res) => {
         if (res.user.role === "admin") {
           // console.log(res);
-          navigate("/admin");
+          navigate("/admin/employees");
         } else if (res.user.role == "waiter") {
           navigate("/waiter");
         } else if (res.user.role === "chef") {
@@ -92,7 +90,6 @@ function Home() {
           />
         </form>
       </div>
-      <Footer />
     </>
   );
 }
