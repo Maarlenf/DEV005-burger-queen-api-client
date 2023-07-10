@@ -10,32 +10,34 @@ jest.mock("../../images.js", () => ({
 jest.mock("../Title/Title.css", () => ({
   h1: {},
 }));
-
+const logout = jest.fn();
 
 describe("test forHeader component", () => {
   test("show the title", () => {
-    const { container } = render(<Header user=' Grace Hopper' text='Administrador'/>, {
+    const { getByText } = render(<Header user='Grace Hopper' />, {
       wrapper: MemoryRouter,
     });
-    const res= `Administrador Grace Hopper `; 
-    expect(container.textContent).toBe(res);
+    const titleElement = getByText("Administrador");
+    expect(titleElement.textContent).toContain("Administrador");
   });
 
   test("show user in line", () => {
-    const user = 'gracee.hopper';
-    const { container } = render(<Header user={user} />, {
+    const user = "gracee.hopper";
+    const { getByText } = render(<Header user={user} />, {
       wrapper: MemoryRouter,
     });
-    expect(container.textContent).toContain(user);
+    const divClose = getByText(user);
+    expect(divClose.textContent).toContain(user);
   });
   test("call function logout", () => {
     const user = "gracee.hopper";
-    const logout = jest.fn();
-    const { getByTestId, container} = render(<Header user={user} onClick={logout} />, {
+
+    const { getByTestId } = render(<Header user={user} logout={logout} />, {
       wrapper: MemoryRouter,
     });
     const logoutIcon = getByTestId("logout-icon");
     fireEvent.click(logoutIcon);
-    expect(fireEvent.click(logoutIcon)).toBeTruthy();
+    expect(logout).toHaveBeenCalledWhith("/");
+    expect(logout).toHaveBeenCalledTimes(1);
   });
 });
