@@ -1,13 +1,17 @@
-import  bannerBurger from '../../assets/bannerBurgerOpaca.png'
+import { bannerBurger } from "../../images.js";
 
 function Banner() {
-    return ( 
-        <>
-        <div>
-        <img src={bannerBurger} className='banner' alt='Banner Burger Queen' />
+  return (
+    <>
+      <div className='contain-banner'>
+        <img
+          src={bannerBurger}
+          className='banner'
+          alt='Banner Burguer Queen'
+        />
       </div>
-        </>
-    )
-} 
+    </>
+  );
+}
 
-export default Banner
+export default Banner;

@@ -1,9 +1,11 @@
-function Footer(){
-    return(
-        <>
-        <footer><p>Created by @Fer and @Marlen</p></footer>
-        </>
-    )
+function Footer() {
+  return (
+    <>
+      <footer>
+        <p>Creado por @marlen & @fer</p>
+      </footer>
+    </>
+  );
 }
 
-export default Footer
+export default Footer;

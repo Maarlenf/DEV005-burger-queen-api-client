@@ -1,14 +1,24 @@
-function Input({ textLabel, className, type, id, placeholder, value, onChange}) {
+import { useState } from "react";
+
+function Input({
+  textLabel,
+  type,
+  className,
+  id,
+  placeholder,
+  value,
+  onChange,
+}) {
   return (
     <>
       <label>
-        <p className={className}>{textLabel}</p>
+        <p className='p-login'>{textLabel}</p>
         <input
           type={type}
-          className='input'
+          className={className}
           id={id}
           placeholder={placeholder}
-          value={value}
+          value={value || ''}
           onChange={onChange}
         />
       </label>
@@ -17,5 +27,3 @@ function Input({ textLabel, className, type, id, placeholder, value, onChange}) 
 }
 
 export default Input;
-  
-

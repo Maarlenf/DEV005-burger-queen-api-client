@@ -1,10 +1,11 @@
-@import url('https://fonts.googleapis.com/css2?family=Bitter:wght@300;500;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Bitter:wght@300;500;700&display=swap");
 :root {
-  font-family: 'Bitter', serif;
+  font-family: "Bitter", serif;
   line-height: 1.5;
   color-scheme: light dark;
   color: rgba(0, 0, 0, 0.87);
   background-color: #ffffff;
+
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -24,10 +25,10 @@ a:hover {
 body {
   margin: 0;
   display: flex;
+  /* place-items: center; */
   min-width: 320px;
   min-height: 100vh; 
 }
-
 
 /* button {
   border-radius: 8px;
@@ -39,13 +40,6 @@ body {
   background-color: #1a1a1a;
   cursor: pointer;
   transition: border-color 0.25s;
-} */
-/* button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
 }
 
 @media (prefers-color-scheme: light) {
@@ -60,3 +54,6 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 } */
+#root {
+  position: absolute;
+}
