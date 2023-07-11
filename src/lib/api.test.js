@@ -216,7 +216,7 @@ describe("editUser", () => {
       });
   test("should edit data user", () => {
     // token, uid, email, password, role;
-    const http = "http://localhost:8080/";
+    const http = "https://burger-queen-api-mock-production-6473.up.railway.app/";
     const uid = "2";
     const email = "test@example.com";
     const password = "password123";

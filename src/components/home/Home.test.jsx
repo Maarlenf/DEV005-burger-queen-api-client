@@ -75,7 +75,7 @@ jest.mock("../Banner/Banner.css", () => ({
         fireEvent.click(button);
       })
       await waitFor(() => {
-        expect(navigate).toHaveBeenCalledWith('/admin');
+        expect(navigate).toHaveBeenCalledWith('/admin/employees');
       })
       cleanup();
     })
