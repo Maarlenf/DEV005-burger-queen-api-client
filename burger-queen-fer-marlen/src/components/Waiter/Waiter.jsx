@@ -123,7 +123,7 @@ function goToOrders(){
 useEffect(() => {
   getOrders(authorization)
   .then((res) => {
-    console.log(res);
+    // console.log(res);
     const listWithStatusDelivered = [...res].filter(
       (e) => e.status === "delivered"
     )

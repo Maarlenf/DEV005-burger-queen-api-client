@@ -1,5 +1,6 @@
-const http = "http://localhost:8080/";
+// const http = "http://localhost:8080/";
 const stringJSON = "application/json";
+const http = "https://burger-queen-api-mock-production-6473.up.railway.app/";
 
 export function getLogin(email, password) {
   return fetch(`${http}login`, {
@@ -14,6 +15,7 @@ export function getLogin(email, password) {
   })
     .then((res) => res.json())
     .catch((err) => {
+      console.log(err);
       err
       // console.log(err.message);
     });
@@ -29,7 +31,7 @@ export function getEmployees(token) {
     .then((res) => 
       res.json())
     .catch((err) => {
-      console.log(err.message);
+      // console.log(err.message);
       return err;
     });
 }
@@ -54,7 +56,8 @@ export function createUser(email, password, role) {
   })
     .then((res) => res.json())
     .catch((err) => {
-      console.log(err.message);
+      // console.log(err.message);
+      return err;
     });
 }
 export function deleteUser(id, token) {
@@ -66,7 +69,8 @@ export function deleteUser(id, token) {
   })
     .then((res) => res.json())
     .catch((err) => {
-      console.log(err + "Error al eliminar el usuario");
+      // console.log(err + "Error al eliminar el usuario");
+      return err;
     });
 }
 export function editUser(token, uid, email, password, role) {
@@ -85,7 +89,7 @@ export function editUser(token, uid, email, password, role) {
     .then((res) => {
       res;
     })
-    .catch((err) => console.log(err.message));
+    .catch((err) => /*console.log(err.message)*/ err);
 }
 
 export function getProducts(token) {
@@ -98,7 +102,7 @@ export function getProducts(token) {
     .then((res) => 
       res.json())
     .catch((err) => {
-      console.log(err.message);
+      // console.log(err.message);
       return err;
     });
 }
@@ -111,7 +115,8 @@ export function deleteProduct(id, token) {
   })
     .then((res) => res.json())
     .catch((err) => {
-      console.log(err + "Error al eliminar el producto");
+      // console.log(err + "Error al eliminar el producto");
+      return err;
     });
 }
 export function editProduct(token, uid, product, price, image, type) {
@@ -132,7 +137,7 @@ export function editProduct(token, uid, product, price, image, type) {
     .then((res) => {
       res;
     })
-    .catch((err) => console.log(err.message));
+    .catch((err) => /*console.log(err.message)*/ err);
 }
 export function createProduct(token, product, price, image, type) {
   return fetch(`${http}products`, {
@@ -152,7 +157,8 @@ export function createProduct(token, product, price, image, type) {
     .then((res) => {
     res.json()})
     .catch((err) => {
-      console.log(err.message);
+      // console.log(err.message);
+      return err;
     });
 }
 
@@ -185,7 +191,7 @@ export function getOrders(token) {
   })
     .then((res) => res.json())
     .catch((err) => {
-      console.log(err.message);
+     //  console.log(err.message);
       return err;
     });
 }
@@ -203,9 +209,9 @@ export function updateOrder(token, uid, status) {
   })
     .then((res) => {
       res;
-      console.log(res);
+      // console.log(res);
     })
-    .catch((err) => console.log(err.message));
+    .catch((err) => /*console.log(err.message)*/ err);
 }
 // export function deleteOrder(id, token) {
 //   return fetch(`${http}orders/${id}`, {

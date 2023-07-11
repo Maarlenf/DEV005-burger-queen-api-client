@@ -81,7 +81,7 @@ function Products() {
       )}
       <Banner />
       <Header user={user} text= 'Administrador' />
-      <div className='containerButtons'>
+      <div className='containerButtonsProducts'>
         <div className='addUser'>
           <Button
             text='Trabajadores'

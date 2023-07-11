@@ -1,9 +1,9 @@
-.containerButtons {
+.containerButtonsProducts {
   display: flex;
-  margin: 0 40px;
+  margin: 40px;
   justify-content: space-between;
   align-items: center;
-  gap: 250px;
+  /* gap: 250px; */
 }
 .addProduct {
   display: flex;
@@ -97,9 +97,10 @@
 }
 
 #btnEmployee {
-  margin-right: 40%;
+  /* margin-right: 40%; */
   width: 150%;
   height: 95px;
+  margin-left: 40%;
 }
 
 .containerOptions {

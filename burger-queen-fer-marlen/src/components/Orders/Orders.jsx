@@ -21,7 +21,7 @@ function Chef() {
   useEffect(() => {
     getOrders(authorization)
       .then((res) => {
-        console.log(res);
+        // console.log(res);
         const listWithStatusDelivered = [...res].filter(
           (e) => e.status === "delivered"
         );
@@ -37,7 +37,7 @@ function Chef() {
   function getTime(dateEntry, dateProcessed) {
     const inicio = new Date(dateEntry);
     const fin = new Date(dateProcessed);
-    console.log(dateEntry, dateProcessed);
+    // console.log(dateEntry, dateProcessed);
     let diff = fin - inicio;
     let h, m, s;
     h = Math.floor(diff / 1000 / 60 / 60);
@@ -95,7 +95,7 @@ function Chef() {
       {getOrdersStatus === "loading" ? (
         <p data-testid="loadingOrders">Cargando...</p>
       ) : getOrdersStatus === "success" && dataOrders.length === 0 ? (
-        <p data-testid="successWithNothing" className="viewOrders">Aún no hay pedidos</p>
+        <p data-testid="successWithNothing" className="viewOrders">Aún no hay pedidos para entregar</p>
       ) : getOrdersStatus === "success" ? (
         <div className="containerTableOrder" data-testid="tableOrders">
           <div className="columns">
