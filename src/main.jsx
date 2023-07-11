@@ -5,7 +5,7 @@ import * as React from "react";
 import * as ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
-import Home from "./components/Home/Home";
+import Home from "./components/home/Home";
 import "./index.css";
 import Employees from "./components/Employees/Employees"
 import Products from "./components/Products/Products";
