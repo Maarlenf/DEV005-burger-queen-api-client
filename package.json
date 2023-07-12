@@ -8,7 +8,7 @@
     "lint": "eslint src --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "test": "jest  --coverage",
-    "start": "node src/main.jsx"
+    "start": "npm run dev"
   },
   "dependencies": {
     "@babel/core": "^7.22.5",
