@@ -1,5 +1,5 @@
-import bannerBurger from './assets/banner-opacity.png';
-import logo from './assets/logo.png';
+import bannerBurger from './assets/banner-opacity.webp';
+import logo from './assets/logo.webp';
 import icon from './assets/imageIcon.png';
 export {
     bannerBurger,
