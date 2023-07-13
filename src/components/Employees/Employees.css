@@ -1,6 +1,6 @@
-.containerButtons {
+.containerButtonsE {
   display: flex;
-  margin: 0 40px;
+  margin: 0px;
   justify-content: space-between;
   align-items: center;
   gap: 250px;
@@ -10,6 +10,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin-left: 4%;
 }
 .addUser > span {
   font-family: "Bitter";
@@ -19,11 +20,11 @@
   /* letter-spacing: 0.146em; */
   letter-spacing: 1px;
 }
-.containerButtons > button {
+.containerButtonsE > button {
   width: 300px;
   margin: 0;
 }
-.containerButtons {
+.containerButtonsE {
   display: flex;
   margin: 30px 0;
   justify-content: space-around;
@@ -89,7 +90,73 @@
   justify-content: space-evenly;
 }
 #btnProduct {
-  margin-right: 40%;
-  width: 150%;
+  margin-right: 5%;
+  width: 250px;
   height: 95px;
+}
+@media (min-width: 320px) and (max-width: 480px) {
+  .addUser {
+    margin-left: 0%;
+  }
+
+  .addUser > span {
+    font-size: 16px;
+  }
+
+  #btnProduct{
+    font-size: 18px;
+    height: 35%;
+    width: 90%;
+    margin-right: 0%;
+  }
+  .containerButtonsE {
+    display: flex;
+    gap:10px;
+    justify-content: center;
+    width: 90%;
+    margin: -3% 5%;
+    flex-direction: column;
+  }
+ .containerTable{
+  display: grid;
+  grid-template-areas:
+    "hd"
+    "content";
+  margin: 3%;
+  font-size: 18px;
+}
+.pwd{
+  display: none;
+}
+.columnsName {
+  grid-area: hd;
+  display: grid;
+  grid-template-columns: 15% 29% 30% 22%;
+  grid-template-areas: "ha he ho hu";
+  align-items: center;
+  font-size: 18px;
+  margin-top: 3%;
+}
+.containerId>ul>.passWord{
+  display: none;
+}
+.containerId > ul {
+  grid-area: content;
+  display: grid;
+  grid-template-areas: "ca ce co cu";
+  grid-template-columns: 15% 30% 33% 20%;
+  align-items: center;
+  padding: 0;
+  margin-bottom: 45px;
+  font-size: 18px;
+}
+.editU{
+  width: 20px;
+}
+.deleteU{
+  width: 25px;
+}
+.addU{
+  width: 40px;
+}
 }

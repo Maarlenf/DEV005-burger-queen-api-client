@@ -64,7 +64,7 @@ function Home() {
             type="email"
             className="input"
             id="email"
-            placeholder="example@examle.com"
+            placeholder="example@example.com"
             value={valueEmail}
             onChange={(e) => setEmail(e.target.value)}
           />

@@ -10,7 +10,6 @@
   will-change: filter;
   transition: filter 300ms;
 }
-
 .formLogin {
   display: flex;
   margin-right: 20%;
@@ -35,4 +34,17 @@
   letter-spacing: 0.146em;
   text-align: left;
   margin-top: 2px;
+}
+@media (min-width: 320px) and (max-width: 480px) {
+  .logo {
+    height: 150px;
+  }
+  .formLogin{
+    margin-right: 5%;
+    margin-left: 5%;
+    height: 300px; 
+  }
+  .failLogin{
+    font-size: 18px;
+  }
 }

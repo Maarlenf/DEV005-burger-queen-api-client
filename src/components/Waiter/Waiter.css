@@ -98,3 +98,17 @@
   justify-content: space-around;
   align-items: flex-end;
 }
+@media (min-width: 320px) and (max-width: 480px) {
+  .containerRoot {
+    grid-template-areas: "a" "b";
+    grid-template-columns: 100%;
+  }
+
+  .columnA {
+    grid-area: b;
+  }
+
+  .columnB {
+    grid-area: a;
+  }
+}

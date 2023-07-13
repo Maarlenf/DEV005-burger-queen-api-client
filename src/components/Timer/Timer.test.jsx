@@ -16,7 +16,7 @@ describe("timer", () => {
 
     await waitFor(() => {
       const elapsedTimeElements = getAllByText((content, element) => {
-        const timeRegex = /\d+ dias, \d+:\d+:\d+ hrs./;
+        const timeRegex = /\d+:\d+:\d+ hrs./;
         const elementText = element.textContent || "";
         return timeRegex.test(elementText);
       });

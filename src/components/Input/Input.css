@@ -33,3 +33,11 @@
   letter-spacing: 3px;
   font-size: 18px;
 }
+@media (min-width: 320px) and (max-width: 480px) {
+  .p-login {
+    font-size: 18px;
+  }
+  .input{
+    font-size: 20px;
+  }
+}

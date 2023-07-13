@@ -18,10 +18,10 @@ function Header({ user, text }) {
         <img src={logo} className='logoSmall' alt='Logo Burguer Queen' />
         <Title title={text} />
         <div className='containerUser'>
-          <AiOutlineUser size={50} />
+          <AiOutlineUser size={50} className="iconUser"/>
           <span>
             {user}{" "}
-            <MdLogout data-testid={"logout-icon"} size={22} onClick={logout} />
+            <MdLogout data-testid={"logout-icon"} size={22} onClick={logout} className="iconOut"/>
           </span>
         </div>
       </div>

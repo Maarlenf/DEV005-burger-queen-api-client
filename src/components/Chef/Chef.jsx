@@ -69,7 +69,9 @@ function Chef() {
       {getOrdersStatus === "loading" ? (
         <p data-testid="loadingOrders">Cargando...</p>
       ) : getOrdersStatus === "success" && dataOrders.length === 0 ? (
-        <p data-testid="successWithNothing" className='viewChef'>Aún no hay pedidos</p>
+        <p data-testid="successWithNothing" className="viewChef">
+          Aún no hay pedidos
+        </p>
       ) : getOrdersStatus === "success" ? (
         <div className="containerTableOrder" data-testid="tableOrders">
           <div className="columns">
@@ -79,9 +81,10 @@ function Chef() {
           {dataOrders.map((order) => {
             const childrenOfOrder = order.products.map((e) => {
               return (
-                <ul key={order.id + '-' + e.product.id}>
+                <ul key={order.id + "-" + e.product.id}>
                   <li>{e.qty}</li>
                   <img
+                    id="imgProduct"
                     src={e.product.image}
                     alt="img product"
                     style={{ width: "70px", height: "70px" }}
@@ -119,7 +122,9 @@ function Chef() {
           })}
         </div>
       ) : getOrdersStatus === "error" ? (
-        <p className='viewChef' data-testid="ordersError">Ha ocurrido un error</p>
+        <p className="viewChef" data-testid="ordersError">
+          Ha ocurrido un error
+        </p>
       ) : null}
     </>
   );

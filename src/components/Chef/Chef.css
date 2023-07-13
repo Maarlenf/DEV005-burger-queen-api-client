@@ -103,9 +103,37 @@ p{
     display: inline-block;
     height: 481px;
 }
-
-
-
-
+@media (min-width: 320px) and (max-width: 480px) {
+    .containerTableOrder {
+      margin: 0 15px 291px;
+    }
+    .dataOrder > ul {
+      grid-template-columns: 10% 30% 65%;
+      margin-left:-15%;
+    }
+    .dataOrder > ul > li {
+      font-size: 18px;
+    }
+    #imgProduct {
+      width: 41px;
+      height: 41px;
+    }
+    #btnUpdate {
+      font-size: 14px;
+      height: 30px;
+      width: 100px;
+    }
+    .client {
+      margin-left: -20px;
+    }
+    .viewChef{
+        display: inline-block;
+        height: 291px;
+    }
+    .viewOrders{
+        display: inline-block;
+        height: 291px;
+    }
+  }
 
 

@@ -24,3 +24,23 @@
 .iconOut {
   margin-bottom: -2%;
 }
+@media (min-width: 320px) and (max-width: 480px) {
+  .containerBanner > h1 {
+    font-size: 20px;
+  }
+  .logoSmall{
+    width: 80px;
+  }
+  .containerUser {
+    font-weight: 700;
+    font-size: 14px;
+    height: 50px;
+  }
+  .iconOut {
+    margin-bottom: -5%;
+    width: 20px;
+  }
+  .iconUser{
+    width: 25px;
+  }
+}

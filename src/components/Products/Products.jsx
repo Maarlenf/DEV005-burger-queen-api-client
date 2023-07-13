@@ -73,73 +73,72 @@ function Products() {
       )}
       {showModalDelete && (
         <ModalDelete
-          text='Acción irreversible, ¿Desea continuar con la eliminación?'
+          text="Acción irreversible, ¿Desea continuar con la eliminación?"
           onClose={toggleModalDelete}
           id={deleteProduct}
           optToDelete={"product"}
         />
       )}
       <Banner />
-      <Header user={user} text= 'Administrador' />
-      <div className='containerButtonsProducts'>
-        <div className='addUser'>
+      <Header user={user} text="Administrador" />
+      <div className="containerButtonsProducts">
+        <div className="addUser">
           <Button
-            text='Trabajadores'
-            id='btnEmployee'
+            text="Trabajadores"
+            id="btnEmployee"
             onClick={navigateEmploye}
           />
         </div>
-        <div className='addProduct' onClick={toggleModalEdit}>
+        <div className="addProduct" onClick={toggleModalEdit}>
           <IoFastFoodOutline size={50} />
           <span>Agregar Productos</span>
         </div>
       </div>
 
-      <div className='containerOptions'>
-        <div className='optionDes'>
+      <div className="containerOptions">
+        <div className="optionDes">
           <span>Desayuno</span>
           <Input
-            type='checkbox'
-            id='toppingDes'
-            value='Desayuno'
+            type="checkbox"
+            id="toppingDes"
+            value="Desayuno"
             checked={selectedTypes.includes("Desayuno")}
             onChange={(e) => filter(e.target.value)}
           />
         </div>
-        <div className='optionAlm'>
+        <div className="optionAlm">
           <span>Almuerzo</span>
           <Input
-            type='checkbox'
-            name='Almuerzo'
-            id='toppingAlm'
-            value='Almuerzo'
+            type="checkbox"
+            id="toppingAlm"
+            value="Almuerzo"
             checked={selectedTypes.includes("Almuerzo")}
             onChange={(e) => filter(e.target.value)}
           />
         </div>
-        <div className='optionCen'>
+        <div className="optionCen">
           <span>Cena</span>
           <Input
-            type='checkbox'
-            id='toppingCen'
-            value='Cena'
+            type="checkbox"
+            id="toppingCen"
+            value="Cena"
             checked={selectedTypes.includes("Cena")}
             onChange={(e) => filter(e.target.value)}
           />
         </div>
       </div>
 
-      <div className='containerTable' data-testid='tableProducts'>
-        <div className='columnsNames'>
-          <span className='id'>ID</span>
-          <span className='email'>Nombre</span>
-          <span className='pwd'>Precio</span>
-          <span className='role'>Imagen</span>
-          <span className='action'>Tipo</span>
-          <span className='action'>Creación</span>
-          <span className='action'>Opción</span>
+      <div className="containerTable" data-testid="tableProducts">
+        <div className="columnsNames">
+          <span className="idP">ID</span>
+          <span className="email">Nombre</span>
+          <span className="price">Precio</span>
+          <span className="role">Imagen</span>
+          <span className="action">Tipo</span>
+          <span className="create">Creación</span>
+          <span className="action">Opción</span>
         </div>
-        <div className='containerIds'>
+        <div className="containerIds">
           {dataProducts
             .filter((product) =>
               selectedTypes.length === 0
@@ -149,27 +148,29 @@ function Products() {
             .map((obj) => {
               return (
                 <ul key={obj.id}>
-                  <li>{obj.id}</li>
+                  <li className="idP">{obj.id}</li>
                   <li>{obj.name}</li>
                   <li>{obj.price}</li>
                   <img
                     src={obj.image}
-                    alt='producto'
-                    className='imageProduct'
+                    alt="producto"
+                    className="imageProduct"
                   />
                   <li>{obj.type}</li>
-                  <li>{obj.dateEntry}</li>
+                  <li className="create">{obj.dateEntry}</li>
                   <div>
-                    <div className='icon1'>
+                    <div className="icon1">
                       <AiOutlineEdit
+                        className="editU"
                         size={30}
                         onClick={() => toggleModalEdit(obj)}
                         data-testid="checkEditProduct"
                       />
                       <MdOutlineNoFood
+                        className="deleteU"
                         onClick={() => toggleModalDelete(obj.id)}
                         size={30}
-                        data-testid= 'deleteProduct'
+                        data-testid="deleteProduct"
                       />
                     </div>
                   </div>
