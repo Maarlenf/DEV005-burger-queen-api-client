@@ -20,6 +20,7 @@ a{
   line-height: 150%;
   letter-spacing: 0.146em;
   margin-left: 5px;
+  text-decoration: underline;
 }
 a:active{
   color: white;

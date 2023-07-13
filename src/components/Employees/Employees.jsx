@@ -16,7 +16,9 @@ import Button from "../Button/Button";
 import { useNavigate } from "react-router-dom";
 
 function Employees() {
-  const user = localStorage.getItem("userInLine");
+  const user = localStorage.getItem("user");
+  const userInLine = cutEmail(user);
+  localStorage.setItem("userInLine", userInLine);
   const token = localStorage.getItem("token");
   const authorization = `Bearer ${token}`;
   const [dataUser, setDataUser] = useState([]);
@@ -74,7 +76,7 @@ function Employees() {
         />
       )}
       <Banner />
-      <Header user={user} text="Administrador" />
+      <Header user={userInLine} text="Administrador" />
 
       <div className="containerButtonsE">
         <div className="addUser" hidden={showModal} onClick={toggleModal}>
