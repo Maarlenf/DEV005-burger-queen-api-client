@@ -12,7 +12,7 @@ export default defineConfig({
         name: "Burger Queen Api Client",
         short_name: "BQAC by Fer & Marlen",
         description: "Sistema de pedidos para un restaurante",
-        theme_color: "#ffffff",
+        theme_color: "#e28a3c",
         start_url: "/",
         icons: [
           {
