@@ -1,6 +1,5 @@
 # Burger Queen (API Client)
-Proyecto creado según las necesidades de una empresa, bajo las tecnologías de React, React Router y hooks, React testing library. se puede ingrsar al 
-sistema:
+Proyecto creado según las necesidades de una empresa para versión tablet, bajo las tecnologías de React, React Router y hooks, React testing library. se puede ingresar al sistema mediante las siguientes cuentas:
 
 * Administrador:  grace.hopper@systers.xyz contraseña: 123456
 * Mesero: alan@falso.com contraseña: 123456
